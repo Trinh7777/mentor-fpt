@@ -1,0 +1,51 @@
+[
+  {"subject_code":"MAE101","subject_name":"Mathematics for Engineering","semester":1},
+  {"subject_code":"MAD101","subject_name":"Discrete Mathematics","semester":1},
+  {"subject_code":"SSL101c","subject_name":"Academic Skills for University Success","semester":1},
+  {"subject_code":"PFP191","subject_name":"Programming Fundamentals with Python","semester":1},
+  {"subject_code":"CSI106","subject_name":"Introduction to Computer Science","semester":1},
+
+  {"subject_code":"CSD203","subject_name":"Data Structures and Algorithm with Python","semester":2},
+  {"subject_code":"AIG202c","subject_name":"Artificial Intelligence","semester":2},
+  {"subject_code":"CEA201","subject_name":"Computer Organization and Architecture","semester":2},
+  {"subject_code":"DBI202","subject_name":"Introduction to Databases","semester":2},
+  {"subject_code":"JPD113","subject_name":"Elementary Japanese 1-A1.1","semester":2},
+
+  {"subject_code":"JPD123","subject_name":"Elementary Japanese 1-A1.2","semester":3},
+  {"subject_code":"ITE303c","subject_name":"Ethics in IT","semester":3},
+  {"subject_code":"ADY201m","subject_name":"Data Science with Python & SQL","semester":3},
+  {"subject_code":"MAS291","subject_name":"Statistics and Probability","semester":3},
+  {"subject_code":"MAI391","subject_name":"Mathematics for Machine Learning","semester":3},
+
+  {"subject_code":"SWE201c","subject_name":"Introduction to Software Engineering","semester":4},
+  {"subject_code":"CPV301","subject_name":"Computer Vision","semester":4},
+  {"subject_code":"DAP391m","subject_name":"AI-DS Project","semester":4},
+  {"subject_code":"AIL303m","subject_name":"Machine Learning","semester":4},
+  {"subject_code":"SSG105","subject_name":"Communication and In-Group Working Skills","semester":4},
+
+  {"subject_code":"BDI302c","subject_name":"Big Data","semester":5},
+  {"subject_code":"DSR301m","subject_name":"Applied Data Science with R","semester":5},
+  {"subject_code":"DPL302m","subject_name":"Deep Learning","semester":5},
+  {"subject_code":"DWP301c","subject_name":"Web Development with Python","semester":5},
+
+  {"subject_code":"OJT202","subject_name":"On the job training","semester":6},
+  {"subject_code":"NLP301c","subject_name":"Natural Language Processing","semester":6},
+
+  {"subject_code":"AI_000003","subject_name":"Elective 3","semester":7},
+  {"subject_code":"ENW493c","subject_name":"Research Methods & Academic Writing Skills","semester":7},
+  {"subject_code":"EXE101","subject_name":"Experiential Entrepreneurship 1","semester":7},
+  {"subject_code":"DAT301m","subject_name":"AI Development with TensorFlow","semester":7},
+  {"subject_code":"PMG201c","subject_name":"Project Management","semester":7},
+
+  {"subject_code":"MLN122","subject_name":"Political Economics of Marxism-Leninism","semester":8},
+  {"subject_code":"AI_000004","subject_name":"Elective 4","semester":8},
+  {"subject_code":"MLN111","subject_name":"Philosophy of Marxism-Leninism","semester":8},
+  {"subject_code":"EXE201","subject_name":"Experiential Entrepreneurship 2","semester":8},
+  {"subject_code":"AID301c","subject_name":"AI in Production","semester":8},
+  {"subject_code":"REL301m","subject_name":"Reinforcement Learning","semester":8},
+
+  {"subject_code":"AIP491","subject_name":"AI Capstone Project","semester":9},
+  {"subject_code":"HCM202","subject_name":"Ho Chi Minh Ideology","semester":9},
+  {"subject_code":"MLN131","subject_name":"Scientific Socialism","semester":9},
+  {"subject_code":"VNR202","subject_name":"History of Viet Nam Communist Party","semester":9}
+]

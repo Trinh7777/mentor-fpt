@@ -1,0 +1,93 @@
+{
+  "metadata": {
+    "system_name": "Hệ thống giáo dục FPT - FPT University",
+    "version": "2026-2027",
+    "description": "Structured JSON knowledge base optimized for RAG and Chatbot ingestion, chunked logically by topic with searchable tags and detailed content."
+  },
+  "chunks": [
+    {
+      "chunk_id": "FPT_HP_01",
+      "category": "Học phí và Học lại",
+      "title": "Quy định học phí học lại (QĐ 107/QĐ-CTGDFPT)",
+      "tags": ["học lại", "học phí", "học lại sớm", "wishlist", "thi lại", "vi phạm quy chế thi"],
+      "content": "1. Học phí học lại sớm: Áp dụng đối với sinh viên, học viên học lại ngay trong kỳ hoặc kỳ tiếp theo bằng 50% học phí môn.\n2. Học phí học lại thông thường: Áp dụng đối với sinh viên không học lại ngay trong kỳ hoặc kỳ tiếp theo bằng 100% học phí môn.\n3. Thời điểm tính học lại sớm hay thông thường tính từ thời điểm sinh viên bị trượt môn gần nhất, không phân biệt môn đó là học đi hay học lại.\n4. Hoàn trả 50% học phí học lại đã nộp cho sinh viên đã đăng ký lớp học lại nhưng vì lý do cá nhân xin hủy lớp trước khi khai giảng. Hủy sau khai giảng không được hoàn tiền.\n5. Hoàn trả 100% học phí học lại đã nộp cho sinh viên đã đăng ký lớp học nhưng nhà trường không tổ chức được lớp.\n6. Wishlist: Sinh viên phải học lại vì lý do trùng lịch, nhà trường không tổ chức được lớp... có thể đăng ký vào danh sách chờ lớp (wishlist) để được bảo lưu chế độ học lại sớm, học phí tính theo biểu phí môn tại thời điểm đăng ký vào wishlist. Hủy wishlist được hoàn lại 50% số tiền đã nộp.\n7. Sinh viên vi phạm quy chế thi: Học phí học lại, giá dịch vụ thi lại, thi thẩm định bằng hai lần so với sinh viên không vi phạm."
+    },
+    {
+      "chunk_id": "FPT_HP_02",
+      "category": "Học phí và Biểu phí",
+      "title": "Biểu phí môn học đại học chính quy (FPTU)",
+      "tags": ["biểu phí", "tín chỉ", "FPTU", "Hà Nội", "TPHCM", "Đà Nẵng", "Bình Định", "Cần Thơ", "giáo dục quốc phòng", "tiếng anh"],
+      "content": "- Môn học thông thường (Đơn vị 1 tín chỉ):\n+ Cơ sở Hà Nội & TP.HCM: 1,840,000 VND / 1 tín chỉ.\n+ Cơ sở Đà Nẵng, Bình Định, Cần Thơ: 1,290,000 VND / 1 tín chỉ.\n- Môn học đặc biệt:\n+ Giáo dục quốc phòng: Hà Nội & HCM: 4,100,000 VND/môn; Đà Nẵng, Bình Định, Cần Thơ: 2,870,000 VND/môn.\n+ Tiếng Anh TN1, 2, 3, Summit 1, 2: Hà Nội & HCM: 12,050,000 VND/level; Đà Nẵng, Bình Định, Cần Thơ: 8,440,000 VND/level (Áp dụng từ học kỳ Fall 2025)."
+    },
+    {
+      "chunk_id": "FPT_TC_01",
+      "category": "Tài chính 2026-2027",
+      "title": "Quy định chung về dịch vụ và thanh toán học phí (QĐ 322/QĐ-CTGDFPT)",
+      "tags": ["tài chính", "dịch vụ tuyển sinh", "thời hạn nộp học phí", "hoàn trả học phí", "bảo lưu"],
+      "content": "- Giá dịch vụ tuyển sinh: Đăng ký thi học bổng (200,000 VND), Xét tuyển (200,000 VND), Nhập học (không hoàn trả dưới mọi hình thức).\n- Chính sách hoàn trả học phí:\n+ Thôi học trước ngày bắt đầu: Hoàn trả 80% học phí thực nộp trừ tiền bản quyền.\n+ Thôi học trong vòng 2 tuần kể từ ngày bắt đầu: Hoàn trả 50% học phí thực nộp trừ tiền bản quyền.\n+ Thôi học sau 2 tuần kể từ ngày bắt đầu: Không hoàn trả học phí đã đóng.\n- Thời hạn nộp học phí: Hoàn thành tối thiểu 05 ngày làm việc trước ngày bắt đầu khóa học/kỳ học chính thức và tối thiểu 03 ngày làm việc trước ngày đầu tiên đối với giai đoạn tiếng Anh chuẩn bị."
+    },
+    {
+      "chunk_id": "FPT_HV_01",
+      "category": "Xử lý học vụ",
+      "title": "Quy định Tạm ngừng học tập (Phụ lục 2 - QT Đào tạo)",
+      "tags": ["tạm ngừng", "bảo lưu", "nguyện vọng cá nhân", "đình chỉ học tập", "chưa đủ điều kiện tốt nghiệp"],
+      "content": "- Tạm ngừng do nguyện vọng cá nhân: Sinh viên được quyền tạm ngừng theo học kỳ để giải quyết việc riêng hoặc học lại môn chưa đạt, đã học tối thiểu 01 học kỳ tại trường, không bị buộc thôi học hoặc kỷ luật. Không được tạm ngừng quá 02 học kỳ liên tiếp. Thời gian mỗi lần tạm ngừng là 01 học kỳ.\n- Tạm ngừng do bị đình chỉ: Theo quyết định của Hội đồng kỷ luật Nhà trường.\n- Tạm ngừng do chưa đủ điều kiện tốt nghiệp: Sinh viên hoàn thành chương trình nhưng thiếu hồ sơ, tài chính hoặc đang bị truy cứu trách nhiệm hình sự."
+    },
+    {
+      "chunk_id": "FPT_HV_02",
+      "category": "Xử lý học vụ",
+      "title": "Quy định Thôi học và Nhập học trở lại",
+      "tags": ["thôi học", "dropout", "nhập học trở lại", "kỷ luật buộc thôi học", "thời hạn học tập"],
+      "content": "- Các trường hợp thôi học: Bị kỷ luật buộc thôi học; Học vượt quá thời hạn quy định (quá 2 lần thời gian chuẩn toàn khóa không tính tiếng Anh dự bị); Có đơn thôi học tự nguyện; Ngừng đóng học phí học kỳ tiếp theo không làm thủ tục tạm ngừng; Hết hạn tạm ngừng không đăng ký học; Chuyển ngành/cơ sở nhưng không nhập học đúng hạn.\n- Nhập học trở lại: Áp dụng với sinh viên thôi học tự nguyện (từ K17 trở đi được miễn thi đầu vào). Phải hoàn thành nghĩa vụ tài chính và nộp đơn trong thời hạn quy định."
+    },
+    {
+      "chunk_id": "FPT_HV_03",
+      "category": "Xử lý học vụ",
+      "title": "Quy định Chuyển ngành và Chuyển cơ sở",
+      "tags": ["chuyển ngành", "chuyển cơ sở", "thủ tục chuyển ngành", "học phí chuyển ngành"],
+      "content": "- Nguyên tắc: Chỉ được chuyển theo học kỳ (không chuyển giữa chừng). Phải thực hiện thủ tục chậm nhất 01 tuần trước khi học kỳ mới bắt đầu.\n- Tài chính khi chuyển ngành: Chuyển ngành/cơ sở được chuyển toàn bộ học phí chưa sử dụng. Chuyển chuyên ngành/combo phải nộp bổ sung 100% học phí môn của các môn đã học ở ngành cũ mà ngành mới không có. Các môn đã học ở ngành cũ mà ngành mới có thì bảo lưu kết quả (nếu qua) hoặc học lại (nếu trượt)."
+    },
+    {
+      "chunk_id": "FPT_KT_01",
+      "category": "Nội quy kỳ thi",
+      "title": "Quy định phòng thi và Xử lý vi phạm (QĐ 1234/QĐ-ĐHFPT)",
+      "tags": ["nội quy kỳ thi", "phòng thi", "gian lận", "đình chỉ thi", "phúc khảo", "thi hộ", "AI"],
+      "content": "- Thời gian: Có mặt đúng giờ, trễ quá 5 phút sau giờ thi chính thức không được vào phòng thi (mất lượt thi).\n- Giấy tờ & Đồ dùng: Xuất trình CCCD/Hộ chiếu, tuân thủ hướng dẫn đề thi và phần mềm quy định. Cấm mang thiết bị truyền tin (nếu mang phải tắt nguồn).\n- Gian lận & Kỷ luật:\n+ Nhìn bài, trao đổi, mang tài liệu trái phép: Đình chỉ thi.\n+ Nhờ người thi hộ, thi hộ, mang vũ khí, chất nổ, sao chụp đề thi: Đình chỉ thi, đình chỉ học tập 1 kỳ hoặc Buộc thôi học (chuyển công an nếu cần).\n+ Dùng AI tạo nội dung bài làm mà không ghi rõ: Hủy bỏ kết quả bài thi.\n- Phúc khảo: Nộp đơn trong 3 ngày làm việc kể từ ngày công bố điểm, giải quyết trong 5 ngày làm việc. Được phúc khảo tối đa 2 lần/bài thi."
+    },
+    {
+      "chunk_id": "FPT_SV_01",
+      "category": "Nội quy sinh viên",
+      "title": "Quy định chung và Kỷ luật sinh viên (QĐ 545/QĐ-ĐHFPT)",
+      "tags": ["nội quy sinh viên", "điểm danh", "thẻ sinh viên", "hút thuốc", "văn hóa ứng xử", "kỷ luật"],
+      "content": "- Điểm danh: Vào lớp muộn quá 5 phút tính vắng mặt slot đó. Nghỉ học quá 20% thời lượng học phần không được dự thi cuối kỳ (attendance fail/AF).\n- Thẻ sinh viên: Phải xuất trình thẻ khi qua các khu vực theo quy định. Quên/mất thẻ làm thẻ tạm tại quầy dịch vụ.\n- Văn hóa & Môi trường: Trang phục phù hợp, tôn trọng thầy cô. Cấm hút thuốc (kể cả thuốc lá điện tử) trong lớp học, thư viện. Cấm mang chất cháy nổ, độc hại.\n- Lớp học: Tuân thủ TKB, giữ trật tự, không dùng điện thoại, không ăn uống trong lớp, không đưa người ngoài vào lớp học/thư viện."
+    },
+    {
+      "chunk_id": "FPT_NCKH_01",
+      "category": "Khen thưởng NCKH",
+      "title": "Quy định khen thưởng công bố khoa học (QĐ 138/QĐ-DHFPT)",
+      "tags": ["khen thưởng", "nghiên cứu khoa học", "ISI", "Scopus", "bài báo khoa học", "seminar"],
+      "content": "- Danh mục xét thưởng: ISI (SCIE, SSCI, ESCI, A&HCI, BCI, CPCI), Scopus, và danh mục tạp chí của HĐ GSNN.\n- Mức thưởng ISI & Scopus xếp hạng Q1-Q4 (3 năm liền kề trên Scimago):\n+ Q1: 100,000,000 VND\n+ Q2: 80,000,000 VND\n+ Q3: 60,000,000 VND\n+ Q4: 40,000,000 VND\n- Mức thưởng Scopus Q1-Q2 (không thuộc ISI):\n+ Q1: 60,000,000 VND\n+ Q2: 40,000,000 VND\n- Các bài báo ISI/Scopus khác: 20,000,000 VND.\n- Tạp chí HĐ GSNN: Điểm tối đa * 5,000,000 VND.\n- Điều kiện: Tác giả phải tổ chức seminar chia sẻ nghiên cứu khoa học tại đơn vị trước khi đề nghị xét thưởng. Thỉnh giảng tính 50%. Giới hạn tối đa 500 triệu đồng/tác giả/năm."
+    },
+    {
+      "chunk_id": "FPT_NCKH_02",
+      "category": "Khen thưởng NCKH",
+      "title": "Khen thưởng Sáng chế và Trích dẫn",
+      "tags": ["sáng chế", "giải pháp hữu ích", "trích dẫn", "Google Scholar", "NOIP"],
+      "content": "- Bằng độc quyền sáng chế:\n+ Cấp tại Mỹ (USPTO), EU (EPO), Nhật (JPO), Úc (IP), Hàn Quốc (KIPO): 100,000,000 VND.\n+ Cấp tại quốc gia khác: 40,000,000 VND.\n+ Bằng độc quyền giải pháp hữu ích tại Cục sở hữu trí tuệ VN (NOIP): 10,000,000 VND.\n- Khen thưởng số lượng trích dẫn (Scopus & Google Scholar): Dành cho CB-GV cơ hữu đã có công bố ISI/Scopus trong 3 năm gần nhất. Mức thưởng dao động từ 2,000,000 VND (Scopus >=10, GS >=20) đến 35,000,000 VND (Scopus >=2000, GS >=5,000). Xét thưởng tháng 12 hằng năm."
+    },
+    {
+      "chunk_id": "FPT_DT_01",
+      "category": "Quy trình đào tạo & Tốt nghiệp",
+      "title": "Quy định Khóa luận tốt nghiệp và Xét tốt nghiệp",
+      "tags": ["khóa luận tốt nghiệp", "đồ án tốt nghiệp", "luận văn", "xét tốt nghiệp", "hội đồng bảo vệ"],
+      "content": "- Khóa luận tốt nghiệp (Đồ án / Luận văn): Là môn học chuyên ngành bắt buộc khi đủ điều kiện. Quy trình gồm: Lập danh sách đủ điều kiện (tuần 5 kỳ n-1), ORT, đăng ký đề tài, phân công GVHD, thực hiện (tối thiểu số buổi gặp GVHD theo syllabus), Hội đồng cấp khoa (Hội đồng 1.1 bảo vệ thử), Hội đồng cấp trường (Hội đồng 1.2 bảo vệ chính thức). Kết quả: Đạt, Sửa lại bảo vệ lần 2, hoặc Không đạt.\n- Xét tốt nghiệp: Hội đồng xét tốt nghiệp xem xét toàn bộ quá trình học tập, rèn luyện, hoàn thành số tín chỉ khung CT, GDTC, OJT, GDQP, chứng chỉ ngoại ngữ, hoàn thành thủ tục tài chính và thư viện để ra quyết định công nhận tốt nghiệp và cấp bằng."
+    },
+    {
+      "chunk_id": "FPT_TV_01",
+      "category": "Quản lý thư viện",
+      "title": "Quy định Thư viện và Mượn trả tài liệu",
+      "tags": ["thư viện", "mượn sách", "trả chậm", "thanh lý tài liệu", "bồi thường sách"],
+      "content": "- Tài khoản: Mỗi bạn đọc cấp 01 tài khoản duy nhất tra cứu và sử dụng thư viện.\n- Mượn trả & Trả chậm: Trả chậm tài liệu phạt 5,000 VND/ngày. Quá 30 ngày ngoài tiền trả chậm phải bồi thường bằng giá nhập tài liệu. Mất hoặc làm hư hỏng sách phải đền bằng giá nhập tài liệu.\n- Kiểm kê & Thanh lý: Kiểm kê ít nhất 1 lần/năm. Thanh lý sách cũ hỏng, lỗi thời, sách mất đền tiền, sách quá hạn trên 30 ngày."
+    }
+  ]
+}

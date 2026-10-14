@@ -1,0 +1,1962 @@
+[
+  {
+    "student_id": "SE190456",
+    "subject_code": "MAE101",
+    "semester_taken": 1,
+    "grade": 7.8,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190456",
+    "subject_code": "MAD101",
+    "semester_taken": 1,
+    "grade": 8.1,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190456",
+    "subject_code": "SSL101c",
+    "semester_taken": 1,
+    "grade": 7.2,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190456",
+    "subject_code": "PFP191",
+    "semester_taken": 1,
+    "grade": 8.7,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190456",
+    "subject_code": "CSI106",
+    "semester_taken": 1,
+    "grade": 7.5,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190456",
+    "subject_code": "CSD203",
+    "semester_taken": 2,
+    "grade": 8.0,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190456",
+    "subject_code": "AIG202c",
+    "semester_taken": 2,
+    "grade": 8.1,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190456",
+    "subject_code": "CEA201",
+    "semester_taken": 2,
+    "grade": 7.0,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190456",
+    "subject_code": "DBI202",
+    "semester_taken": 2,
+    "grade": 8.5,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190456",
+    "subject_code": "JPD113",
+    "semester_taken": 2,
+    "grade": 7.3,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190456",
+    "subject_code": "JPD123",
+    "semester_taken": 3,
+    "grade": 7.0,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190456",
+    "subject_code": "ITE303c",
+    "semester_taken": 3,
+    "grade": 8.2,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190456",
+    "subject_code": "ADY201m",
+    "semester_taken": 3,
+    "grade": 8.4,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190456",
+    "subject_code": "MAS291",
+    "semester_taken": 3,
+    "grade": 7.8,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190456",
+    "subject_code": "MAI391",
+    "semester_taken": 3,
+    "grade": 7.6,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190456",
+    "subject_code": "SWE201c",
+    "semester_taken": 4,
+    "grade": 8.1,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190456",
+    "subject_code": "CPV301",
+    "semester_taken": 4,
+    "grade": 8.0,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190456",
+    "subject_code": "DAP391m",
+    "semester_taken": 4,
+    "grade": 8.5,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190456",
+    "subject_code": "AIL303m",
+    "semester_taken": 4,
+    "grade": 8.3,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190456",
+    "subject_code": "SSG105",
+    "semester_taken": 4,
+    "grade": 7.9,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190456",
+    "subject_code": "BDI302c",
+    "semester_taken": 5,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190456",
+    "subject_code": "DSR301m",
+    "semester_taken": 5,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190456",
+    "subject_code": "DPL302m",
+    "semester_taken": 5,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190456",
+    "subject_code": "DWP301c",
+    "semester_taken": 5,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190457",
+    "subject_code": "MAE101",
+    "semester_taken": 1,
+    "grade": 5.6,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190457",
+    "subject_code": "MAD101",
+    "semester_taken": 1,
+    "grade": 9.1,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190457",
+    "subject_code": "SSL101c",
+    "semester_taken": 1,
+    "grade": 8.0,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190457",
+    "subject_code": "PFP191",
+    "semester_taken": 1,
+    "grade": 8.8,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190457",
+    "subject_code": "CSI106",
+    "semester_taken": 1,
+    "grade": 7.7,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190457",
+    "subject_code": "CSD203",
+    "semester_taken": 2,
+    "grade": 7.4,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190457",
+    "subject_code": "AIG202c",
+    "semester_taken": 2,
+    "grade": 5.5,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190457",
+    "subject_code": "CEA201",
+    "semester_taken": 2,
+    "grade": 7.7,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190457",
+    "subject_code": "DBI202",
+    "semester_taken": 2,
+    "grade": 6.3,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190457",
+    "subject_code": "JPD113",
+    "semester_taken": 2,
+    "grade": 7.0,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190457",
+    "subject_code": "JPD123",
+    "semester_taken": 3,
+    "grade": 6.7,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190457",
+    "subject_code": "ITE303c",
+    "semester_taken": 3,
+    "grade": 6.7,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190457",
+    "subject_code": "ADY201m",
+    "semester_taken": 3,
+    "grade": 8.6,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190457",
+    "subject_code": "MAS291",
+    "semester_taken": 3,
+    "grade": 7.0,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190457",
+    "subject_code": "MAI391",
+    "semester_taken": 3,
+    "grade": 7.8,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190457",
+    "subject_code": "SWE201c",
+    "semester_taken": 4,
+    "grade": 7.4,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190457",
+    "subject_code": "CPV301",
+    "semester_taken": 4,
+    "grade": 9.4,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190457",
+    "subject_code": "DAP391m",
+    "semester_taken": 4,
+    "grade": 6.9,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190457",
+    "subject_code": "AIL303m",
+    "semester_taken": 4,
+    "grade": 6.6,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190457",
+    "subject_code": "SSG105",
+    "semester_taken": 4,
+    "grade": 5.9,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190457",
+    "subject_code": "BDI302c",
+    "semester_taken": 5,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190457",
+    "subject_code": "DSR301m",
+    "semester_taken": 5,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190457",
+    "subject_code": "DPL302m",
+    "semester_taken": 5,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190457",
+    "subject_code": "DWP301c",
+    "semester_taken": 5,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190458",
+    "subject_code": "MAE101",
+    "semester_taken": 1,
+    "grade": 6.7,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190458",
+    "subject_code": "MAD101",
+    "semester_taken": 1,
+    "grade": 6.6,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190458",
+    "subject_code": "SSL101c",
+    "semester_taken": 1,
+    "grade": 7.0,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190458",
+    "subject_code": "PFP191",
+    "semester_taken": 1,
+    "grade": 7.6,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190458",
+    "subject_code": "CSI106",
+    "semester_taken": 1,
+    "grade": 7.1,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190458",
+    "subject_code": "CSD203",
+    "semester_taken": 2,
+    "grade": 9.5,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190458",
+    "subject_code": "AIG202c",
+    "semester_taken": 2,
+    "grade": 6.0,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190458",
+    "subject_code": "CEA201",
+    "semester_taken": 2,
+    "grade": 6.9,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190458",
+    "subject_code": "DBI202",
+    "semester_taken": 2,
+    "grade": 9.3,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190458",
+    "subject_code": "JPD113",
+    "semester_taken": 2,
+    "grade": 8.1,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190458",
+    "subject_code": "JPD123",
+    "semester_taken": 3,
+    "grade": 6.5,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190458",
+    "subject_code": "ITE303c",
+    "semester_taken": 3,
+    "grade": 6.6,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190458",
+    "subject_code": "ADY201m",
+    "semester_taken": 3,
+    "grade": 5.8,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190458",
+    "subject_code": "MAS291",
+    "semester_taken": 3,
+    "grade": 6.9,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190458",
+    "subject_code": "MAI391",
+    "semester_taken": 3,
+    "grade": 5.5,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190458",
+    "subject_code": "SWE201c",
+    "semester_taken": 4,
+    "grade": 8.5,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190458",
+    "subject_code": "CPV301",
+    "semester_taken": 4,
+    "grade": 7.5,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190458",
+    "subject_code": "DAP391m",
+    "semester_taken": 4,
+    "grade": 7.8,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190458",
+    "subject_code": "AIL303m",
+    "semester_taken": 4,
+    "grade": 9.1,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190458",
+    "subject_code": "SSG105",
+    "semester_taken": 4,
+    "grade": 3.2,
+    "status": "Failed"
+  },
+  {
+    "student_id": "SE190458",
+    "subject_code": "BDI302c",
+    "semester_taken": 5,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190458",
+    "subject_code": "DSR301m",
+    "semester_taken": 5,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190458",
+    "subject_code": "DPL302m",
+    "semester_taken": 5,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190458",
+    "subject_code": "DWP301c",
+    "semester_taken": 5,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190459",
+    "subject_code": "MAE101",
+    "semester_taken": 1,
+    "grade": 6.5,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190459",
+    "subject_code": "MAD101",
+    "semester_taken": 1,
+    "grade": 2.5,
+    "status": "Failed"
+  },
+  {
+    "student_id": "SE190459",
+    "subject_code": "SSL101c",
+    "semester_taken": 1,
+    "grade": 8.6,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190459",
+    "subject_code": "PFP191",
+    "semester_taken": 1,
+    "grade": 9.1,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190459",
+    "subject_code": "CSI106",
+    "semester_taken": 1,
+    "grade": 5.9,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190459",
+    "subject_code": "CSD203",
+    "semester_taken": 2,
+    "grade": 2.8,
+    "status": "Failed"
+  },
+  {
+    "student_id": "SE190459",
+    "subject_code": "AIG202c",
+    "semester_taken": 2,
+    "grade": 9.5,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190459",
+    "subject_code": "CEA201",
+    "semester_taken": 2,
+    "grade": 6.6,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190459",
+    "subject_code": "DBI202",
+    "semester_taken": 2,
+    "grade": 6.0,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190459",
+    "subject_code": "JPD113",
+    "semester_taken": 2,
+    "grade": 9.6,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190459",
+    "subject_code": "JPD123",
+    "semester_taken": 3,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190459",
+    "subject_code": "ITE303c",
+    "semester_taken": 3,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190459",
+    "subject_code": "ADY201m",
+    "semester_taken": 3,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190459",
+    "subject_code": "MAS291",
+    "semester_taken": 3,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190459",
+    "subject_code": "MAI391",
+    "semester_taken": 3,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190459",
+    "subject_code": "MAD101",
+    "semester_taken": 3,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190460",
+    "subject_code": "MAE101",
+    "semester_taken": 1,
+    "grade": 8.3,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190460",
+    "subject_code": "MAD101",
+    "semester_taken": 1,
+    "grade": 6.0,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190460",
+    "subject_code": "SSL101c",
+    "semester_taken": 1,
+    "grade": 8.8,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190460",
+    "subject_code": "PFP191",
+    "semester_taken": 1,
+    "grade": 6.5,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190460",
+    "subject_code": "CSI106",
+    "semester_taken": 1,
+    "grade": 6.3,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190460",
+    "subject_code": "CSD203",
+    "semester_taken": 2,
+    "grade": 5.5,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190460",
+    "subject_code": "AIG202c",
+    "semester_taken": 2,
+    "grade": 6.8,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190460",
+    "subject_code": "CEA201",
+    "semester_taken": 2,
+    "grade": 5.4,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190460",
+    "subject_code": "DBI202",
+    "semester_taken": 2,
+    "grade": 9.4,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190460",
+    "subject_code": "JPD113",
+    "semester_taken": 2,
+    "grade": 5.8,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190460",
+    "subject_code": "JPD123",
+    "semester_taken": 3,
+    "grade": 8.7,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190460",
+    "subject_code": "ITE303c",
+    "semester_taken": 3,
+    "grade": 9.2,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190460",
+    "subject_code": "ADY201m",
+    "semester_taken": 3,
+    "grade": 8.9,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190460",
+    "subject_code": "MAS291",
+    "semester_taken": 3,
+    "grade": 7.5,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190460",
+    "subject_code": "MAI391",
+    "semester_taken": 3,
+    "grade": 8.4,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190460",
+    "subject_code": "SWE201c",
+    "semester_taken": 4,
+    "grade": 9.0,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190460",
+    "subject_code": "CPV301",
+    "semester_taken": 4,
+    "grade": 6.4,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190460",
+    "subject_code": "DAP391m",
+    "semester_taken": 4,
+    "grade": 5.3,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190460",
+    "subject_code": "AIL303m",
+    "semester_taken": 4,
+    "grade": 3.5,
+    "status": "Failed"
+  },
+  {
+    "student_id": "SE190460",
+    "subject_code": "SSG105",
+    "semester_taken": 4,
+    "grade": 7.2,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190460",
+    "subject_code": "BDI302c",
+    "semester_taken": 5,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190460",
+    "subject_code": "DSR301m",
+    "semester_taken": 5,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190460",
+    "subject_code": "DPL302m",
+    "semester_taken": 5,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190460",
+    "subject_code": "DWP301c",
+    "semester_taken": 5,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190461",
+    "subject_code": "MAE101",
+    "semester_taken": 1,
+    "grade": 6.8,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190461",
+    "subject_code": "MAD101",
+    "semester_taken": 1,
+    "grade": 6.6,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190461",
+    "subject_code": "SSL101c",
+    "semester_taken": 1,
+    "grade": 8.0,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190461",
+    "subject_code": "PFP191",
+    "semester_taken": 1,
+    "grade": 3.0,
+    "status": "Failed"
+  },
+  {
+    "student_id": "SE190461",
+    "subject_code": "CSI106",
+    "semester_taken": 1,
+    "grade": 7.2,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190461",
+    "subject_code": "CSD203",
+    "semester_taken": 2,
+    "grade": 8.0,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190461",
+    "subject_code": "AIG202c",
+    "semester_taken": 2,
+    "grade": 7.3,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190461",
+    "subject_code": "CEA201",
+    "semester_taken": 2,
+    "grade": 6.4,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190461",
+    "subject_code": "DBI202",
+    "semester_taken": 2,
+    "grade": 7.1,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190461",
+    "subject_code": "JPD113",
+    "semester_taken": 2,
+    "grade": 6.5,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190461",
+    "subject_code": "JPD123",
+    "semester_taken": 3,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190461",
+    "subject_code": "ITE303c",
+    "semester_taken": 3,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190461",
+    "subject_code": "MAS291",
+    "semester_taken": 3,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190461",
+    "subject_code": "MAI391",
+    "semester_taken": 3,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190461",
+    "subject_code": "PFP191",
+    "semester_taken": 2,
+    "grade": 3.5,
+    "status": "Failed"
+  },
+  {
+    "student_id": "SE190461",
+    "subject_code": "PFP191",
+    "semester_taken": 3,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190462",
+    "subject_code": "MAE101",
+    "semester_taken": 1,
+    "grade": 8.1,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190462",
+    "subject_code": "MAD101",
+    "semester_taken": 1,
+    "grade": 8.2,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190462",
+    "subject_code": "SSL101c",
+    "semester_taken": 1,
+    "grade": 8.7,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190462",
+    "subject_code": "PFP191",
+    "semester_taken": 1,
+    "grade": 8.6,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190462",
+    "subject_code": "CSI106",
+    "semester_taken": 1,
+    "grade": 5.9,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190462",
+    "subject_code": "CSD203",
+    "semester_taken": 2,
+    "grade": 8.5,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190462",
+    "subject_code": "AIG202c",
+    "semester_taken": 2,
+    "grade": 6.0,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190462",
+    "subject_code": "CEA201",
+    "semester_taken": 2,
+    "grade": 8.6,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190462",
+    "subject_code": "DBI202",
+    "semester_taken": 2,
+    "grade": 3.0,
+    "status": "Failed"
+  },
+  {
+    "student_id": "SE190462",
+    "subject_code": "JPD113",
+    "semester_taken": 2,
+    "grade": 6.7,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190462",
+    "subject_code": "JPD123",
+    "semester_taken": 3,
+    "grade": 9.6,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190462",
+    "subject_code": "ITE303c",
+    "semester_taken": 3,
+    "grade": 6.9,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190462",
+    "subject_code": "MAS291",
+    "semester_taken": 3,
+    "grade": 6.9,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190462",
+    "subject_code": "MAI391",
+    "semester_taken": 3,
+    "grade": 6.4,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190462",
+    "subject_code": "SWE201c",
+    "semester_taken": 4,
+    "grade": 6.6,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190462",
+    "subject_code": "CPV301",
+    "semester_taken": 4,
+    "grade": 6.3,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190462",
+    "subject_code": "DAP391m",
+    "semester_taken": 4,
+    "grade": 8.1,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190462",
+    "subject_code": "AIL303m",
+    "semester_taken": 4,
+    "grade": 8.9,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190462",
+    "subject_code": "SSG105",
+    "semester_taken": 4,
+    "grade": 7.7,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190462",
+    "subject_code": "BDI302c",
+    "semester_taken": 5,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190462",
+    "subject_code": "DSR301m",
+    "semester_taken": 5,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190462",
+    "subject_code": "DPL302m",
+    "semester_taken": 5,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190462",
+    "subject_code": "DWP301c",
+    "semester_taken": 5,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190462",
+    "subject_code": "DBI202",
+    "semester_taken": 3,
+    "grade": 6.5,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190462",
+    "subject_code": "ADY201m",
+    "semester_taken": 4,
+    "grade": 7.5,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190463",
+    "subject_code": "MAE101",
+    "semester_taken": 1,
+    "grade": 6.9,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190463",
+    "subject_code": "MAD101",
+    "semester_taken": 1,
+    "grade": 5.6,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190463",
+    "subject_code": "SSL101c",
+    "semester_taken": 1,
+    "grade": 6.9,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190463",
+    "subject_code": "PFP191",
+    "semester_taken": 1,
+    "grade": 5.6,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190463",
+    "subject_code": "CSI106",
+    "semester_taken": 1,
+    "grade": 6.0,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190463",
+    "subject_code": "CSD203",
+    "semester_taken": 2,
+    "grade": 9.1,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190463",
+    "subject_code": "AIG202c",
+    "semester_taken": 2,
+    "grade": 6.0,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190463",
+    "subject_code": "CEA201",
+    "semester_taken": 2,
+    "grade": 7.5,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190463",
+    "subject_code": "DBI202",
+    "semester_taken": 2,
+    "grade": 7.5,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190463",
+    "subject_code": "JPD113",
+    "semester_taken": 2,
+    "grade": 7.1,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190463",
+    "subject_code": "JPD123",
+    "semester_taken": 3,
+    "grade": 7.5,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190463",
+    "subject_code": "ITE303c",
+    "semester_taken": 3,
+    "grade": 8.9,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190463",
+    "subject_code": "ADY201m",
+    "semester_taken": 3,
+    "grade": 9.1,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190463",
+    "subject_code": "MAS291",
+    "semester_taken": 3,
+    "grade": 5.4,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190463",
+    "subject_code": "MAI391",
+    "semester_taken": 3,
+    "grade": 7.4,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190463",
+    "subject_code": "SWE201c",
+    "semester_taken": 4,
+    "grade": 8.6,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190463",
+    "subject_code": "CPV301",
+    "semester_taken": 4,
+    "grade": 9.4,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190463",
+    "subject_code": "DAP391m",
+    "semester_taken": 4,
+    "grade": 7.2,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190463",
+    "subject_code": "AIL303m",
+    "semester_taken": 4,
+    "grade": 8.9,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190463",
+    "subject_code": "SSG105",
+    "semester_taken": 4,
+    "grade": 9.5,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190463",
+    "subject_code": "BDI302c",
+    "semester_taken": 5,
+    "grade": 7.1,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190463",
+    "subject_code": "DSR301m",
+    "semester_taken": 5,
+    "grade": 7.6,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190463",
+    "subject_code": "DPL302m",
+    "semester_taken": 5,
+    "grade": 7.2,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190463",
+    "subject_code": "DWP301c",
+    "semester_taken": 5,
+    "grade": 7.7,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190463",
+    "subject_code": "OJT202",
+    "semester_taken": 6,
+    "grade": 6.4,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190463",
+    "subject_code": "NLP301c",
+    "semester_taken": 6,
+    "grade": 8.8,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190463",
+    "subject_code": "AI_000003",
+    "semester_taken": 7,
+    "grade": 7.0,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190463",
+    "subject_code": "ENW493c",
+    "semester_taken": 7,
+    "grade": 5.4,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190463",
+    "subject_code": "EXE101",
+    "semester_taken": 7,
+    "grade": 6.7,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190463",
+    "subject_code": "DAT301m",
+    "semester_taken": 7,
+    "grade": 8.5,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190463",
+    "subject_code": "PMG201c",
+    "semester_taken": 7,
+    "grade": 5.4,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190463",
+    "subject_code": "MLN122",
+    "semester_taken": 8,
+    "grade": 5.3,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190463",
+    "subject_code": "AI_000004",
+    "semester_taken": 8,
+    "grade": 6.8,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190463",
+    "subject_code": "MLN111",
+    "semester_taken": 8,
+    "grade": 3.2,
+    "status": "Failed"
+  },
+  {
+    "student_id": "SE190463",
+    "subject_code": "EXE201",
+    "semester_taken": 8,
+    "grade": 6.5,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190463",
+    "subject_code": "AID301c",
+    "semester_taken": 8,
+    "grade": 5.6,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190463",
+    "subject_code": "REL301m",
+    "semester_taken": 8,
+    "grade": 9.4,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190463",
+    "subject_code": "AIP491",
+    "semester_taken": 9,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190463",
+    "subject_code": "MLN111",
+    "semester_taken": 9,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190464",
+    "subject_code": "MAE101",
+    "semester_taken": 1,
+    "grade": 6.6,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190464",
+    "subject_code": "MAD101",
+    "semester_taken": 1,
+    "grade": 7.4,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190464",
+    "subject_code": "SSL101c",
+    "semester_taken": 1,
+    "grade": 5.5,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190464",
+    "subject_code": "PFP191",
+    "semester_taken": 1,
+    "grade": 9.2,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190464",
+    "subject_code": "CSI106",
+    "semester_taken": 1,
+    "grade": 8.2,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190464",
+    "subject_code": "CSD203",
+    "semester_taken": 2,
+    "grade": 7.9,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190464",
+    "subject_code": "AIG202c",
+    "semester_taken": 2,
+    "grade": 6.2,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190464",
+    "subject_code": "CEA201",
+    "semester_taken": 2,
+    "grade": 6.4,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190464",
+    "subject_code": "DBI202",
+    "semester_taken": 2,
+    "grade": 5.9,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190464",
+    "subject_code": "JPD113",
+    "semester_taken": 2,
+    "grade": 8.2,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190464",
+    "subject_code": "JPD123",
+    "semester_taken": 3,
+    "grade": 8.2,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190464",
+    "subject_code": "ITE303c",
+    "semester_taken": 3,
+    "grade": 6.2,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190464",
+    "subject_code": "ADY201m",
+    "semester_taken": 3,
+    "grade": 8.2,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190464",
+    "subject_code": "MAS291",
+    "semester_taken": 3,
+    "grade": 7.3,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190464",
+    "subject_code": "MAI391",
+    "semester_taken": 3,
+    "grade": 7.8,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190464",
+    "subject_code": "SWE201c",
+    "semester_taken": 4,
+    "grade": 7.0,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190464",
+    "subject_code": "CPV301",
+    "semester_taken": 4,
+    "grade": 5.8,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190464",
+    "subject_code": "DAP391m",
+    "semester_taken": 4,
+    "grade": 7.4,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190464",
+    "subject_code": "AIL303m",
+    "semester_taken": 4,
+    "grade": 6.9,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190464",
+    "subject_code": "SSG105",
+    "semester_taken": 4,
+    "grade": 7.8,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190464",
+    "subject_code": "BDI302c",
+    "semester_taken": 5,
+    "grade": 8.8,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190464",
+    "subject_code": "DSR301m",
+    "semester_taken": 5,
+    "grade": 6.8,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190464",
+    "subject_code": "DPL302m",
+    "semester_taken": 5,
+    "grade": 6.1,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190464",
+    "subject_code": "DWP301c",
+    "semester_taken": 5,
+    "grade": 8.6,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190464",
+    "subject_code": "OJT202",
+    "semester_taken": 6,
+    "grade": 0.0,
+    "status": "Failed"
+  },
+  {
+    "student_id": "SE190464",
+    "subject_code": "NLP301c",
+    "semester_taken": 6,
+    "grade": 7.1,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190464",
+    "subject_code": "AI_000003",
+    "semester_taken": 7,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190464",
+    "subject_code": "ENW493c",
+    "semester_taken": 7,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190464",
+    "subject_code": "EXE101",
+    "semester_taken": 7,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190464",
+    "subject_code": "DAT301m",
+    "semester_taken": 7,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190464",
+    "subject_code": "PMG201c",
+    "semester_taken": 7,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190465",
+    "subject_code": "MAE101",
+    "semester_taken": 1,
+    "grade": 7.8,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190465",
+    "subject_code": "MAD101",
+    "semester_taken": 1,
+    "grade": 9.6,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190465",
+    "subject_code": "SSL101c",
+    "semester_taken": 1,
+    "grade": 7.8,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190465",
+    "subject_code": "PFP191",
+    "semester_taken": 1,
+    "grade": 8.4,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190465",
+    "subject_code": "CSI106",
+    "semester_taken": 1,
+    "grade": 5.6,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190465",
+    "subject_code": "CSD203",
+    "semester_taken": 2,
+    "grade": 6.5,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190465",
+    "subject_code": "AIG202c",
+    "semester_taken": 2,
+    "grade": 8.0,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190465",
+    "subject_code": "CEA201",
+    "semester_taken": 2,
+    "grade": 6.2,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190465",
+    "subject_code": "DBI202",
+    "semester_taken": 2,
+    "grade": 8.2,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190465",
+    "subject_code": "JPD113",
+    "semester_taken": 2,
+    "grade": 8.3,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190465",
+    "subject_code": "JPD123",
+    "semester_taken": 3,
+    "grade": 5.6,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190465",
+    "subject_code": "ITE303c",
+    "semester_taken": 3,
+    "grade": 9.2,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190465",
+    "subject_code": "ADY201m",
+    "semester_taken": 3,
+    "grade": 5.5,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190465",
+    "subject_code": "MAS291",
+    "semester_taken": 3,
+    "grade": 8.8,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190465",
+    "subject_code": "MAI391",
+    "semester_taken": 3,
+    "grade": 9.3,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190465",
+    "subject_code": "SWE201c",
+    "semester_taken": 4,
+    "grade": 5.7,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190465",
+    "subject_code": "CPV301",
+    "semester_taken": 4,
+    "grade": 8.5,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190465",
+    "subject_code": "DAP391m",
+    "semester_taken": 4,
+    "grade": 7.9,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190465",
+    "subject_code": "AIL303m",
+    "semester_taken": 4,
+    "grade": 7.1,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190465",
+    "subject_code": "SSG105",
+    "semester_taken": 4,
+    "grade": 7.9,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190465",
+    "subject_code": "BDI302c",
+    "semester_taken": 5,
+    "grade": 5.9,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190465",
+    "subject_code": "DSR301m",
+    "semester_taken": 5,
+    "grade": 7.3,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190465",
+    "subject_code": "DPL302m",
+    "semester_taken": 5,
+    "grade": 6.4,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190465",
+    "subject_code": "DWP301c",
+    "semester_taken": 5,
+    "grade": 9.1,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190465",
+    "subject_code": "OJT202",
+    "semester_taken": 6,
+    "grade": 5.7,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190465",
+    "subject_code": "NLP301c",
+    "semester_taken": 6,
+    "grade": 6.6,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190465",
+    "subject_code": "AI_000003",
+    "semester_taken": 7,
+    "grade": 7.1,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190465",
+    "subject_code": "ENW493c",
+    "semester_taken": 7,
+    "grade": 9.0,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190465",
+    "subject_code": "EXE101",
+    "semester_taken": 7,
+    "grade": 8.3,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190465",
+    "subject_code": "DAT301m",
+    "semester_taken": 7,
+    "grade": 6.4,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190465",
+    "subject_code": "PMG201c",
+    "semester_taken": 7,
+    "grade": 6.5,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190465",
+    "subject_code": "MLN122",
+    "semester_taken": 8,
+    "grade": 3.0,
+    "status": "Failed"
+  },
+  {
+    "student_id": "SE190465",
+    "subject_code": "AI_000004",
+    "semester_taken": 8,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190465",
+    "subject_code": "MLN111",
+    "semester_taken": 8,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190465",
+    "subject_code": "EXE201",
+    "semester_taken": 8,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190465",
+    "subject_code": "AID301c",
+    "semester_taken": 8,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190465",
+    "subject_code": "REL301m",
+    "semester_taken": 8,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190466",
+    "subject_code": "MAE101",
+    "semester_taken": 1,
+    "grade": 5.5,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190466",
+    "subject_code": "MAD101",
+    "semester_taken": 1,
+    "grade": 5.8,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190466",
+    "subject_code": "SSL101c",
+    "semester_taken": 1,
+    "grade": 8.9,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190466",
+    "subject_code": "PFP191",
+    "semester_taken": 1,
+    "grade": 7.2,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190466",
+    "subject_code": "CSI106",
+    "semester_taken": 1,
+    "grade": 9.3,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190466",
+    "subject_code": "CSD203",
+    "semester_taken": 2,
+    "grade": 8.0,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190466",
+    "subject_code": "AIG202c",
+    "semester_taken": 2,
+    "grade": 6.7,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190466",
+    "subject_code": "CEA201",
+    "semester_taken": 2,
+    "grade": 2.0,
+    "status": "Failed"
+  },
+  {
+    "student_id": "SE190466",
+    "subject_code": "DBI202",
+    "semester_taken": 2,
+    "grade": 8.7,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190466",
+    "subject_code": "JPD113",
+    "semester_taken": 2,
+    "grade": 5.9,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190466",
+    "subject_code": "JPD123",
+    "semester_taken": 3,
+    "grade": 1.5,
+    "status": "Failed"
+  },
+  {
+    "student_id": "SE190466",
+    "subject_code": "ITE303c",
+    "semester_taken": 3,
+    "grade": 6.7,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190466",
+    "subject_code": "ADY201m",
+    "semester_taken": 3,
+    "grade": 8.6,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190466",
+    "subject_code": "MAS291",
+    "semester_taken": 3,
+    "grade": 3.0,
+    "status": "Failed"
+  },
+  {
+    "student_id": "SE190466",
+    "subject_code": "MAI391",
+    "semester_taken": 3,
+    "grade": 6.2,
+    "status": "Passed"
+  },
+  {
+    "student_id": "SE190466",
+    "subject_code": "SWE201c",
+    "semester_taken": 4,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190466",
+    "subject_code": "CPV301",
+    "semester_taken": 4,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190466",
+    "subject_code": "DAP391m",
+    "semester_taken": 4,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190466",
+    "subject_code": "AIL303m",
+    "semester_taken": 4,
+    "grade": null,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190466",
+    "subject_code": "SSG105",
+    "semester_taken": 4,
+    "grade": null,
+    "status": "Studying"
+  }
+]

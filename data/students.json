@@ -1,0 +1,90 @@
+[
+  {
+    "student_id": "SE190456",
+    "full_name": "Nguyen Van A",
+    "email": "se190456@fpt.edu.vn",
+    "major": "Artificial Intelligence",
+    "current_semester": 5,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190457",
+    "full_name": "Lê Minh Hoàng",
+    "email": "hoanglmse190457@fpt.edu.vn",
+    "major": "Artificial Intelligence",
+    "current_semester": 5,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190458",
+    "full_name": "Nguyễn Thị Mai",
+    "email": "maintse190458@fpt.edu.vn",
+    "major": "Artificial Intelligence",
+    "current_semester": 5,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190459",
+    "full_name": "Trần Anh Tuấn",
+    "email": "tuantaise190459@fpt.edu.vn",
+    "major": "Artificial Intelligence",
+    "current_semester": 3,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190460",
+    "full_name": "Phạm Thanh Thảo",
+    "email": "thaopttse190460@fpt.edu.vn",
+    "major": "Artificial Intelligence",
+    "current_semester": 5,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190461",
+    "full_name": "Vũ Đức Huy",
+    "email": "huyvdse190461@fpt.edu.vn",
+    "major": "Artificial Intelligence",
+    "current_semester": 3,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190462",
+    "full_name": "Đặng Hồng Nhung",
+    "email": "nhungdhse190462@fpt.edu.vn",
+    "major": "Artificial Intelligence",
+    "current_semester": 5,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190463",
+    "full_name": "Bùi Quốc Anh",
+    "email": "anhbqse190463@fpt.edu.vn",
+    "major": "Artificial Intelligence",
+    "current_semester": 9,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190464",
+    "full_name": "Ngô Khánh Linh",
+    "email": "linhnkse190464@fpt.edu.vn",
+    "major": "Artificial Intelligence",
+    "current_semester": 7,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190465",
+    "full_name": "Đỗ Gia Bảo",
+    "email": "baodgse190465@fpt.edu.vn",
+    "major": "Artificial Intelligence",
+    "current_semester": 8,
+    "status": "Studying"
+  },
+  {
+    "student_id": "SE190466",
+    "full_name": "Hoàng Minh Thư",
+    "email": "thuhmse190466@fpt.edu.vn",
+    "major": "Artificial Intelligence",
+    "current_semester": 4,
+    "status": "Studying"
+  }
+]
