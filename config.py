@@ -35,5 +35,5 @@ LIBRARY_FINE_PER_DAY = 5_000
 LIBRARY_COMPENSATE_AFTER_DAYS = 30
 
 # ---- Gemini ----
-DEFAULT_MODEL = "gemini-2.5-flash"   # có thể đổi trong sidebar
-MAX_TOOL_CALLS = 6
+DEFAULT_MODEL = "gemini-flash-lite-latest"   # Siêu nhanh (< 3s), ổn định, không bị nghẽn 503
+MAX_TOOL_CALLS = 5

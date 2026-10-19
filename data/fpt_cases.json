@@ -1,0 +1,1564 @@
+{
+  "schedules": {
+    "SE190456": {
+      "student_id": "SE190456",
+      "full_name": "Nguyen Van A",
+      "semester": 5,
+      "week": "19/10 - 25/10/2026",
+      "schedule": [
+        {
+          "slot": 1,
+          "time": "07h30 - 09h50",
+          "days": {
+            "Thứ 2 (19/10)": {
+              "subject_code": "DPL302m",
+              "class_name": "AI2012-ADS",
+              "status": "Có mặt",
+              "room": "DE-425",
+              "lecturer": "HuynhLD3",
+              "type": "Offline"
+            },
+            "Thứ 3 (20/10)": null,
+            "Thứ 4 (21/10)": {
+              "subject_code": "DPL302m",
+              "class_name": "AI2012-ADS",
+              "status": "Chưa học",
+              "room": "DE-425",
+              "lecturer": "HuynhLD3",
+              "type": "Offline"
+            },
+            "Thứ 5 (22/10)": {
+              "subject_code": "DSR301m",
+              "class_name": "AI2012-ADS",
+              "status": "Chưa học",
+              "room": "DE-425",
+              "lecturer": "HuynhLD3",
+              "type": "Offline"
+            },
+            "Thứ 6 (23/10)": null,
+            "Thứ 7 (24/10)": null,
+            "Chủ nhật (25/10)": null
+          }
+        },
+        {
+          "slot": 2,
+          "time": "10h00 - 12h20",
+          "days": {
+            "Thứ 2 (19/10)": {
+              "subject_code": "DSR301m",
+              "class_name": "AI2012-ADS",
+              "status": "Chưa học",
+              "room": "DE-425",
+              "lecturer": "HuynhLD3",
+              "type": "Offline"
+            },
+            "Thứ 3 (20/10)": null,
+            "Thứ 4 (21/10)": null,
+            "Thứ 5 (22/10)": {
+              "subject_code": "DPL302m",
+              "class_name": "AI2012-ADS",
+              "status": "Chưa học",
+              "room": "DE-425",
+              "lecturer": "HuynhLD3",
+              "type": "Offline"
+            },
+            "Thứ 6 (23/10)": {
+              "subject_code": "DPL302m",
+              "class_name": "AI2012-ADS",
+              "status": "Chưa học",
+              "room": "DE-425",
+              "lecturer": "HuynhLD3",
+              "type": "Offline"
+            },
+            "Thứ 7 (24/10)": null,
+            "Chủ nhật (25/10)": null
+          }
+        }
+      ]
+    },
+    "SE190457": {
+      "student_id": "SE190457",
+      "full_name": "Lê Minh Hoàng",
+      "semester": 5,
+      "week": "19/10 - 25/10/2026",
+      "schedule": [
+        {
+          "slot": 3,
+          "time": "12h50 - 15h10",
+          "days": {
+            "Thứ 2 (19/10)": null,
+            "Thứ 3 (20/10)": {
+              "subject_code": "BDI302c",
+              "class_name": "AI1901",
+              "status": "Chưa học",
+              "room": "BE-302",
+              "lecturer": "NamTP",
+              "type": "Offline"
+            },
+            "Thứ 4 (21/10)": null,
+            "Thứ 5 (22/10)": {
+              "subject_code": "BDI302c",
+              "class_name": "AI1901",
+              "status": "Chưa học",
+              "room": "BE-302",
+              "lecturer": "NamTP",
+              "type": "Offline"
+            },
+            "Thứ 6 (23/10)": null,
+            "Thứ 7 (24/10)": null,
+            "Chủ nhật (25/10)": null
+          }
+        },
+        {
+          "slot": 4,
+          "time": "15h20 - 17h40",
+          "days": {
+            "Thứ 2 (19/10)": {
+              "subject_code": "DWP301c",
+              "class_name": "AI1901",
+              "status": "Chưa học",
+              "room": "AL-105",
+              "lecturer": "ThanhNT",
+              "type": "Offline"
+            },
+            "Thứ 3 (20/10)": null,
+            "Thứ 4 (21/10)": {
+              "subject_code": "DWP301c",
+              "class_name": "AI1901",
+              "status": "Chưa học",
+              "room": "AL-105",
+              "lecturer": "ThanhNT",
+              "type": "Offline"
+            },
+            "Thứ 5 (22/10)": null,
+            "Thứ 6 (23/10)": {
+              "subject_code": "DSR301m",
+              "class_name": "AI1901",
+              "status": "Chưa học",
+              "room": "DE-211",
+              "lecturer": "SonVH",
+              "type": "Offline"
+            },
+            "Thứ 7 (24/10)": null,
+            "Chủ nhật (25/10)": null
+          }
+        }
+      ]
+    },
+    "SE190458": {
+      "student_id": "SE190458",
+      "full_name": "Nguyễn Thị Mai",
+      "semester": 5,
+      "week": "19/10 - 25/10/2026",
+      "schedule": [
+        {
+          "slot": 1,
+          "time": "07h30 - 09h50",
+          "days": {
+            "Thứ 2 (19/10)": {
+              "subject_code": "DWP301c",
+              "class_name": "AI1902",
+              "status": "Có mặt",
+              "room": "BE-102",
+              "lecturer": "QuangNN",
+              "type": "Offline"
+            },
+            "Thứ 3 (20/10)": null,
+            "Thứ 4 (21/10)": {
+              "subject_code": "DWP301c",
+              "class_name": "AI1902",
+              "status": "Chưa học",
+              "room": "BE-102",
+              "lecturer": "QuangNN",
+              "type": "Offline"
+            },
+            "Thứ 5 (22/10)": null,
+            "Thứ 6 (23/10)": {
+              "subject_code": "BDI302c",
+              "class_name": "AI1902",
+              "status": "Chưa học",
+              "room": "BE-205",
+              "lecturer": "NamTP",
+              "type": "Offline"
+            },
+            "Thứ 7 (24/10)": null,
+            "Chủ nhật (25/10)": null
+          }
+        }
+      ]
+    },
+    "SE190459": {
+      "student_id": "SE190459",
+      "full_name": "Trần Anh Tuấn",
+      "semester": 3,
+      "week": "19/10 - 25/10/2026",
+      "schedule": [
+        {
+          "slot": 2,
+          "time": "10h00 - 12h20",
+          "days": {
+            "Thứ 2 (19/10)": {
+              "subject_code": "MAS291",
+              "class_name": "AI2001",
+              "status": "Có mặt",
+              "room": "DE-301",
+              "lecturer": "HoaNT",
+              "type": "Offline"
+            },
+            "Thứ 3 (20/10)": {
+              "subject_code": "MAD101",
+              "class_name": "AI2001-RET",
+              "status": "Chưa học",
+              "room": "DE-104",
+              "lecturer": "ThangLM",
+              "type": "Offline"
+            },
+            "Thứ 4 (21/10)": {
+              "subject_code": "MAS291",
+              "class_name": "AI2001",
+              "status": "Chưa học",
+              "room": "DE-301",
+              "lecturer": "HoaNT",
+              "type": "Offline"
+            },
+            "Thứ 5 (22/10)": {
+              "subject_code": "MAI391",
+              "class_name": "AI2001",
+              "status": "Chưa học",
+              "room": "DE-305",
+              "lecturer": "TuanNA",
+              "type": "Offline"
+            },
+            "Thứ 6 (23/10)": {
+              "subject_code": "ADY201m",
+              "class_name": "AI2001",
+              "status": "Chưa học",
+              "room": "AL-202",
+              "lecturer": "HuynhLD3",
+              "type": "Offline"
+            },
+            "Thứ 7 (24/10)": null,
+            "Chủ nhật (25/10)": null
+          }
+        }
+      ]
+    },
+    "SE190460": {
+      "student_id": "SE190460",
+      "full_name": "Phạm Thanh Thảo",
+      "semester": 5,
+      "week": "19/10 - 25/10/2026",
+      "schedule": [
+        {
+          "slot": 3,
+          "time": "12h50 - 15h10",
+          "days": {
+            "Thứ 2 (19/10)": {
+              "subject_code": "DSR301m",
+              "class_name": "AI1903",
+              "status": "Chưa học",
+              "room": "DE-102",
+              "lecturer": "HuynhLD3",
+              "type": "Offline"
+            },
+            "Thứ 3 (20/10)": null,
+            "Thứ 4 (21/10)": {
+              "subject_code": "DSR301m",
+              "class_name": "AI1903",
+              "status": "Chưa học",
+              "room": "DE-102",
+              "lecturer": "HuynhLD3",
+              "type": "Offline"
+            },
+            "Thứ 5 (22/10)": null,
+            "Thứ 6 (23/10)": {
+              "subject_code": "DPL302m",
+              "class_name": "AI1903",
+              "status": "Chưa học",
+              "room": "DE-102",
+              "lecturer": "HuynhLD3",
+              "type": "Offline"
+            },
+            "Thứ 7 (24/10)": null,
+            "Chủ nhật (25/10)": null
+          }
+        }
+      ]
+    },
+    "SE190461": {
+      "student_id": "SE190461",
+      "full_name": "Vũ Đức Huy",
+      "semester": 3,
+      "week": "19/10 - 25/10/2026",
+      "schedule": [
+        {
+          "slot": 1,
+          "time": "07h30 - 09h50",
+          "days": {
+            "Thứ 2 (19/10)": {
+              "subject_code": "PFP191",
+              "class_name": "AI2002-RET",
+              "status": "Vắng mặt",
+              "room": "BE-101",
+              "lecturer": "MinhNN",
+              "type": "Offline"
+            },
+            "Thứ 3 (20/10)": null,
+            "Thứ 4 (21/10)": {
+              "subject_code": "PFP191",
+              "class_name": "AI2002-RET",
+              "status": "Chưa học",
+              "room": "BE-101",
+              "lecturer": "MinhNN",
+              "type": "Offline"
+            },
+            "Thứ 5 (22/10)": {
+              "subject_code": "JPD123",
+              "class_name": "AI2002",
+              "status": "Chưa học",
+              "room": "AL-102",
+              "lecturer": "Yamada",
+              "type": "Offline"
+            },
+            "Thứ 6 (23/10)": null,
+            "Thứ 7 (24/10)": null,
+            "Chủ nhật (25/10)": null
+          }
+        }
+      ]
+    },
+    "SE190462": {
+      "student_id": "SE190462",
+      "full_name": "Đặng Hồng Nhung",
+      "semester": 5,
+      "week": "19/10 - 25/10/2026",
+      "schedule": [
+        {
+          "slot": 2,
+          "time": "10h00 - 12h20",
+          "days": {
+            "Thứ 2 (19/10)": {
+              "subject_code": "BDI302c",
+              "class_name": "AI1904",
+              "status": "Có mặt",
+              "room": "BE-202",
+              "lecturer": "NamTP",
+              "type": "Offline"
+            },
+            "Thứ 3 (20/10)": null,
+            "Thứ 4 (21/10)": {
+              "subject_code": "DPL302m",
+              "class_name": "AI1904",
+              "status": "Chưa học",
+              "room": "DE-402",
+              "lecturer": "HuynhLD3",
+              "type": "Offline"
+            },
+            "Thứ 5 (22/10)": null,
+            "Thứ 6 (23/10)": {
+              "subject_code": "DWP301c",
+              "class_name": "AI1904",
+              "status": "Chưa học",
+              "room": "AL-204",
+              "lecturer": "ThanhNT",
+              "type": "Offline"
+            },
+            "Thứ 7 (24/10)": null,
+            "Chủ nhật (25/10)": null
+          }
+        }
+      ]
+    },
+    "SE190463": {
+      "student_id": "SE190463",
+      "full_name": "Bùi Quốc Anh",
+      "semester": 9,
+      "week": "19/10 - 25/10/2026",
+      "schedule": [
+        {
+          "slot": 4,
+          "time": "15h20 - 17h40",
+          "days": {
+            "Thứ 2 (19/10)": null,
+            "Thứ 3 (20/10)": {
+              "subject_code": "AIP491",
+              "class_name": "CAPSTONE-G01",
+              "status": "Chưa học",
+              "room": "DE-LAB01",
+              "lecturer": "HuynhLD3",
+              "type": "Offline"
+            },
+            "Thứ 4 (21/10)": null,
+            "Thứ 5 (22/10)": {
+              "subject_code": "MLN111",
+              "class_name": "MLN-K19",
+              "status": "Chưa học",
+              "room": "AL-401",
+              "lecturer": "HungVV",
+              "type": "Offline"
+            },
+            "Thứ 6 (23/10)": null,
+            "Thứ 7 (24/10)": null,
+            "Chủ nhật (25/10)": null
+          }
+        }
+      ]
+    },
+    "SE190464": {
+      "student_id": "SE190464",
+      "full_name": "Ngô Khánh Linh",
+      "semester": 7,
+      "week": "19/10 - 25/10/2026",
+      "schedule": [
+        {
+          "slot": 1,
+          "time": "07h30 - 09h50",
+          "days": {
+            "Thứ 2 (19/10)": {
+              "subject_code": "DAT301m",
+              "class_name": "AI1801",
+              "status": "Có mặt",
+              "room": "DE-302",
+              "lecturer": "HuynhLD3",
+              "type": "Offline"
+            },
+            "Thứ 3 (20/10)": null,
+            "Thứ 4 (21/10)": {
+              "subject_code": "DAT301m",
+              "class_name": "AI1801",
+              "status": "Chưa học",
+              "room": "DE-302",
+              "lecturer": "HuynhLD3",
+              "type": "Offline"
+            },
+            "Thứ 5 (22/10)": {
+              "subject_code": "PMG201c",
+              "class_name": "AI1801",
+              "status": "Chưa học",
+              "room": "AL-302",
+              "lecturer": "KhanhPD",
+              "type": "Offline"
+            },
+            "Thứ 6 (23/10)": null,
+            "Thứ 7 (24/10)": null,
+            "Chủ nhật (25/10)": null
+          }
+        }
+      ]
+    },
+    "SE190465": {
+      "student_id": "SE190465",
+      "full_name": "Đỗ Gia Bảo",
+      "semester": 8,
+      "week": "19/10 - 25/10/2026",
+      "schedule": [
+        {
+          "slot": 2,
+          "time": "10h00 - 12h20",
+          "days": {
+            "Thứ 2 (19/10)": {
+              "subject_code": "AID301c",
+              "class_name": "AI1701",
+              "status": "Chưa học",
+              "room": "DE-205",
+              "lecturer": "HuynhLD3",
+              "type": "Offline"
+            },
+            "Thứ 3 (20/10)": null,
+            "Thứ 4 (21/10)": {
+              "subject_code": "AID301c",
+              "class_name": "AI1701",
+              "status": "Chưa học",
+              "room": "DE-205",
+              "lecturer": "HuynhLD3",
+              "type": "Offline"
+            },
+            "Thứ 5 (22/10)": {
+              "subject_code": "REL301m",
+              "class_name": "AI1701",
+              "status": "Chưa học",
+              "room": "DE-208",
+              "lecturer": "LongTD",
+              "type": "Offline"
+            },
+            "Thứ 6 (23/10)": null,
+            "Thứ 7 (24/10)": null,
+            "Chủ nhật (25/10)": null
+          }
+        }
+      ]
+    },
+    "SE190466": {
+      "student_id": "SE190466",
+      "full_name": "Hoàng Minh Thư",
+      "semester": 4,
+      "week": "19/10 - 25/10/2026",
+      "schedule": [
+        {
+          "slot": 1,
+          "time": "07h30 - 09h50",
+          "days": {
+            "Thứ 2 (19/10)": {
+              "subject_code": "CPV301",
+              "class_name": "AI2003",
+              "status": "Có mặt",
+              "room": "DE-401",
+              "lecturer": "SonVH",
+              "type": "Offline"
+            },
+            "Thứ 3 (20/10)": {
+              "subject_code": "SWE201c",
+              "class_name": "AI2003",
+              "status": "Chưa học",
+              "room": "AL-101",
+              "lecturer": "LinhNT",
+              "type": "Offline"
+            },
+            "Thứ 4 (21/10)": {
+              "subject_code": "CPV301",
+              "class_name": "AI2003",
+              "status": "Chưa học",
+              "room": "DE-401",
+              "lecturer": "SonVH",
+              "type": "Offline"
+            },
+            "Thứ 5 (22/10)": null,
+            "Thứ 6 (23/10)": {
+              "subject_code": "AIL303m",
+              "class_name": "AI2003",
+              "status": "Chưa học",
+              "room": "DE-403",
+              "lecturer": "HuynhLD3",
+              "type": "Offline"
+            },
+            "Thứ 7 (24/10)": null,
+            "Chủ nhật (25/10)": null
+          }
+        }
+      ]
+    }
+  },
+  "attendances": {
+    "SE190456": {
+      "student_id": "SE190456",
+      "subject_code": "DPL302m",
+      "subject_name": "Deep Learning",
+      "class_name": "AI2012-ADS",
+      "lecturer": "HuynhLD3",
+      "total_slots": 20,
+      "current_slot": 12,
+      "absent_slots": 3,
+      "attended_slots": 9,
+      "absent_rate_current": "25.0% (trên 12 buổi đã học)",
+      "absent_rate_total": "15.0% (trên tổng 20 buổi)",
+      "max_allowed_absent": 4,
+      "remaining_allowed_absent": 1,
+      "is_attendance_fail": false,
+      "warning_status": "CẢNH BÁO NGUY CƠ CAO: Bạn đã vắng 3/20 buổi (15%). Bạn chỉ còn ĐƯỢC PHÉP NGHỈ TỐI ĐA 1 BUỔI NỮA. Nếu vắng thêm buổi thứ 5 (quá 20%) bạn sẽ bị CẤM THI (AF) môn DPL302m!",
+      "records": [
+        {
+          "session": 1,
+          "date": "Thứ Hai 07/09/2026",
+          "time": "10:00 - 12:20",
+          "room": "BE-216",
+          "lecturer": "HuynhLD3",
+          "status": "Vắng mặt"
+        },
+        {
+          "session": 2,
+          "date": "Thứ Năm 10/09/2026",
+          "time": "07:30 - 09:50",
+          "room": "BE-204",
+          "lecturer": "HuynhLD3",
+          "status": "Có mặt"
+        },
+        {
+          "session": 3,
+          "date": "Thứ Hai 14/09/2026",
+          "time": "10:00 - 12:20",
+          "room": "DE-425",
+          "lecturer": "HuynhLD3",
+          "status": "Có mặt"
+        },
+        {
+          "session": 4,
+          "date": "Thứ Năm 17/09/2026",
+          "time": "07:30 - 09:50",
+          "room": "DE-425",
+          "lecturer": "HuynhLD3",
+          "status": "Có mặt"
+        },
+        {
+          "session": 5,
+          "date": "Thứ Hai 21/09/2026",
+          "time": "10:00 - 12:20",
+          "room": "DE-425",
+          "lecturer": "HuynhLD3",
+          "status": "Có mặt"
+        },
+        {
+          "session": 6,
+          "date": "Thứ Năm 24/09/2026",
+          "time": "07:30 - 09:50",
+          "room": "DE-425",
+          "lecturer": "HuynhLD3",
+          "status": "Có mặt"
+        },
+        {
+          "session": 7,
+          "date": "Thứ Hai 28/09/2026",
+          "time": "10:00 - 12:20",
+          "room": "DE-425",
+          "lecturer": "HuynhLD3",
+          "status": "Có mặt"
+        },
+        {
+          "session": 8,
+          "date": "Thứ Năm 01/10/2026",
+          "time": "07:30 - 09:50",
+          "room": "DE-425",
+          "lecturer": "HuynhLD3",
+          "status": "Có mặt"
+        },
+        {
+          "session": 9,
+          "date": "Thứ Hai 05/10/2026",
+          "time": "10:00 - 12:20",
+          "room": "DE-425",
+          "lecturer": "HuynhLD3",
+          "status": "Vắng mặt"
+        },
+        {
+          "session": 10,
+          "date": "Thứ Năm 08/10/2026",
+          "time": "07:30 - 09:50",
+          "room": "DE-425",
+          "lecturer": "HuynhLD3",
+          "status": "Có mặt"
+        },
+        {
+          "session": 11,
+          "date": "Thứ Hai 12/10/2026",
+          "time": "10:00 - 12:20",
+          "room": "DE-425",
+          "lecturer": "HuynhLD3",
+          "status": "Vắng mặt"
+        },
+        {
+          "session": 12,
+          "date": "Thứ Năm 15/10/2026",
+          "time": "07:30 - 09:50",
+          "room": "DE-425",
+          "lecturer": "HuynhLD3",
+          "status": "Có mặt"
+        },
+        {
+          "session": 13,
+          "date": "Thứ Hai 19/10/2026",
+          "time": "10:00 - 12:20",
+          "room": "DE-425",
+          "lecturer": "HuynhLD3",
+          "status": "Chưa điểm danh"
+        },
+        {
+          "session": 14,
+          "date": "Thứ Năm 22/10/2026",
+          "time": "07:30 - 09:50",
+          "room": "DE-425",
+          "lecturer": "HuynhLD3",
+          "status": "Chưa điểm danh"
+        },
+        {
+          "session": 15,
+          "date": "Thứ Hai 26/10/2026",
+          "time": "10:00 - 12:20",
+          "room": "DE-425",
+          "lecturer": "HuynhLD3",
+          "status": "Chưa điểm danh"
+        },
+        {
+          "session": 16,
+          "date": "Thứ Năm 29/10/2026",
+          "time": "07:30 - 09:50",
+          "room": "DE-425",
+          "lecturer": "HuynhLD3",
+          "status": "Chưa điểm danh"
+        },
+        {
+          "session": 17,
+          "date": "Thứ Hai 02/11/2026",
+          "time": "10:00 - 12:20",
+          "room": "DE-425",
+          "lecturer": "HuynhLD3",
+          "status": "Chưa điểm danh"
+        },
+        {
+          "session": 18,
+          "date": "Thứ Năm 05/11/2026",
+          "time": "07:30 - 09:50",
+          "room": "DE-425",
+          "lecturer": "HuynhLD3",
+          "status": "Chưa điểm danh"
+        },
+        {
+          "session": 19,
+          "date": "Thứ Hai 09/11/2026",
+          "time": "10:00 - 12:20",
+          "room": "DE-425",
+          "lecturer": "HuynhLD3",
+          "status": "Chưa điểm danh"
+        },
+        {
+          "session": 20,
+          "date": "Thứ Năm 12/11/2026",
+          "time": "07:30 - 09:50",
+          "room": "DE-425",
+          "lecturer": "HuynhLD3",
+          "status": "Chưa điểm danh"
+        }
+      ]
+    },
+    "SE190457": {
+      "student_id": "SE190457",
+      "subject_code": "BDI302c",
+      "subject_name": "Big Data",
+      "class_name": "AI1901",
+      "lecturer": "NamTP",
+      "total_slots": 20,
+      "current_slot": 13,
+      "absent_slots": 5,
+      "attended_slots": 8,
+      "absent_rate_current": "38.5% (trên 13 buổi đã học)",
+      "absent_rate_total": "25.0% (trên tổng 20 buổi)",
+      "max_allowed_absent": 4,
+      "remaining_allowed_absent": 0,
+      "is_attendance_fail": true,
+      "warning_status": "🚨 BỊ CẤM THI (ATTENDANCE FAIL - AF)! Bạn đã vắng 5 buổi trên tổng số 20 buổi (chiếm 25.0% thời lượng, vượt quá mức tối đa cho phép là 20% tức 4 buổi). Theo Quy chế Đại học FPT, bạn KHÔNG ĐƯỢC PHÉP THI CUỐI KỲ môn BDI302c và bắt buộc phải nộp đơn đăng ký học lại!",
+      "records": [
+        {
+          "session": 1,
+          "date": "Thứ Ba 08/09/2026",
+          "status": "Vắng mặt"
+        },
+        {
+          "session": 2,
+          "date": "Thứ Năm 10/09/2026",
+          "status": "Vắng mặt"
+        },
+        {
+          "session": 3,
+          "date": "Thứ Ba 15/09/2026",
+          "status": "Có mặt"
+        },
+        {
+          "session": 4,
+          "date": "Thứ Năm 17/09/2026",
+          "status": "Có mặt"
+        },
+        {
+          "session": 5,
+          "date": "Thứ Ba 22/09/2026",
+          "status": "Vắng mặt"
+        },
+        {
+          "session": 6,
+          "date": "Thứ Năm 24/09/2026",
+          "status": "Có mặt"
+        },
+        {
+          "session": 7,
+          "date": "Thứ Ba 29/09/2026",
+          "status": "Có mặt"
+        },
+        {
+          "session": 8,
+          "date": "Thứ Năm 01/10/2026",
+          "status": "Vắng mặt"
+        },
+        {
+          "session": 9,
+          "date": "Thứ Ba 06/10/2026",
+          "status": "Có mặt"
+        },
+        {
+          "session": 10,
+          "date": "Thứ Năm 08/10/2026",
+          "status": "Có mặt"
+        },
+        {
+          "session": 11,
+          "date": "Thứ Ba 13/10/2026",
+          "status": "Có mặt"
+        },
+        {
+          "session": 12,
+          "date": "Thứ Năm 15/10/2026",
+          "status": "Có mặt"
+        },
+        {
+          "session": 13,
+          "date": "Thứ Ba 20/10/2026",
+          "status": "Vắng mặt"
+        }
+      ]
+    },
+    "SE190458": {
+      "student_id": "SE190458",
+      "subject_code": "DWP301c",
+      "subject_name": "Web Development with Python",
+      "class_name": "AI1902",
+      "lecturer": "QuangNN",
+      "total_slots": 20,
+      "current_slot": 12,
+      "absent_slots": 0,
+      "attended_slots": 12,
+      "absent_rate_current": "0.0%",
+      "absent_rate_total": "0.0%",
+      "max_allowed_absent": 4,
+      "remaining_allowed_absent": 4,
+      "is_attendance_fail": false,
+      "warning_status": "✅ TUYỆT VỜI - CHUYÊN CẦN 100%: Bạn chưa nghỉ buổi nào (0/20). Tiếp tục duy trì phong độ nhé!",
+      "records": [
+        {
+          "session": 1,
+          "status": "Có mặt"
+        },
+        {
+          "session": 2,
+          "status": "Có mặt"
+        },
+        {
+          "session": 3,
+          "status": "Có mặt"
+        },
+        {
+          "session": 4,
+          "status": "Có mặt"
+        },
+        {
+          "session": 5,
+          "status": "Có mặt"
+        },
+        {
+          "session": 6,
+          "status": "Có mặt"
+        },
+        {
+          "session": 7,
+          "status": "Có mặt"
+        },
+        {
+          "session": 8,
+          "status": "Có mặt"
+        },
+        {
+          "session": 9,
+          "status": "Có mặt"
+        },
+        {
+          "session": 10,
+          "status": "Có mặt"
+        },
+        {
+          "session": 11,
+          "status": "Có mặt"
+        },
+        {
+          "session": 12,
+          "status": "Có mặt"
+        }
+      ]
+    },
+    "SE190459": {
+      "student_id": "SE190459",
+      "subject_code": "MAS291",
+      "subject_name": "Statistics and Probability",
+      "class_name": "AI2001",
+      "lecturer": "HoaNT",
+      "total_slots": 30,
+      "current_slot": 18,
+      "absent_slots": 5,
+      "attended_slots": 13,
+      "absent_rate_current": "27.8%",
+      "absent_rate_total": "16.7% (trên tổng 30 buổi)",
+      "max_allowed_absent": 6,
+      "remaining_allowed_absent": 1,
+      "is_attendance_fail": false,
+      "warning_status": "⚠️ CẢNH BÁO NGUY HIỂM: Bạn đã vắng 5/30 buổi môn MAS291. Tối đa được nghỉ 6 buổi (20%). Nếu vắng thêm 2 buổi nữa bạn sẽ BỊ CẤM THI!",
+      "records": [
+        {
+          "session": 1,
+          "status": "Vắng mặt"
+        },
+        {
+          "session": 2,
+          "status": "Có mặt"
+        },
+        {
+          "session": 3,
+          "status": "Có mặt"
+        },
+        {
+          "session": 4,
+          "status": "Có mặt"
+        },
+        {
+          "session": 5,
+          "status": "Vắng mặt"
+        },
+        {
+          "session": 6,
+          "status": "Có mặt"
+        },
+        {
+          "session": 7,
+          "status": "Có mặt"
+        },
+        {
+          "session": 8,
+          "status": "Có mặt"
+        },
+        {
+          "session": 9,
+          "status": "Vắng mặt"
+        },
+        {
+          "session": 10,
+          "status": "Có mặt"
+        },
+        {
+          "session": 11,
+          "status": "Có mặt"
+        },
+        {
+          "session": 12,
+          "status": "Có mặt"
+        },
+        {
+          "session": 13,
+          "status": "Vắng mặt"
+        },
+        {
+          "session": 14,
+          "status": "Có mặt"
+        },
+        {
+          "session": 15,
+          "status": "Có mặt"
+        },
+        {
+          "session": 16,
+          "status": "Có mặt"
+        },
+        {
+          "session": 17,
+          "status": "Có mặt"
+        },
+        {
+          "session": 18,
+          "status": "Vắng mặt"
+        }
+      ]
+    },
+    "SE190460": {
+      "student_id": "SE190460",
+      "subject_code": "DSR301m",
+      "subject_name": "Applied Data Science with R",
+      "class_name": "AI1903",
+      "lecturer": "HuynhLD3",
+      "total_slots": 20,
+      "current_slot": 14,
+      "absent_slots": 6,
+      "attended_slots": 8,
+      "absent_rate_current": "42.9%",
+      "absent_rate_total": "30.0% (trên tổng 20 buổi)",
+      "max_allowed_absent": 4,
+      "remaining_allowed_absent": 0,
+      "is_attendance_fail": true,
+      "warning_status": "🚨 BỊ CẤM THI (ATTENDANCE FAIL - AF)! Bạn đã vắng 6 buổi / 20 buổi môn DSR301m (vắng 30%, vượt quá giới hạn 20% tức 4 buổi). Bạn đã bị CẤM THI CUỐI KỲ và buộc phải học lại môn này!",
+      "records": [
+        {
+          "session": 1,
+          "status": "Vắng mặt"
+        },
+        {
+          "session": 2,
+          "status": "Vắng mặt"
+        },
+        {
+          "session": 3,
+          "status": "Có mặt"
+        },
+        {
+          "session": 4,
+          "status": "Có mặt"
+        },
+        {
+          "session": 5,
+          "status": "Có mặt"
+        },
+        {
+          "session": 6,
+          "status": "Vắng mặt"
+        },
+        {
+          "session": 7,
+          "status": "Có mặt"
+        },
+        {
+          "session": 8,
+          "status": "Có mặt"
+        },
+        {
+          "session": 9,
+          "status": "Vắng mặt"
+        },
+        {
+          "session": 10,
+          "status": "Có mặt"
+        },
+        {
+          "session": 11,
+          "status": "Vắng mặt"
+        },
+        {
+          "session": 12,
+          "status": "Có mặt"
+        },
+        {
+          "session": 13,
+          "status": "Có mặt"
+        },
+        {
+          "session": 14,
+          "status": "Vắng mặt"
+        }
+      ]
+    },
+    "SE190461": {
+      "student_id": "SE190461",
+      "subject_code": "PFP191",
+      "subject_name": "Programming Fundamentals with Python",
+      "class_name": "AI2002-RET",
+      "lecturer": "MinhNN",
+      "total_slots": 30,
+      "current_slot": 20,
+      "absent_slots": 8,
+      "attended_slots": 12,
+      "absent_rate_current": "40.0%",
+      "absent_rate_total": "26.7% (trên tổng 30 buổi)",
+      "max_allowed_absent": 6,
+      "remaining_allowed_absent": 0,
+      "is_attendance_fail": true,
+      "warning_status": "🚨 BỊ CẤM THI (ATTENDANCE FAIL - AF)! Đây là lớp học lại môn PFP191, bạn đã vắng 8 buổi / 30 buổi (chiếm 26.7% > 20% cho phép tức 6 buổi). Bạn đã BỊ ĐÌNH CHỈ THI / CẤM THI và phải tiếp tục học lại!",
+      "records": [
+        {
+          "session": 1,
+          "status": "Có mặt"
+        },
+        {
+          "session": 2,
+          "status": "Vắng mặt"
+        },
+        {
+          "session": 3,
+          "status": "Có mặt"
+        },
+        {
+          "session": 4,
+          "status": "Vắng mặt"
+        },
+        {
+          "session": 5,
+          "status": "Có mặt"
+        },
+        {
+          "session": 6,
+          "status": "Có mặt"
+        },
+        {
+          "session": 7,
+          "status": "Vắng mặt"
+        },
+        {
+          "session": 8,
+          "status": "Có mặt"
+        },
+        {
+          "session": 9,
+          "status": "Có mặt"
+        },
+        {
+          "session": 10,
+          "status": "Vắng mặt"
+        },
+        {
+          "session": 11,
+          "status": "Có mặt"
+        },
+        {
+          "session": 12,
+          "status": "Có mặt"
+        },
+        {
+          "session": 13,
+          "status": "Vắng mặt"
+        },
+        {
+          "session": 14,
+          "status": "Có mặt"
+        },
+        {
+          "session": 15,
+          "status": "Vắng mặt"
+        },
+        {
+          "session": 16,
+          "status": "Có mặt"
+        },
+        {
+          "session": 17,
+          "status": "Có mặt"
+        },
+        {
+          "session": 18,
+          "status": "Vắng mặt"
+        },
+        {
+          "session": 19,
+          "status": "Có mặt"
+        },
+        {
+          "session": 20,
+          "status": "Vắng mặt"
+        }
+      ]
+    },
+    "SE190462": {
+      "student_id": "SE190462",
+      "subject_code": "DPL302m",
+      "subject_name": "Deep Learning",
+      "class_name": "AI1904",
+      "lecturer": "HuynhLD3",
+      "total_slots": 20,
+      "current_slot": 12,
+      "absent_slots": 1,
+      "attended_slots": 11,
+      "absent_rate_current": "8.3%",
+      "absent_rate_total": "5.0%",
+      "max_allowed_absent": 4,
+      "remaining_allowed_absent": 3,
+      "is_attendance_fail": false,
+      "warning_status": "✅ An toàn: Bạn mới chỉ vắng 1/20 buổi môn DPL302m, vẫn còn 3 buổi vắng cho phép.",
+      "records": [
+        {
+          "session": 1,
+          "status": "Có mặt"
+        },
+        {
+          "session": 2,
+          "status": "Có mặt"
+        },
+        {
+          "session": 3,
+          "status": "Có mặt"
+        },
+        {
+          "session": 4,
+          "status": "Có mặt"
+        },
+        {
+          "session": 5,
+          "status": "Vắng mặt"
+        },
+        {
+          "session": 6,
+          "status": "Có mặt"
+        },
+        {
+          "session": 7,
+          "status": "Có mặt"
+        },
+        {
+          "session": 8,
+          "status": "Có mặt"
+        },
+        {
+          "session": 9,
+          "status": "Có mặt"
+        },
+        {
+          "session": 10,
+          "status": "Có mặt"
+        },
+        {
+          "session": 11,
+          "status": "Có mặt"
+        },
+        {
+          "session": 12,
+          "status": "Có mặt"
+        }
+      ]
+    },
+    "SE190463": {
+      "student_id": "SE190463",
+      "subject_code": "AIP491",
+      "subject_name": "AI Capstone Project",
+      "class_name": "CAPSTONE-G01",
+      "lecturer": "HuynhLD3",
+      "total_slots": 14,
+      "current_slot": 8,
+      "absent_slots": 1,
+      "attended_slots": 7,
+      "absent_rate_current": "12.5%",
+      "absent_rate_total": "7.1%",
+      "max_allowed_absent": 2,
+      "remaining_allowed_absent": 1,
+      "is_attendance_fail": false,
+      "warning_status": "✅ Tiến độ đồ án bình thường: Bạn đã tham gia 7/8 buổi gặp GVHD, vắng 1 buổi.",
+      "records": [
+        {
+          "session": 1,
+          "status": "Có mặt"
+        },
+        {
+          "session": 2,
+          "status": "Có mặt"
+        },
+        {
+          "session": 3,
+          "status": "Vắng mặt"
+        },
+        {
+          "session": 4,
+          "status": "Có mặt"
+        },
+        {
+          "session": 5,
+          "status": "Có mặt"
+        },
+        {
+          "session": 6,
+          "status": "Có mặt"
+        },
+        {
+          "session": 7,
+          "status": "Có mặt"
+        },
+        {
+          "session": 8,
+          "status": "Có mặt"
+        }
+      ]
+    },
+    "SE190464": {
+      "student_id": "SE190464",
+      "subject_code": "DAT301m",
+      "subject_name": "AI Development with TensorFlow",
+      "class_name": "AI1801",
+      "lecturer": "HuynhLD3",
+      "total_slots": 20,
+      "current_slot": 12,
+      "absent_slots": 2,
+      "attended_slots": 10,
+      "absent_rate_current": "16.7%",
+      "absent_rate_total": "10.0%",
+      "max_allowed_absent": 4,
+      "remaining_allowed_absent": 2,
+      "is_attendance_fail": false,
+      "warning_status": "✅ An toàn: Bạn vắng 2/20 buổi môn DAT301m (10%), còn 2 buổi vắng cho phép.",
+      "records": [
+        {
+          "session": 1,
+          "status": "Có mặt"
+        },
+        {
+          "session": 2,
+          "status": "Có mặt"
+        },
+        {
+          "session": 3,
+          "status": "Vắng mặt"
+        },
+        {
+          "session": 4,
+          "status": "Có mặt"
+        },
+        {
+          "session": 5,
+          "status": "Có mặt"
+        },
+        {
+          "session": 6,
+          "status": "Có mặt"
+        },
+        {
+          "session": 7,
+          "status": "Có mặt"
+        },
+        {
+          "session": 8,
+          "status": "Vắng mặt"
+        },
+        {
+          "session": 9,
+          "status": "Có mặt"
+        },
+        {
+          "session": 10,
+          "status": "Có mặt"
+        },
+        {
+          "session": 11,
+          "status": "Có mặt"
+        },
+        {
+          "session": 12,
+          "status": "Có mặt"
+        }
+      ]
+    },
+    "SE190465": {
+      "student_id": "SE190465",
+      "subject_code": "AID301c",
+      "subject_name": "AI in Production",
+      "class_name": "AI1701",
+      "lecturer": "HuynhLD3",
+      "total_slots": 20,
+      "current_slot": 14,
+      "absent_slots": 5,
+      "attended_slots": 9,
+      "absent_rate_current": "35.7%",
+      "absent_rate_total": "25.0%",
+      "max_allowed_absent": 4,
+      "remaining_allowed_absent": 0,
+      "is_attendance_fail": true,
+      "warning_status": "🚨 BỊ CẤM THI (ATTENDANCE FAIL - AF)! Bạn đã vắng 5/20 buổi môn AID301c (chiếm 25.0% thời lượng, vượt quá ngưỡng 20% cho phép là 4 buổi). Bạn đã BỊ CẤM THI CUỐI KỲ theo QĐ 545 và phải đăng ký học lại!",
+      "records": [
+        {
+          "session": 1,
+          "status": "Có mặt"
+        },
+        {
+          "session": 2,
+          "status": "Vắng mặt"
+        },
+        {
+          "session": 3,
+          "status": "Có mặt"
+        },
+        {
+          "session": 4,
+          "status": "Vắng mặt"
+        },
+        {
+          "session": 5,
+          "status": "Có mặt"
+        },
+        {
+          "session": 6,
+          "status": "Có mặt"
+        },
+        {
+          "session": 7,
+          "status": "Vắng mặt"
+        },
+        {
+          "session": 8,
+          "status": "Có mặt"
+        },
+        {
+          "session": 9,
+          "status": "Có mặt"
+        },
+        {
+          "session": 10,
+          "status": "Vắng mặt"
+        },
+        {
+          "session": 11,
+          "status": "Có mặt"
+        },
+        {
+          "session": 12,
+          "status": "Có mặt"
+        },
+        {
+          "session": 13,
+          "status": "Vắng mặt"
+        },
+        {
+          "session": 14,
+          "status": "Có mặt"
+        }
+      ]
+    },
+    "SE190466": {
+      "student_id": "SE190466",
+      "subject_code": "CPV301",
+      "subject_name": "Computer Vision",
+      "class_name": "AI2003",
+      "lecturer": "SonVH",
+      "total_slots": 20,
+      "current_slot": 12,
+      "absent_slots": 2,
+      "attended_slots": 10,
+      "absent_rate_current": "16.7%",
+      "absent_rate_total": "10.0%",
+      "max_allowed_absent": 4,
+      "remaining_allowed_absent": 2,
+      "is_attendance_fail": false,
+      "warning_status": "✅ An toàn: Bạn vắng 2/20 buổi môn CPV301, còn 2 buổi vắng dự phòng.",
+      "records": [
+        {
+          "session": 1,
+          "status": "Có mặt"
+        },
+        {
+          "session": 2,
+          "status": "Có mặt"
+        },
+        {
+          "session": 3,
+          "status": "Có mặt"
+        },
+        {
+          "session": 4,
+          "status": "Vắng mặt"
+        },
+        {
+          "session": 5,
+          "status": "Có mặt"
+        },
+        {
+          "session": 6,
+          "status": "Có mặt"
+        },
+        {
+          "session": 7,
+          "status": "Có mặt"
+        },
+        {
+          "session": 8,
+          "status": "Có mặt"
+        },
+        {
+          "session": 9,
+          "status": "Vắng mặt"
+        },
+        {
+          "session": 10,
+          "status": "Có mặt"
+        },
+        {
+          "session": 11,
+          "status": "Có mặt"
+        },
+        {
+          "session": 12,
+          "status": "Có mặt"
+        }
+      ]
+    }
+  },
+  "fap_applications": {
+    "general_procedure": "Quy trình chung khi làm đơn từ trên FAP: Sinh viên đăng nhập vào hệ thống FAP (fap.fpt.edu.vn), tìm đến mục 'Thủ tục sinh viên' hoặc 'Đơn từ' (Send Application), chọn loại đơn cần làm, điền đầy đủ lý do/thông tin yêu cầu, kiểm tra tình trạng xử lý trên FAP. Sau khi đơn được duyệt (Approved/Chấp nhận), sinh viên lên Phòng Dịch vụ sinh viên (DVSV) tại cơ sở để nhận giấy tờ hoặc hoàn tất thủ tục.",
+    "military_service_exemption": {
+      "name": "Đơn xin tạm hoãn nghĩa vụ quân sự (NVQS)",
+      "steps": "1. Lên hệ thống FAP (fap.fpt.edu.vn).\n2. Vào mục 'Đơn từ' / 'Thủ tục sinh viên'.\n3. Chọn loại đơn: 'Đơn xin tạm hoãn nghĩa vụ quân sự' (hoặc Đơn xác nhận sinh viên / Tạm hoãn NVQS).\n4. Điền đầy đủ thông tin cá nhân và lý do nộp theo yêu cầu.\n5. Chờ phòng ban nhà trường duyệt chấp nhận đơn.\n6. Sau khi được chấp nhận, sinh viên mang thẻ sinh viên hoặc CCCD lên Phòng Dịch vụ sinh viên (DVSV) để nhận giấy xác nhận bản cứng có dấu đỏ gửi về địa phương."
+    },
+    "application_types": [
+      {
+        "id": 1,
+        "name": "Các loại đơn khác",
+        "note": "Dành cho các yêu cầu đặc thù chưa có mẫu đơn riêng."
+      },
+      {
+        "id": 2,
+        "name": "Chương trình KS57",
+        "note": "Thủ tục và chương trình đào tạo KS57."
+      },
+      {
+        "id": 3,
+        "name": "Đăng ký bảo hiểm y tế (BHYT)",
+        "note": "Khai báo thông tin BHYT bắt buộc hàng năm hoặc mua bổ sung qua FAP."
+      },
+      {
+        "id": 4,
+        "name": "Đăng ký bảo lưu học phần",
+        "note": "Bảo lưu kết quả học phần đã hoàn thành."
+      },
+      {
+        "id": 5,
+        "name": "Đăng ký học cải thiện điểm",
+        "note": "Đăng ký học lại môn đã qua để nâng điểm GPA."
+      },
+      {
+        "id": 6,
+        "name": "Đăng ký học đi chậm kỳ",
+        "note": "Đề nghị điều chỉnh tiến độ học tập chậm hơn lộ trình chuẩn."
+      },
+      {
+        "id": 7,
+        "name": "Đăng ký học lại",
+        "note": "Đăng ký học lại các môn bị trượt (áp dụng biểu phí học lại sớm hoặc thông thường)."
+      },
+      {
+        "id": 8,
+        "name": "Đăng ký học môn nước ngoài",
+        "note": "Đăng ký tham gia học tập kỳ trao đổi hoặc môn học chuyển tiếp quốc tế."
+      },
+      {
+        "id": 9,
+        "name": "Đăng ký học phụ đạo",
+        "note": "Đăng ký các lớp phụ đạo, bổ trợ kiến thức môn học."
+      },
+      {
+        "id": 10,
+        "name": "Đăng ký học vượt kỳ",
+        "note": "Đăng ký học trước các môn của học kỳ sau nếu đủ điều kiện tiên quyết và tiến độ."
+      },
+      {
+        "id": 11,
+        "name": "Đăng ký thi cải thiện điểm",
+        "note": "Đăng ký thi lại để cải thiện điểm số môn học."
+      },
+      {
+        "id": 12,
+        "name": "Đăng ký thi thẩm định các môn học online",
+        "note": "Đăng ký thi thẩm định kiến thức cho các môn hoàn thành trên Coursera/MOOCs."
+      },
+      {
+        "id": 13,
+        "name": "Đề nghị cấp bảng điểm quá trình",
+        "note": "Xin cấp bảng điểm quá trình học tập bản cứng có dấu mộc nhà trường."
+      },
+      {
+        "id": 14,
+        "name": "Đề nghị chuyển cơ sở",
+        "note": "Làm thủ tục chuyển giữa các cơ sở HN, HCM, ĐN, CT, BĐ chậm nhất 1 tháng trước kỳ mới."
+      },
+      {
+        "id": 15,
+        "name": "Đề nghị chuyển đổi tín chỉ",
+        "note": "Công nhận và miễn giảm tín chỉ tương đương từ trường khác hoặc chương trình khác."
+      },
+      {
+        "id": 16,
+        "name": "Đề nghị chuyển ngành",
+        "note": "Xin chuyển sang ngành học mới, thanh toán phí môn học thừa theo quy định."
+      },
+      {
+        "id": 17,
+        "name": "Đề nghị chuyển từ học Võ sang học Cờ",
+        "note": "Chuyển học phần thể chất GDTC từ Vovinam sang Cờ vua/Cờ tướng (áp dụng cho trường hợp có lý do sức khỏe có xác nhận y tế)."
+      },
+      {
+        "id": 18,
+        "name": "Đề nghị đổi combo chuyên sâu",
+        "note": "Đề nghị thay đổi định hướng chuyên ngành hẹp/combo chuyên sâu của ngành học."
+      }
+    ]
+  }
+}

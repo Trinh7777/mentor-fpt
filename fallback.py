@@ -22,9 +22,37 @@ def answer(text: str, adv: StudentAdvisor):
     def call(name, res):
         log.append({"tool": name, "args": {}, "result": res}); return res
 
+    # 0a. Câu hỏi tính điểm thi Final Exam (FE) cần đạt
+    fe_match = re.search(r"(?:qua trinh|pt|assignment|dang duoc|trung binh)\D{0,15}(\d+(?:[.,]\d+)?)", n)
+    if ("fe" in n or "final" in n or "cuoi ky" in n or "qua mon" in n) and fe_match:
+        cw_val = float(fe_match.group(1).replace(",", "."))
+        r = call("calculate_required_final_score", adv.calculate_required_final_score(cw_val, subj))
+        if "message" in r:
+            return f"📌 **{r['subject_code']}**: {r['message']}", log
+        return (f"🎯 **Tính điểm Final Exam (FE) môn {r['subject_code']} ({r['subject_name']}):**\n"
+                f"- Điểm quá trình ({r['coursework_weight_pct']}%): **{r['coursework_average']}** (tương đương **{r['coursework_points_accumulated']}** điểm tích lũy)\n"
+                f"- Trọng số thi FE: **{r['fe_weight_pct']}%** (điểm sàn không liệt: **>= {r['fpt_min_fe_floor']}**)\n"
+                f"👉 **Điểm thi FE tối thiểu cần đạt để qua môn (>= {r['target_total_grade']}): `{r['required_fe_score']}` điểm**\n"
+                f"💡 *Đánh giá:* {r['verdict']}."), log
+
+    # 0b. Câu hỏi về điều kiện đi OJT / Thực tập / Làm đồ án tốt nghiệp (KLTN / AIP491)
+    if any(k in n for k in ["du dieu kien ojt", "di ojt", "di thuc tap", "lam do an", "khoa luan", "aip491", "ojt202", "xet tot nghiep"]):
+        r = call("check_ojt_and_graduation_eligibility", adv.check_ojt_and_graduation_eligibility())
+        ojt = r["ojt_eligibility"]
+        cap = r["capstone_and_graduation"]
+        ojt_badge = "✅ ĐỦ ĐIỀU KIỆN" if ojt["is_eligible_now"] else ("⏳ DỰ KIẾN ĐỦ (nếu qua hết môn kỳ này)" if ojt["is_eligible_if_pass_studying"] else "❌ CHƯA ĐỦ ĐIỀU KIỆN")
+        cap_badge = "✅ ĐỦ ĐIỀU KIỆN" if cap["eligible_for_capstone_AIP491"] else "⏳ CHƯA ĐỦ ĐIỀU KIỆN"
+        return (f"🏢 **1. Điều kiện Thực tập doanh nghiệp (OJT202):** {ojt_badge}\n"
+                f"- Tín chỉ giai đoạn Kỳ 1–5 đã tích lũy: **{ojt['pre_ojt_credits_passed']}/{ojt['pre_ojt_credits_total']} TC ({ojt['current_percentage']}%)** *(Yêu cầu >= 90%)*\n"
+                f"- Dự kiến sau khi hoàn thành các môn đang học kỳ này: **{ojt['projected_percentage_after_this_term']}%**\n\n"
+                f"🎓 **2. Điều kiện Khóa luận tốt nghiệp (AIP491) & Xét tốt nghiệp:** {cap_badge}\n"
+                f"- Tổng tín chỉ tích lũy toàn khóa: **{cap['total_credits_passed']}/{cap['total_credits_required']} TC**\n"
+                f"- Môn đang nợ cần trả: **{', '.join(cap['pending_failed_subjects']) if cap['pending_failed_subjects'] else 'Không nợ môn nào'}**\n"
+                f"- Điều kiện bắt buộc khác: {', '.join(cap['mandatory_non_gpa_checklist'])}."), log
+
     if "gpa" in n or "diem trung binh" in n:
-        m = re.search(r"(?:muc tieu|dat|target)\D{0,10}(\d+(?:[.,]\d+)?)", n)
-        if m and ("muc tieu" in n or "target" in n or "can" in n):
+        m = re.search(r"(?:muc tieu|dat|target|muon|can)\D{0,10}(\d+(?:[.,]\d+)?)", n) or re.search(r"(\d+(?:[.,]\d+)?)\D{0,10}(?:muc tieu|target|gpa)", n)
+        if m and any(k in n for k in ["muc tieu", "target", "can", "muon", "de duoc"]):
             r = call("plan_target_gpa", adv.plan_target_gpa(float(m.group(1).replace(",", "."))))
             return (f"🎯 Để đạt GPA **{r['target_gpa']}**, bạn cần trung bình **{r.get('required_average_on_remaining')}** "
                     f"trên {r.get('credits_remaining')} tín chỉ còn lại → *{r.get('verdict')}*."), log
@@ -68,6 +96,55 @@ def answer(text: str, adv: StudentAdvisor):
         r = call("check_attendance", adv.check_attendance(a, b))
         return (f"{'🚨 Đã AF' if r['attendance_fail'] else '✅ An toàn'}: vắng {r['absent_percent']}% – tối đa được vắng "
                 f"{r['max_absent_allowed']} buổi, còn dư {r['remaining_absences']} buổi."), log
+    # 1. Câu hỏi về Đơn từ FAP (NVQS, tạm hoãn nghĩa vụ quân sự, thủ tục đơn từ, chuyển ngành, học võ sang cờ...)
+    if any(k in n for k in ["don tu", "thu tuc don", "xin don", "giay xin", "nghia vu quan su", "nvqs", "tam hoan", "vo sang co", "hoc vo", "hoc co", "combo chuyen sau", "ks57", "bhyt", "chuyen co so"]):
+        r = call("get_fap_application_procedure", adv.get_application_procedure(text))
+        if "specific_application" in r:
+            spec = r["specific_application"]
+            gen = r.get("general_procedure", "")
+            return (f"📝 **{spec['name']}**\n\n"
+                    f"**Hướng dẫn thực hiện:**\n{spec['steps']}\n\n"
+                    f"💡 *Lưu ý quy trình chung:* Em lên FAP, vào mục Đơn từ/Thủ tục sinh viên, gửi đơn, chờ trạng thái chuyển sang Chấp nhận (Approved) rồi mang thẻ sinh viên lên Phòng Dịch vụ sinh viên (DVSV) nhận bản cứng."), log
+        if "matched_applications" in r:
+            lines = [f"{a['id']}. **{a['name']}**: {a.get('note', '')}" for a in r["matched_applications"][:10]]
+            return (f"📋 **Các loại đơn từ trên FAP:**\n\n" + "\n".join(lines) + 
+                    f"\n\n👉 **Quy trình:** {r.get('general_procedure', 'Lên FAP làm đơn -> Chờ duyệt -> Lên phòng DVSV lấy kết quả.')}"), log
+
+    # 2. Câu hỏi về Thời khóa biểu (TKB)
+    if any(k in n for k in ["thoi khoa bieu", "tkb", "lich hoc", "lich trong tuan", "hom nay hoc gi", "thu 2 hoc gi", "thu hai hoc gi"]):
+        r = call("get_student_schedule", adv.get_schedule())
+        if "schedule" in r:
+            lines = [f"📅 **Thời khóa biểu tuần ({r.get('week', '')}):**\n"]
+            for slot_item in r["schedule"]:
+                slot_num = slot_item["slot"]
+                slot_time = slot_item["time"]
+                lines.append(f"**Slot {slot_num} ({slot_time}):**")
+                for day, info in slot_item["days"].items():
+                    if info:
+                        lines.append(f"  - **{day}**: môn **{info['subject_code']}** ({info['class_name']}), Phòng **{info['room']}**, GV **{info['lecturer']}** [{info['type']}] - *Trạng thái: {info['status']}*")
+            return "\n".join(lines), log
+
+    # 3. Câu hỏi về Điểm danh chi tiết
+    if ("diem danh" in n or "tinh hinh diem danh" in n or "da vang may buoi" in n or "nguy co af" in n or "cam thi" in n) and not m:
+        r = call("get_attendance_details", adv.get_attendance_details(subj))
+        if "records" in r:
+            absent_sessions = [f"Buổi {rec['session']} ({rec.get('date', '')})" for rec in r.get("records", []) if rec.get("status") == "Vắng mặt"]
+            absent_str = ", ".join(absent_sessions) if absent_sessions else "Không có buổi nào vắng"
+            
+            status_badge = "🚨 **TRẠNG THÁI: BỊ CẤM THI (ATTENDANCE FAIL - AF)**" if r.get("is_attendance_fail") else "⚠️ **TRẠNG THÁI: ĐANG HỌC (CHƯA BỊ CẤM THI)**"
+            
+            rec_summary = (f"📋 **Tình hình điểm danh môn {r['subject_code']} – {r['subject_name']} ({r.get('class_name', '')}):**\n"
+                           f"{status_badge}\n\n"
+                           f"- Giảng viên: **{r.get('lecturer', 'Chưa rõ')}**\n"
+                           f"- Tổng số buổi học: **{r['total_slots']} buổi**\n"
+                           f"- Đã học: **{r['current_slot']} buổi** (Có mặt: **{r['attended_slots']}**, Vắng mặt: **{r['absent_slots']}**)\n"
+                           f"- Tỷ lệ vắng trên tổng số buổi: **{r['absent_rate_total']}**\n"
+                           f"- Mức vắng tối đa cho phép: **{r['max_allowed_absent']} buổi** (20%)\n"
+                           f"- Số buổi vắng còn lại cho phép: **{r['remaining_allowed_absent']} buổi**\n\n"
+                           f"📢 **Kết luận học vụ:**\n{r['warning_status']}\n\n"
+                           f"📌 *Các buổi đã vắng:* {absent_str}.")
+            return rec_summary, log
+
     r = call("search_policy", {"results": search_policy(text)})
     if not r["results"]:
         return "Mình chưa tìm thấy quy chế phù hợp. Bạn hỏi lại cụ thể hơn hoặc liên hệ Phòng Dịch vụ sinh viên nhé.", log

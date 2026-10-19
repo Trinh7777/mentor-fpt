@@ -18,12 +18,22 @@ def load_all():
         prereqs.setdefault(p["subject_code"], []).append(p)
     transcript = _read("transcript.json")
     policy_chunks = _read("FPT.json")["chunks"]
+    cases_data = _read("fpt_cases.json") if (DATA_DIR / "fpt_cases.json").exists() else {}
+    live_data = {}
+    live_path = DATA_DIR / "student_live_data.json"
+    if live_path.exists():
+        try:
+            live_data = _read("student_live_data.json")
+        except Exception:
+            live_data = {}
     return {
         "students": students,
         "subjects": subjects,
         "prereqs": prereqs,
         "transcript": transcript,
         "policy": policy_chunks,
+        "cases": cases_data,
+        "live": live_data,
     }
 
 

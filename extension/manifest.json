@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "UniFs FAP Sync - FPT Chatbot Connector",
+  "version": "1.0.0",
+  "description": "Tự động trích xuất bảng điểm, lịch học, điểm danh từ FAP và đồng bộ sang UniFs Chatbot",
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://fap.fpt.edu.vn/*",
+    "http://localhost:8000/*",
+    "http://127.0.0.1:8000/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "UniFs FAP Sync"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://fap.fpt.edu.vn/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "content.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}

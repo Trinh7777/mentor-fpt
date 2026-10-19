@@ -2,92 +2,402 @@
   "metadata": {
     "system_name": "Hệ thống giáo dục FPT - FPT University",
     "version": "2026-2027",
-    "description": "Structured JSON knowledge base optimized for RAG and Chatbot ingestion, chunked logically by topic with searchable tags and detailed content."
+    "description": "Structured JSON knowledge base for FPT University Chatbot & Advisor System, compiled from official decisions, regulations, and procedure guidelines (QĐ 107, QT 07, QĐ 138, QĐ 1234, QĐ 545)."
   },
   "chunks": [
     {
       "chunk_id": "FPT_HP_01",
       "category": "Học phí và Học lại",
-      "title": "Quy định học phí học lại (QĐ 107/QĐ-CTGDFPT)",
-      "tags": ["học lại", "học phí", "học lại sớm", "wishlist", "thi lại", "vi phạm quy chế thi"],
-      "content": "1. Học phí học lại sớm: Áp dụng đối với sinh viên, học viên học lại ngay trong kỳ hoặc kỳ tiếp theo bằng 50% học phí môn.\n2. Học phí học lại thông thường: Áp dụng đối với sinh viên không học lại ngay trong kỳ hoặc kỳ tiếp theo bằng 100% học phí môn.\n3. Thời điểm tính học lại sớm hay thông thường tính từ thời điểm sinh viên bị trượt môn gần nhất, không phân biệt môn đó là học đi hay học lại.\n4. Hoàn trả 50% học phí học lại đã nộp cho sinh viên đã đăng ký lớp học lại nhưng vì lý do cá nhân xin hủy lớp trước khi khai giảng. Hủy sau khai giảng không được hoàn tiền.\n5. Hoàn trả 100% học phí học lại đã nộp cho sinh viên đã đăng ký lớp học nhưng nhà trường không tổ chức được lớp.\n6. Wishlist: Sinh viên phải học lại vì lý do trùng lịch, nhà trường không tổ chức được lớp... có thể đăng ký vào danh sách chờ lớp (wishlist) để được bảo lưu chế độ học lại sớm, học phí tính theo biểu phí môn tại thời điểm đăng ký vào wishlist. Hủy wishlist được hoàn lại 50% số tiền đã nộp.\n7. Sinh viên vi phạm quy chế thi: Học phí học lại, giá dịch vụ thi lại, thi thẩm định bằng hai lần so với sinh viên không vi phạm."
+      "title": "Quy định về học phí học lại và hoàn trả học phí môn (QĐ 107/QĐ-CTGDFPT)",
+      "tags": [
+        "học lại",
+        "hoc lai",
+        "học phí học lại",
+        "hoc phi hoc lai",
+        "học lại sớm",
+        "hoc lai som",
+        "wishlist",
+        "danh sách chờ lớp",
+        "hủy lớp học lại",
+        "thi lại",
+        "vi phạm quy chế thi",
+        "trượt môn",
+        "truot mon",
+        "50%",
+        "100%"
+      ],
+      "content": "Quy định tính học phí học lại theo Quyết định số 107/QĐ-CTGDFPT ngày 10/4/2025 có hiệu lực từ kỳ Fall 2025:\n1. Học phí học lại sớm: Áp dụng đối với sinh viên, học viên học lại ngay trong kỳ hoặc kỳ tiếp theo liền kề, bằng 50% học phí môn (bao gồm học lại chính môn bị trượt hoặc học môn khác thay thế cho môn bị trượt).\n2. Học phí học lại thông thường: Áp dụng đối với sinh viên không học lại ngay trong kỳ hoặc kỳ tiếp theo liền kề, bằng 100% học phí môn.\n3. Thời điểm xác định học lại sớm hay thông thường: Tính từ thời điểm sinh viên bị trượt môn gần nhất, không phân biệt môn đó là học đi lần đầu hay học lại.\n4. Chính sách hoàn phí khi hủy lớp học lại: Hoàn trả 50% học phí học lại đã nộp cho sinh viên đã đăng ký lớp học lại nhưng vì lý do cá nhân xin hủy lớp trước ngày khai giảng. Sinh viên hủy lớp học lại sau khi lớp đã khai giảng sẽ KHÔNG được hoàn tiền.\n5. Lớp không tổ chức được: Hoàn trả 100% học phí học lại đã nộp cho sinh viên đã đăng ký nhưng nhà trường không tổ chức được lớp.\n6. Danh sách chờ lớp (Wishlist): Sinh viên phải học lại nhưng do trùng lịch hoặc nhà trường chưa mở được lớp có thể đăng ký vào danh sách chờ lớp (wishlist) để bảo lưu chế độ học lại sớm. Sinh viên có nghĩa vụ tuân theo sự xếp lớp của trường. Học phí học lại tính theo biểu phí môn tại thời điểm đăng ký vào wishlist. Trường hợp sinh viên tự ý hủy wishlist sẽ được hoàn lại 50% số tiền đã nộp.\n7. Sinh viên vi phạm quy chế thi: Học phí học lại, giá dịch vụ thi lại, thi thẩm định đối với sinh viên vi phạm quy chế thi tính bằng HAI LẦN (200%) so với mức áp dụng cho sinh viên không vi phạm quy chế thi. Danh sách sinh viên vi phạm quy chế thi do nhà trường ban hành theo quyết định kỷ luật."
     },
     {
       "chunk_id": "FPT_HP_02",
       "category": "Học phí và Biểu phí",
-      "title": "Biểu phí môn học đại học chính quy (FPTU)",
-      "tags": ["biểu phí", "tín chỉ", "FPTU", "Hà Nội", "TPHCM", "Đà Nẵng", "Bình Định", "Cần Thơ", "giáo dục quốc phòng", "tiếng anh"],
-      "content": "- Môn học thông thường (Đơn vị 1 tín chỉ):\n+ Cơ sở Hà Nội & TP.HCM: 1,840,000 VND / 1 tín chỉ.\n+ Cơ sở Đà Nẵng, Bình Định, Cần Thơ: 1,290,000 VND / 1 tín chỉ.\n- Môn học đặc biệt:\n+ Giáo dục quốc phòng: Hà Nội & HCM: 4,100,000 VND/môn; Đà Nẵng, Bình Định, Cần Thơ: 2,870,000 VND/môn.\n+ Tiếng Anh TN1, 2, 3, Summit 1, 2: Hà Nội & HCM: 12,050,000 VND/level; Đà Nẵng, Bình Định, Cần Thơ: 8,440,000 VND/level (Áp dụng từ học kỳ Fall 2025)."
+      "title": "Biểu phí các môn học hệ Đại học chính quy FPTU (Phụ lục 1 - QĐ 107/QĐ-CTGDFPT)",
+      "tags": [
+        "biểu phí",
+        "bieu phi",
+        "học phí tín chỉ",
+        "hoc phi tin chi",
+        "1 tín chỉ",
+        "hà nội",
+        "hcm",
+        "đà nẵng",
+        "bình định",
+        "cần thơ",
+        "giáo dục quốc phòng",
+        "giao duc quoc phong",
+        "tiếng anh chuẩn bị",
+        "tieng anh du bi",
+        "summit",
+        "fall 2025"
+      ],
+      "content": "Biểu phí môn học dành cho sinh viên hệ Đại học chính quy FPTU ban hành theo Quyết định số 107/QĐ-CTGDFPT (áp dụng từ học kỳ Fall 2025):\n1. Môn học thông thường (Đơn vị tính: 1 tín chỉ):\n- Cơ sở FPTU Hà Nội & FPTU TP. Hồ Chí Minh: 1,840,000 VND / 1 tín chỉ.\n- Cơ sở FPTU Đà Nẵng, Bình Định & Cần Thơ: 1,290,000 VND / 1 tín chỉ.\n-> Cách tính học phí môn: Học phí môn học = (Số tín chỉ của môn học) x (Đơn giá 1 tín chỉ tương ứng tại cơ sở). Ví dụ môn 3 tín chỉ: tại HN/HCM là 3 x 1,840,000 = 5,520,000 VND; tại ĐN/BĐ/CT là 3 x 1,290,000 = 3,870,000 VND.\n2. Môn học đặc biệt:\n- Giáo dục quốc phòng (1 môn):\n  + Cơ sở Hà Nội & TP. HCM: 4,100,000 VND / môn.\n  + Cơ sở Đà Nẵng, Bình Định, Cần Thơ: 2,870,000 VND / môn.\n- Tiếng Anh dự bị / Tiếng Anh chuẩn bị (Mã môn ENTxxx: Tiếng Anh TN1, TN2, TN3, Summit 1, Summit 2 - 1 level):\n  + Cơ sở Hà Nội & TP. HCM: 12,050,000 VND / level.\n  + Cơ sở Đà Nẵng, Bình Định, Cần Thơ: 8,440,000 VND / level.\nLưu ý: Biểu phí có thể được điều chỉnh định kỳ theo trượt giá bằng quyết định mới của Tổng giám đốc Tổ chức Giáo dục FPT."
     },
     {
       "chunk_id": "FPT_TC_01",
-      "category": "Tài chính 2026-2027",
-      "title": "Quy định chung về dịch vụ và thanh toán học phí (QĐ 322/QĐ-CTGDFPT)",
-      "tags": ["tài chính", "dịch vụ tuyển sinh", "thời hạn nộp học phí", "hoàn trả học phí", "bảo lưu"],
-      "content": "- Giá dịch vụ tuyển sinh: Đăng ký thi học bổng (200,000 VND), Xét tuyển (200,000 VND), Nhập học (không hoàn trả dưới mọi hình thức).\n- Chính sách hoàn trả học phí:\n+ Thôi học trước ngày bắt đầu: Hoàn trả 80% học phí thực nộp trừ tiền bản quyền.\n+ Thôi học trong vòng 2 tuần kể từ ngày bắt đầu: Hoàn trả 50% học phí thực nộp trừ tiền bản quyền.\n+ Thôi học sau 2 tuần kể từ ngày bắt đầu: Không hoàn trả học phí đã đóng.\n- Thời hạn nộp học phí: Hoàn thành tối thiểu 05 ngày làm việc trước ngày bắt đầu khóa học/kỳ học chính thức và tối thiểu 03 ngày làm việc trước ngày đầu tiên đối với giai đoạn tiếng Anh chuẩn bị."
+      "category": "Tài chính và Dịch vụ",
+      "title": "Thời hạn nộp học phí và Chính sách hoàn trả học phí (Quy định tài chính FE)",
+      "tags": [
+        "thời hạn nộp học phí",
+        "thoi han nop hoc phi",
+        "hạn nộp học phí",
+        "hoàn trả học phí",
+        "hoan tra hoc phi",
+        "thôi học trả bao nhiêu",
+        "rút hồ sơ",
+        "phí tuyển sinh"
+      ],
+      "content": "Quy định tài chính về thanh toán học phí và hoàn trả học phí tại Trường Đại học FPT:\n1. Thời hạn hoàn thành nghĩa vụ học phí:\n- Đối với học kỳ chuyên ngành chính thức: Sinh viên phải hoàn thành đóng học phí tối thiểu 05 ngày làm việc trước ngày bắt đầu học kỳ mới.\n- Đối với giai đoạn tiếng Anh chuẩn bị (TADB): Hoàn thành học phí tối thiểu 03 ngày làm việc trước ngày học đầu tiên.\n- Sinh viên không hoàn thành nộp học phí đúng hạn sẽ bị xóa tên khỏi danh sách lớp học của học kỳ đó.\n2. Chính sách hoàn trả học phí khi sinh viên xin thôi học:\n- Thôi học trước ngày bắt đầu học kỳ: Hoàn trả 80% học phí thực nộp (sau khi đã trừ phí bản quyền/sách giáo trình nếu có).\n- Thôi học trong vòng 2 tuần kể từ ngày bắt đầu học kỳ: Hoàn trả 50% học phí thực nộp (trừ phí bản quyền/giáo trình).\n- Thôi học sau 2 tuần kể từ ngày bắt đầu học kỳ: KHÔNG hoàn trả bất kỳ khoản học phí nào đã đóng.\n3. Giá dịch vụ tuyển sinh:\n- Đăng ký thi học bổng: 200,000 VND.\n- Đăng ký xét tuyển: 200,000 VND.\n- Phí nhập học: Không hoàn trả dưới bất kỳ hình thức nào."
     },
     {
       "chunk_id": "FPT_HV_01",
-      "category": "Xử lý học vụ",
-      "title": "Quy định Tạm ngừng học tập (Phụ lục 2 - QT Đào tạo)",
-      "tags": ["tạm ngừng", "bảo lưu", "nguyện vọng cá nhân", "đình chỉ học tập", "chưa đủ điều kiện tốt nghiệp"],
-      "content": "- Tạm ngừng do nguyện vọng cá nhân: Sinh viên được quyền tạm ngừng theo học kỳ để giải quyết việc riêng hoặc học lại môn chưa đạt, đã học tối thiểu 01 học kỳ tại trường, không bị buộc thôi học hoặc kỷ luật. Không được tạm ngừng quá 02 học kỳ liên tiếp. Thời gian mỗi lần tạm ngừng là 01 học kỳ.\n- Tạm ngừng do bị đình chỉ: Theo quyết định của Hội đồng kỷ luật Nhà trường.\n- Tạm ngừng do chưa đủ điều kiện tốt nghiệp: Sinh viên hoàn thành chương trình nhưng thiếu hồ sơ, tài chính hoặc đang bị truy cứu trách nhiệm hình sự."
+      "category": "Xử lý học vụ - Tạm ngừng",
+      "title": "Quy định Tạm ngừng học tập (Phụ lục 2 - 07.02PL-QT/ĐH/HDCV/FE)",
+      "tags": [
+        "tạm ngừng",
+        "tam ngung",
+        "bảo lưu",
+        "bao luu",
+        "tạm ngừng cá nhân",
+        "đình chỉ học tập",
+        "dinh chi hoc tap",
+        "tạm ngừng học kỳ",
+        "2 học kỳ liên tiếp",
+        "đơn tạm ngừng"
+      ],
+      "content": "Quy trình và điều kiện tạm ngừng học kỳ đối với sinh viên hệ đại học theo Phụ lục 2 (Mã hiệu: 07.02PL-QT/ĐH/HDCV/FE):\n1. Tạm ngừng do nguyện vọng cá nhân:\n- Điều kiện: Sinh viên được quyền xin tạm ngừng theo từng học kỳ để giải quyết việc riêng hoặc để học lại các học phần chưa đạt; bắt buộc phải đã học tối thiểu 01 học kỳ tại cơ sở đào tạo và không thuộc diện đang bị xem xét buộc thôi học hoặc xem xét kỷ luật.\n- Thời hạn tạm ngừng: Thời gian mỗi lần tạm ngừng là 01 học kỳ. Sinh viên KHÔNG được phép tạm ngừng quá 02 (hai) học kỳ liên tiếp. Nếu có nhu cầu tiếp tục nghỉ học kỳ tiếp theo phải làm thủ tục đăng ký gia hạn.\n- Hạn chót nộp đơn: Sinh viên nộp đơn đăng ký tạm ngừng tự nguyện trên hệ thống FAP chậm nhất 01 tuần trước khi học kỳ mới bắt đầu. Sau thời hạn này, chỉ những trường hợp có lý do bất khả kháng mới được phòng TC&QLĐT xem xét.\n2. Tạm ngừng do bị đình chỉ học tập:\n- Sau khi có kết luận của Hội đồng kỷ luật Nhà trường về việc đình chỉ sinh viên học tập có thời hạn, phòng CTSV soạn thảo quyết định đình chỉ trình Giám đốc cơ sở phê duyệt.\n3. Tạm ngừng do chưa đủ điều kiện tốt nghiệp:\n- Vào thời điểm xét tốt nghiệp, sinh viên đã hoàn thành chương trình đào tạo, không còn nợ môn nhưng còn nợ nghĩa vụ hồ sơ, nghĩa vụ tài chính hoặc đang bị truy cứu trách nhiệm hình sự.\n4. Khuyến nghị học vụ & Quy định xếp lớp:\n- Nhà trường khuyên sinh viên KHÔNG nên tạm ngừng học kỳ để học lại khi: sinh viên không còn đủ thời gian đào tạo tối đa tại trường, hoặc sinh viên còn nợ quá nhiều học phần.\n- Sinh viên thuộc diện học đi muốn tạm ngừng để học lại thì không làm quyết định tạm ngừng.\n- Sinh viên không đủ điều kiện chuyển giai đoạn và không đăng ký học môn nào bắt buộc phải có quyết định tạm ngừng. Nếu sinh viên có đăng ký ít nhất 1 môn thì không cần làm thủ tục tạm ngừng.\n5. Thủ tục quay trở lại học sau tạm ngừng:\n- Chậm nhất 03 tuần trước khi kỳ mới bắt đầu, cán bộ nhà trường (DVSV/CTSV/TC&QLĐT) sẽ liên hệ qua điện thoại/email để hướng dẫn thủ tục quay lại học đi, học lại hoặc gia hạn tạm ngừng (nếu chưa quá 2 kỳ liên tiếp).\n- Nếu sinh viên hết thời hạn tạm ngừng mà không đóng học phí cũng không làm đơn xin tiếp tục tạm ngừng, nhà trường sẽ xử lý theo diện Thôi học tự nguyện."
     },
     {
       "chunk_id": "FPT_HV_02",
-      "category": "Xử lý học vụ",
-      "title": "Quy định Thôi học và Nhập học trở lại",
-      "tags": ["thôi học", "dropout", "nhập học trở lại", "kỷ luật buộc thôi học", "thời hạn học tập"],
-      "content": "- Các trường hợp thôi học: Bị kỷ luật buộc thôi học; Học vượt quá thời hạn quy định (quá 2 lần thời gian chuẩn toàn khóa không tính tiếng Anh dự bị); Có đơn thôi học tự nguyện; Ngừng đóng học phí học kỳ tiếp theo không làm thủ tục tạm ngừng; Hết hạn tạm ngừng không đăng ký học; Chuyển ngành/cơ sở nhưng không nhập học đúng hạn.\n- Nhập học trở lại: Áp dụng với sinh viên thôi học tự nguyện (từ K17 trở đi được miễn thi đầu vào). Phải hoàn thành nghĩa vụ tài chính và nộp đơn trong thời hạn quy định."
+      "category": "Xử lý học vụ - Thôi học và Nhập học lại",
+      "title": "Quy định Thôi học (Drop out) và Nhập học trở lại (Phụ lục 2 - 07.02PL-QT/ĐH/HDCV/FE)",
+      "tags": [
+        "thôi học",
+        "thoi hoc",
+        "drop out",
+        "dropout",
+        "nhập học trở lại",
+        "nhap hoc tro lai",
+        "buộc thôi học",
+        "buoc thoi hoc",
+        "quá hạn đào tạo",
+        "k17",
+        "thôi học tự nguyện"
+      ],
+      "content": "Quy định về việc Thôi học và Nhập học trở lại (Phụ lục 2 - Mã hiệu 07.02PL-QT/ĐH/HDCV/FE):\n1. Các trường hợp sinh viên thôi học bao gồm:\na) Bị kỷ luật buộc thôi học (do vi phạm nghiêm trọng nội quy, quy chế thi hoặc kỷ luật của trường).\nb) Sinh viên học vượt quá thời hạn quy định: Thời gian hoàn thành khóa học không được vượt quá 02 LẦN thời gian theo kế hoạch học tập chuẩn toàn khóa (không tính thời gian học Tiếng Anh chuẩn bị/dự bị).\nc) Sinh viên có đơn xin thôi học tự nguyện nộp trên hệ thống FAP.\nd) Sinh viên ngừng đóng học phí học kỳ tiếp theo và không làm thủ tục tạm ngừng học kỳ.\ne) Sinh viên hết hạn tạm ngừng 01 học kỳ nhưng không đăng ký học (học đi/học lại) và không xin gia hạn tạm ngừng; hoặc sinh viên đã tạm ngừng 02 học kỳ liên tiếp nhưng sang kỳ mới không đăng ký học đi.\nf) Sinh viên chuyển ngành, chuyển cơ sở nhưng không nhập học/đăng ký học tại ngành/cơ sở mới trước 01 tuần khi học kỳ mới bắt đầu.\ng) Sinh viên không còn học đi theo chương trình đào tạo nhưng còn nợ học phần, chưa đủ điều kiện chuyển giai đoạn hoặc chưa đạt Tiếng Anh dự bị nhưng sang học kỳ sau không làm thủ tục tạm ngừng để trả nợ học phần.\n2. Quy định Nhập học trở lại:\n- Đối tượng: Sinh viên xin thôi học vì lý do cá nhân (thôi học tự nguyện), không thuộc trường hợp bị xem xét kỷ luật hoặc buộc thôi học. Áp dụng từ sinh viên khóa K17 trở đi: được MIỄN thủ tục xét tuyển đầu vào khi quay lại học.\n- Điều kiện: Căn cứ thời gian học trước khi thôi học và khung chương trình ngành, đảm bảo sinh viên không bị vượt quá thời gian đào tạo tối đa tại trường.\n- Thời hạn & Thủ tục: Chậm nhất 02 tuần sau khi học kỳ mới bắt đầu, sinh viên đủ điều kiện làm đơn xin nhập học lại trên hệ thống FAP. Sinh viên phải hoàn thành đóng học phí học kỳ mới và phí nhập học lại.\n- Lưu ý sinh viên trễ hạn tài chính: Sinh viên không nộp học phí đúng hạn muốn quay lại ngay trong học kỳ mới cần nộp đơn xin nhập học lại, đóng đủ học phí và phí nhập học lại muộn nhất vào tuần thứ 2 của kỳ học mới. Phòng TC&QLĐT sẽ duyệt dựa trên khả năng xếp lớp."
     },
     {
       "chunk_id": "FPT_HV_03",
-      "category": "Xử lý học vụ",
-      "title": "Quy định Chuyển ngành và Chuyển cơ sở",
-      "tags": ["chuyển ngành", "chuyển cơ sở", "thủ tục chuyển ngành", "học phí chuyển ngành"],
-      "content": "- Nguyên tắc: Chỉ được chuyển theo học kỳ (không chuyển giữa chừng). Phải thực hiện thủ tục chậm nhất 01 tuần trước khi học kỳ mới bắt đầu.\n- Tài chính khi chuyển ngành: Chuyển ngành/cơ sở được chuyển toàn bộ học phí chưa sử dụng. Chuyển chuyên ngành/combo phải nộp bổ sung 100% học phí môn của các môn đã học ở ngành cũ mà ngành mới không có. Các môn đã học ở ngành cũ mà ngành mới có thì bảo lưu kết quả (nếu qua) hoặc học lại (nếu trượt)."
-    },
-    {
-      "chunk_id": "FPT_KT_01",
-      "category": "Nội quy kỳ thi",
-      "title": "Quy định phòng thi và Xử lý vi phạm (QĐ 1234/QĐ-ĐHFPT)",
-      "tags": ["nội quy kỳ thi", "phòng thi", "gian lận", "đình chỉ thi", "phúc khảo", "thi hộ", "AI"],
-      "content": "- Thời gian: Có mặt đúng giờ, trễ quá 5 phút sau giờ thi chính thức không được vào phòng thi (mất lượt thi).\n- Giấy tờ & Đồ dùng: Xuất trình CCCD/Hộ chiếu, tuân thủ hướng dẫn đề thi và phần mềm quy định. Cấm mang thiết bị truyền tin (nếu mang phải tắt nguồn).\n- Gian lận & Kỷ luật:\n+ Nhìn bài, trao đổi, mang tài liệu trái phép: Đình chỉ thi.\n+ Nhờ người thi hộ, thi hộ, mang vũ khí, chất nổ, sao chụp đề thi: Đình chỉ thi, đình chỉ học tập 1 kỳ hoặc Buộc thôi học (chuyển công an nếu cần).\n+ Dùng AI tạo nội dung bài làm mà không ghi rõ: Hủy bỏ kết quả bài thi.\n- Phúc khảo: Nộp đơn trong 3 ngày làm việc kể từ ngày công bố điểm, giải quyết trong 5 ngày làm việc. Được phúc khảo tối đa 2 lần/bài thi."
-    },
-    {
-      "chunk_id": "FPT_SV_01",
-      "category": "Nội quy sinh viên",
-      "title": "Quy định chung và Kỷ luật sinh viên (QĐ 545/QĐ-ĐHFPT)",
-      "tags": ["nội quy sinh viên", "điểm danh", "thẻ sinh viên", "hút thuốc", "văn hóa ứng xử", "kỷ luật"],
-      "content": "- Điểm danh: Vào lớp muộn quá 5 phút tính vắng mặt slot đó. Nghỉ học quá 20% thời lượng học phần không được dự thi cuối kỳ (attendance fail/AF).\n- Thẻ sinh viên: Phải xuất trình thẻ khi qua các khu vực theo quy định. Quên/mất thẻ làm thẻ tạm tại quầy dịch vụ.\n- Văn hóa & Môi trường: Trang phục phù hợp, tôn trọng thầy cô. Cấm hút thuốc (kể cả thuốc lá điện tử) trong lớp học, thư viện. Cấm mang chất cháy nổ, độc hại.\n- Lớp học: Tuân thủ TKB, giữ trật tự, không dùng điện thoại, không ăn uống trong lớp, không đưa người ngoài vào lớp học/thư viện."
-    },
-    {
-      "chunk_id": "FPT_NCKH_01",
-      "category": "Khen thưởng NCKH",
-      "title": "Quy định khen thưởng công bố khoa học (QĐ 138/QĐ-DHFPT)",
-      "tags": ["khen thưởng", "nghiên cứu khoa học", "ISI", "Scopus", "bài báo khoa học", "seminar"],
-      "content": "- Danh mục xét thưởng: ISI (SCIE, SSCI, ESCI, A&HCI, BCI, CPCI), Scopus, và danh mục tạp chí của HĐ GSNN.\n- Mức thưởng ISI & Scopus xếp hạng Q1-Q4 (3 năm liền kề trên Scimago):\n+ Q1: 100,000,000 VND\n+ Q2: 80,000,000 VND\n+ Q3: 60,000,000 VND\n+ Q4: 40,000,000 VND\n- Mức thưởng Scopus Q1-Q2 (không thuộc ISI):\n+ Q1: 60,000,000 VND\n+ Q2: 40,000,000 VND\n- Các bài báo ISI/Scopus khác: 20,000,000 VND.\n- Tạp chí HĐ GSNN: Điểm tối đa * 5,000,000 VND.\n- Điều kiện: Tác giả phải tổ chức seminar chia sẻ nghiên cứu khoa học tại đơn vị trước khi đề nghị xét thưởng. Thỉnh giảng tính 50%. Giới hạn tối đa 500 triệu đồng/tác giả/năm."
-    },
-    {
-      "chunk_id": "FPT_NCKH_02",
-      "category": "Khen thưởng NCKH",
-      "title": "Khen thưởng Sáng chế và Trích dẫn",
-      "tags": ["sáng chế", "giải pháp hữu ích", "trích dẫn", "Google Scholar", "NOIP"],
-      "content": "- Bằng độc quyền sáng chế:\n+ Cấp tại Mỹ (USPTO), EU (EPO), Nhật (JPO), Úc (IP), Hàn Quốc (KIPO): 100,000,000 VND.\n+ Cấp tại quốc gia khác: 40,000,000 VND.\n+ Bằng độc quyền giải pháp hữu ích tại Cục sở hữu trí tuệ VN (NOIP): 10,000,000 VND.\n- Khen thưởng số lượng trích dẫn (Scopus & Google Scholar): Dành cho CB-GV cơ hữu đã có công bố ISI/Scopus trong 3 năm gần nhất. Mức thưởng dao động từ 2,000,000 VND (Scopus >=10, GS >=20) đến 35,000,000 VND (Scopus >=2000, GS >=5,000). Xét thưởng tháng 12 hằng năm."
+      "category": "Xử lý học vụ - Chuyển ngành chuyển cơ sở",
+      "title": "Quy trình Chuyển ngành và Chuyển cơ sở đào tạo (Phụ lục 2 - 07.02PL-QT/ĐH/HDCV/FE)",
+      "tags": [
+        "chuyển ngành",
+        "chuyen nganh",
+        "chuyển cơ sở",
+        "chuyen co so",
+        "thủ tục chuyển ngành",
+        "học phí thừa",
+        "bảo lưu môn học",
+        "mã sinh viên"
+      ],
+      "content": "Quy định chi tiết về việc chuyển ngành học và chuyển cơ sở đào tạo theo Phụ lục 2:\n1. Nguyên tắc chung:\n- Chuyển ngành hoặc chuyển cơ sở CHỈ được thực hiện theo từng học kỳ (tuyệt đối không chuyển giữa chừng khi kỳ học đang diễn ra).\n- Thời hạn hoàn tất: Chậm nhất 01 tuần trước khi học kỳ mới bắt đầu, sinh viên phải hoàn thành toàn bộ thủ tục chuyển đến ngành/cơ sở mới.\n2. Tiếp nhận đăng ký & Thời hạn xử lý:\n- Sinh viên nộp biểu mẫu đề nghị chuyển ngành hoặc chuyển cơ sở chậm nhất 01 tháng trước khi học kỳ mới bắt đầu.\n- Thời gian giải quyết: Tối đa 04 ngày làm việc kể từ ngày nhận đơn để luân chuyển hồ sơ, kiểm tra công nợ tài chính, thư viện và lấy xác nhận từ cơ sở tiếp nhận.\n- Thông báo kết quả: Chậm nhất 02 ngày làm việc kể từ khi sinh viên xác nhận đồng ý chuyển (sau khi được tư vấn và hoàn thành nộp tiền các môn học thừa đối với chuyển ngành).\n- Trường hợp chuyển ngành trong cùng một cơ sở và cùng khối ngành: Không cần Phiếu xác nhận tiếp nhận sinh viên và Phiếu thông tin tài chính.\n3. Quy định về tài chính và môn học khi chuyển ngành:\n- Sinh viên chuyển ngành phải nộp tiền đối với các môn học thừa (môn đã học ở ngành cũ nhưng không nằm trong khung chương trình của ngành mới).\n- Các môn học tương đương đã tích lũy ở ngành cũ được công nhận và bảo lưu kết quả.\n4. Mã số sinh viên và hồ sơ:\n- Khi chuyển ngành hoặc chuyển cơ sở: Mã số sinh viên (Student ID), Thẻ sinh viên và Tài khoản sinh viên (email, FAP) ĐƯỢC GIỮ NGUYÊN như ban đầu.\n- Toàn bộ hồ sơ sinh viên gốc từ cơ sở cũ được chuyển đến cơ sở mới trong vòng 03 tuần sau khi học kỳ mới bắt đầu."
     },
     {
       "chunk_id": "FPT_DT_01",
-      "category": "Quy trình đào tạo & Tốt nghiệp",
-      "title": "Quy định Khóa luận tốt nghiệp và Xét tốt nghiệp",
-      "tags": ["khóa luận tốt nghiệp", "đồ án tốt nghiệp", "luận văn", "xét tốt nghiệp", "hội đồng bảo vệ"],
-      "content": "- Khóa luận tốt nghiệp (Đồ án / Luận văn): Là môn học chuyên ngành bắt buộc khi đủ điều kiện. Quy trình gồm: Lập danh sách đủ điều kiện (tuần 5 kỳ n-1), ORT, đăng ký đề tài, phân công GVHD, thực hiện (tối thiểu số buổi gặp GVHD theo syllabus), Hội đồng cấp khoa (Hội đồng 1.1 bảo vệ thử), Hội đồng cấp trường (Hội đồng 1.2 bảo vệ chính thức). Kết quả: Đạt, Sửa lại bảo vệ lần 2, hoặc Không đạt.\n- Xét tốt nghiệp: Hội đồng xét tốt nghiệp xem xét toàn bộ quá trình học tập, rèn luyện, hoàn thành số tín chỉ khung CT, GDTC, OJT, GDQP, chứng chỉ ngoại ngữ, hoàn thành thủ tục tài chính và thư viện để ra quyết định công nhận tốt nghiệp và cấp bằng."
+      "category": "Quy trình đào tạo",
+      "title": "Kế hoạch học tập, Xếp lớp, Điểm danh và Quản lý giảng viên (Quy trình 07-QT/ĐH/HDCV/FE)",
+      "tags": [
+        "kế hoạch học tập",
+        "ke hoach hoc tap",
+        "xếp lớp",
+        "xep lop",
+        "thời khóa biểu",
+        "thoi khoa bieu",
+        "điểm danh",
+        "diem danh",
+        "attendance fail",
+        "vắng mặt",
+        "gpa giảng viên",
+        "dự giờ",
+        "đổi lịch dạy"
+      ],
+      "content": "Quy định chất lượng hoạt động đào tạo theo Quy trình 07-QT/ĐH/HDCV/FE (Lần ban hành 2/2, hiệu lực 13/4/2026):\n1. Lộ trình kế hoạch học tập:\n- Kế hoạch năm: Thông báo cho sinh viên vào tháng 11 hàng năm (tiến độ học, thời gian học, lịch nghỉ Tết, nghỉ hè).\n- Kế hoạch học kỳ: Dự thảo chuyên sâu gửi tuần 5 kỳ n (cho kỳ n+2); dự thảo kế hoạch kỳ n+1 gửi tuần 2; quyết định chính thức ban hành tuần 12 kỳ n; tuần 6 kỳ n-1 lập kế hoạch đào tạo kỳ n.\n- Thời khóa biểu (TKB): Ban hành và công bố cho sinh viên muộn nhất 01 tháng trước khi kỳ học mới bắt đầu. Đảm bảo 100% sinh viên được xếp lớp dự kiến học đi đúng tiến độ.\n- Xếp lớp chuyên ngành: Thực hiện 03 tuần trước học kỳ mới. Sinh viên dựa vào TKB dự kiến để đăng ký học lại, cải thiện, học thêm hoặc bớt môn.\n- Sinh viên Tiếng Anh dự bị (TADB): Xếp lớp muộn nhất 02 ngày trước ngày học.\n2. Quản lý điểm danh và Cảnh báo chuyên cần:\n- Điểm danh: Giảng viên phải thực hiện điểm danh ngay trong từng slot học. Giảng viên được phép sửa đổi điểm danh đến 23:59 cùng ngày. Riêng slot cuối cùng của môn học bắt buộc phải điểm danh ngay trong slot và KHÔNG ĐƯỢC PHÉP sửa đổi.\n- Cảnh báo vắng học (>10%): Hàng ngày, phòng CTSV/DVSV theo dõi và lập danh sách cảnh báo những sinh viên có tỷ lệ vắng từ 10% số buổi học trở lên.\n- Cấm thi chuyên cần (Attendance Fail / AF): Sinh viên nghỉ học quá 20% thời lượng của một học phần sẽ không đủ điều kiện dự thi cuối kỳ (bị cấm thi/AF) và phải học lại môn đó.\n- Cảnh báo tiến độ chậm: Phòng TC&QLĐT lập danh sách sinh viên chưa hoàn thành chương trình trong 09 học kỳ và 14 học kỳ tính từ khi vào chuyên ngành để gửi CTSV/DVSV cảnh báo.\n3. Quy định giảng dạy đối với giảng viên:\n- Giảng viên đổi lịch dạy: Phải được sự đồng ý của Trưởng khoa/CNBM và thông báo kịp thời cho sinh viên trên FAP. Quota đổi lịch là 5% tổng số slot trong kỳ; các slot đổi vượt quá quota nếu không có lý do đặc biệt được phê duyệt chỉ được chi trả 50% tiền giảng.\n- Bắt đầu/kết thúc slot học sớm hoặc muộn hơn 15 phút: Không được tính giờ giảng slot đó.\n- Giảng viên không lên lớp mà vẫn điểm danh: Không tính giờ giảng slot đó và bị trừ thêm 01 slot phạt.\n- Khảo sát sinh viên về giảng viên (GPA môn học): Thực hiện ở tuần cuối trước khi kết thúc môn học đối với giảng viên dạy ít nhất 30% thời lượng lớp. Điểm GPA đạt yêu cầu là từ 3.4/4.0 trở lên; tỷ lệ sinh viên phản hồi phải đạt >= 60%; tỷ lệ lớp lấy GPA thành công >= 95%.\n- Nộp điểm quá trình: Trong vòng 02 ngày sau khi kết thúc môn, giảng viên chuyển sổ điểm mã hóa cho phòng Khảo thí."
+    },
+    {
+      "chunk_id": "FPT_OJT_01",
+      "category": "Quy trình đào tạo - OJT",
+      "title": "Quy định Thực tập doanh nghiệp - OJT (Phụ lục 4 - 07.04PL-QT/ĐH/HDCV/FE)",
+      "tags": [
+        "ojt",
+        "on the job training",
+        "thực tập doanh nghiệp",
+        "thuc tap doanh nghiep",
+        "điều kiện đi ojt",
+        "dieu kien ojt",
+        "chứng chỉ ojt",
+        "chuyển nơi ojt",
+        "ort ojt",
+        "90% tín chỉ"
+      ],
+      "content": "Quy trình và quy định quản lý đào tạo OJT (On-the-Job Training) theo Phụ lục 4 (Mã hiệu: 07.04PL-QT/ĐH/HDCV/FE, hiệu lực 28/11/2025):\n1. Định nghĩa và Tính chất:\n- OJT là giai đoạn học tập, trải nghiệm thực tế bắt buộc tại doanh nghiệp dành cho tất cả sinh viên đại học của Trường Đại học FPT.\n- Giai đoạn OJT gồm 1 hoặc nhiều học phần OJT tương ứng với thời lượng và số tín chỉ quy định trong khung chương trình đào tạo.\n2. Điều kiện sinh viên đủ điều kiện đi OJT:\n- Sinh viên tích lũy đạt tối thiểu 90% số tín chỉ của giai đoạn trước OJT theo khung chương trình (không tính các tín chỉ Giáo dục thể chất - GDTC).\n3. Quy trình và các mốc thời gian triển khai OJT:\n- Tuần 4 của học kỳ trước kỳ OJT: Phòng TC&QLĐT lập danh sách sinh viên dự kiến đủ điều kiện đi OJT (với giả định các môn đang học đều đạt).\n- Tuần 8 của học kỳ trước kỳ OJT: Nhóm phụ trách OJT tổ chức buổi Định hướng (Orientation - ORT) cho 100% sinh viên nằm trong danh sách dự kiến, bắt buộc có sự tham gia của đại diện doanh nghiệp.\n- Không muộn hơn 4 tuần trước kỳ OJT: Chuẩn bị nguồn doanh nghiệp cho sinh viên OJT (đảm bảo ít nhất 70% doanh nghiệp có ký biên bản thỏa thuận MOU với nhà trường) và hướng dẫn sinh viên viết CV.\n- Chậm nhất trong tuần 4 của học kỳ OJT mới: Bố trí nơi đào tạo doanh nghiệp cho 100% sinh viên đúng ngành học phù hợp.\n- Trong thời gian 6 tuần kể từ khi bắt đầu kỳ OJT: Hoàn thành việc bàn giao sinh viên giữa nhà trường và doanh nghiệp (xác nhận qua email/nhóm liên lạc).\n- Chuyển nơi đào tạo OJT (nếu có): Chỉ được phép xem xét và phê duyệt chuyển nơi OJT trong vòng 04 tuần đầu tiên kể từ khi bắt đầu kỳ OJT (căn cứ lý do xác đáng từ sinh viên và doanh nghiệp).\n- Từ tuần 10 đến tuần 14 của kỳ OJT: Nhóm OJT tổ chức khảo sát sinh viên về kỳ OJT (yêu cầu tỷ lệ sinh viên phản hồi >= 60%) và thu thập Phiếu đánh giá cuối cùng của doanh nghiệp về sinh viên (100% sinh viên OJT phải có đánh giá từ doanh nghiệp).\n- Cấp Chứng chỉ OJT: Sau 03 tháng kể từ khi kết thúc kỳ OJT, 100% sinh viên đạt yêu cầu được phòng TC&QLĐT cấp chứng chỉ OJT."
+    },
+    {
+      "chunk_id": "FPT_KLTN_01",
+      "category": "Quy trình đào tạo - Khóa luận tốt nghiệp",
+      "title": "Quy định thực hiện Khóa luận / Đồ án tốt nghiệp (Phụ lục 5 - 07.05PL-QT/ĐH/HDCV/FE)",
+      "tags": [
+        "khóa luận tốt nghiệp",
+        "khoa luan tot nghiep",
+        "đồ án tốt nghiệp",
+        "do an tot nghiep",
+        "luận văn",
+        "luan van",
+        "kltn",
+        "hội đồng 1.1",
+        "hội đồng 1.2",
+        "bảo vệ thử",
+        "bảo vệ chính thức",
+        "gvhd",
+        "tối đa 4 nhóm",
+        "edunext",
+        "lệch điểm 20%"
+      ],
+      "content": "Quy trình quản lý đăng ký đề tài và bảo vệ Khóa luận tốt nghiệp (KLTN) theo Phụ lục 5 (Mã hiệu: 07.05PL-QT/ĐH/HDCV/FE, hiệu lực 11/5/2026):\n1. Khái niệm và Điều kiện:\n- KLTN là một môn học chuyên ngành bắt buộc dành cho sinh viên đủ điều kiện. Khối Kỹ thuật - Công nghệ gọi là Đồ án tốt nghiệp; khối Kinh tế, Xã hội gọi là Luận văn tốt nghiệp.\n- Điều kiện làm KLTN: Sinh viên phải đáp ứng đầy đủ môn tiên quyết theo syllabus của khóa luận tốt nghiệp.\n2. Các mốc thời gian thực hiện KLTN (x: ngày bắt đầu thực hiện KLTN; Y: ngày bảo vệ KLTN):\n- Tuần 5 của học kỳ n-1: Phòng TC&QLĐT lập danh sách sinh viên dự kiến đủ điều kiện làm khóa luận.\n- Thời điểm x-4 tuần: Tổ chức buổi ORT cung cấp đầy đủ thông tin về KLTN cho 100% sinh viên đủ điều kiện; tiếp nhận đăng ký đề tài và nhóm. Đề tài phải phù hợp chuyên ngành, quy mô, không vi phạm pháp luật và không mang tính nhạy cảm.\n- Thời điểm x+2 tuần: Phân công Giảng viên hướng dẫn (GVHD) và ban hành quyết định giao đề tài. Quy định: 01 GVHD chỉ được hướng dẫn TỐI ĐA 04 NHÓM trong 01 học kỳ.\n- Thời điểm x+14 tuần: Nhóm thực hiện KLTN theo đúng tiến độ và syllabus, gặp GVHD tối thiểu số buổi quy định, nộp các báo cáo và biên bản làm việc định kỳ. Nhóm có đơn xin dừng làm KLTN sẽ bị ghi nhận kết quả không đạt.\n3. Hoạt động của hai Hội đồng bảo vệ KLTN:\n- Tuần 13 đến 14 của học kỳ: Hội đồng cấp Khoa/Bộ môn (Hội đồng 1.1 - Bảo vệ thử). Hội đồng gồm ít nhất 3 thành viên (Chủ tịch, Giảng viên phản biện, Thư ký). Hội đồng 1.1 quyết định có cho nhóm ra bảo vệ chính thức hay không. Đây là ĐIỀU KIỆN BẮT BUỘC để được ra bảo vệ Hội đồng 1.2. Sinh viên có ít nhất 03 ngày để chỉnh sửa tài liệu.\n- Tuần 13 - 14: GVHD gửi Phiếu nhận xét KLTN cho Hội đồng 1.1 và gửi điểm thành phần về Khảo thí.\n- Hạn chót nộp tài liệu sửa đổi (Deadline 2): Chậm nhất Y-7 (7 ngày trước ngày bảo vệ), nhóm nộp sản phẩm, tài liệu chỉnh sửa và bản giải trình tóm tắt lên EduNext.\n- Tuần 15 đến 16 của học kỳ: Hội đồng chấm KLTN cấp Trường (Hội đồng 1.2 - Bảo vệ chính thức). Hội đồng do Khảo thí thành lập chậm nhất Y-7, chứa ít nhất giảng viên phản biện của Hội đồng 1.1; GVHD không được ngồi trong hội đồng chấm nhóm mình. Hội đồng chấm nguội tài liệu và chấm trực tiếp buổi bảo vệ.\n4. Đánh giá và Kết luận bảo vệ:\n- Kết luận tại buổi bảo vệ là một trong 3 trường hợp: (1) Đạt, (2) Sửa lại bảo vệ lần 2 (trong vòng 01 tháng sau bảo vệ lần 1), hoặc (3) Không đạt (phải đăng ký làm lại khóa luận từ đầu).\n- Xử lý lệch điểm (>20%): Trường hợp nhóm không đạt mà điểm chấm của Hội đồng chênh lệch quá 20% so với điểm đánh giá của GVHD, Trưởng khoa/CNBM, Hội đồng và GVHD phải họp trong vòng Y+7 ngày, Chủ tịch Hội đồng đưa ra kết luận điểm cuối cùng.\n- Công bố điểm: Phòng Khảo thí cập nhật điểm KLTN lên hệ thống sau Y+4 ngày.\n- Lưu trữ KLTN: 100% quyển KLTN nộp lưu trữ trực tuyến (EduNext) dạng PDF trong vòng 2 tuần sau đợt bảo vệ. Khóa luận đạt từ 8.0 điểm trở lên được phân quyền cho Thư viện làm tài liệu tham khảo cho sinh viên."
+    },
+    {
+      "chunk_id": "FPT_XTN_01",
+      "category": "Quy trình đào tạo - Xét tốt nghiệp",
+      "title": "Quy định và Lộ trình Xét tốt nghiệp, Cấp bằng (Phụ lục 6 - 07.06PL-QT/ĐH/HDCV/FE)",
+      "tags": [
+        "xét tốt nghiệp",
+        "xet tot nghiep",
+        "điều kiện tốt nghiệp",
+        "dieu kien tot nghiep",
+        "cấp bằng tốt nghiệp",
+        "bằng tốt nghiệp",
+        "bang tot nghiep",
+        "bảng điểm tốt nghiệp",
+        "gdtc",
+        "gdqp",
+        "tiếng anh chuẩn đầu ra",
+        "30 ngày",
+        "45 ngày"
+      ],
+      "content": "Quy trình và điều kiện xét tốt nghiệp đại học chính quy theo Phụ lục 6 (Mã hiệu: 07.06PL-QT/ĐH/HDCV/FE, hiệu lực 18/11/2025):\n1. Điều kiện để sinh viên được công nhận tốt nghiệp:\n- Đã hoàn thành toàn bộ chương trình học, tích lũy đủ số tín chỉ theo khung chương trình ngành đào tạo.\n- Tích lũy đủ số tín chỉ Giáo dục thể chất (GDTC).\n- Hoàn thành giai đoạn thực tập doanh nghiệp (học phần OJT).\n- Có Chứng chỉ Giáo dục Quốc phòng - An ninh (GDQP).\n- Có chứng chỉ Tiếng Anh đạt chuẩn đầu ra theo quy định của nhà trường.\n- Hoàn thành đầy đủ các nghĩa vụ tài chính đối với nhà trường (không nợ học phí, lệ phí).\n- Hoàn thành các thủ tục thư viện (trả hết sách mượn, không nợ tiền phạt thư viện).\n- Không bị kỷ luật ở mức đình chỉ học tập hoặc không đang trong thời gian bị truy cứu trách nhiệm hình sự tại thời điểm xét tốt nghiệp.\n2. Lộ trình xét tốt nghiệp và cấp bằng (x: tuần đầu học kỳ làm khóa luận):\n- Tuần x+8: Phòng TC&QLĐT rà soát hồ sơ sinh viên gồm: Bằng tốt nghiệp THPT, Giấy khai sinh, CCCD/Hộ chiếu photo công chứng (các thông tin phải hoàn toàn khớp nhau và khớp với QĐ nhập học).\n- Tuần x+12: Gửi thông báo qua email cho từng sinh viên về các giấy tờ hồ sơ còn thiếu và nghĩa vụ tài chính, thư viện cần hoàn thành.\n- Tuần x+16: Cập nhật hồ sơ sinh viên; thành lập Hội đồng xét tốt nghiệp trình Hiệu trưởng phê duyệt.\n- Sau khi có kết quả bảo vệ KLTN: Phòng TC&QLĐT tổng hợp danh sách sinh viên hoàn thành chương trình học.\n- Tuần x+18 (tức tuần thứ 2 của học kỳ kế tiếp): Gửi yêu cầu thu thập thông tin về tình trạng hoàn thành tài chính, thư viện và kỷ luật từ phòng Kế toán, Thư viện và CTSV.\n- Trước họp xét TN 2 ngày: Tổng hợp đầy đủ bảng dữ liệu sinh viên xét tốt nghiệp.\n- Tuần x+22 (tức tuần thứ 6 của học kỳ kế tiếp): Hội đồng xét tốt nghiệp họp xét duyệt. Trong vòng 07 ngày sau cuộc họp, lập và ban hành Quyết định công nhận danh sách sinh viên tốt nghiệp kèm danh sách chính thức.\n- Thông báo: Gửi email thông báo đủ/không đủ điều kiện tốt nghiệp cho toàn bộ sinh viên.\n- In và cấp phát bằng tốt nghiệp: Hoàn thành in và trả Bằng tốt nghiệp + Bảng điểm tốt nghiệp cho sinh viên trong thời hạn 30 NGÀY kể từ ngày có quyết định công nhận tốt nghiệp (trả đúng sinh viên hoặc người có giấy ủy quyền hợp pháp).\n- Công bố thông tin văn bằng: Công bố công khai danh sách và thông tin cấp bằng trên cổng thông tin điện tử của trường trong thời hạn 45 NGÀY kể từ ngày có quyết định công nhận tốt nghiệp."
+    },
+    {
+      "chunk_id": "FPT_KT_01",
+      "category": "Nội quy kỳ thi - Phòng thi",
+      "title": "Quy định phòng thi và Tổ chức thi cuối kỳ (QĐ 1234/QĐ-ĐHFPT & Phụ lục 3)",
+      "tags": [
+        "nội quy phòng thi",
+        "noi quy phong thi",
+        "lịch thi",
+        "lich thi",
+        "muộn 5 phút",
+        "giấy tờ đi thi",
+        "cccd",
+        "thi máy tính",
+        "mạng thi",
+        "trùng lịch thi",
+        "2/3 thời gian",
+        "thi lần 2"
+      ],
+      "content": "Quy định về tổ chức kỳ thi và nội quy phòng thi theo Quyết định 1234/QĐ-ĐHFPT (ngày 07/11/2024) và Phụ lục 3 (07.03PL-QT/ĐH/HDCV/FE):\n1. Lịch thi và Nguyên tắc xếp lịch thi:\n- Lịch thi học kỳ được công bố đến từng sinh viên muộn nhất vào tuần 7 của học kỳ (đối với môn 10 tuần). Với môn Block 5 và môn kết thúc sớm: công bố trước ngày thi ít nhất 3 ngày (x-3). Với môn online Coursera: công bố muộn nhất tuần 10 của học kỳ.\n- Thời gian giữa thi lần 1 và thi lần 2 phải cách nhau ít nhất 03 ngày. Danh sách thi lần 2 công bố trên hệ thống trước giờ thi ít nhất 18 giờ.\n- Giới hạn: Một sinh viên KHÔNG thi quá 02 học phần trong cùng 01 ngày thi. Hai sinh viên thi cùng một môn trong phòng thi bắt buộc phải ngồi cách nhau ít nhất 1 chỗ trống.\n- Đề thi: Đề thi lần 1 và đề thi lần 2 không được giống nhau quá 30%.\n2. Nội quy sinh viên khi tham gia phòng thi:\n- Đúng giờ: Sinh viên phải có mặt đúng giờ quy định. Sinh viên đến chậm QUÁ 5 PHÚT sau giờ thi chính thức sẽ KHÔNG ĐƯỢC DỰ THI và bị mất lượt thi đó.\n- Xuất trình giấy tờ tùy thân: Bắt buộc xuất trình một trong các giấy tờ: Chứng minh nhân dân (CMT), Căn cước công dân (CCCD), Thẻ căn cước, hoặc Giấy phép lái xe hợp lệ.\n- Thiết bị cấm mang vào phòng thi: Cấm mang vào phòng thi thiết bị truyền tin (thu, phát sóng, ghi âm, ghi hình) hoặc chứa dữ liệu để gian lận. Nếu mang theo phải tắt nguồn hoàn toàn và để đúng nơi quy định.\n- Thi trên máy tính: Sinh viên CHỈ ĐƯỢC DÙNG phiên bản phần mềm thi do nhà trường quy định (EOS, PE...). Tuyệt đối không mở các phần mềm, trình duyệt hay trang web khác ngoài phần mềm thi. Không được kết nối vào mạng khác mạng thi do Khảo thí quy định.\n- Tuyệt đối cấm hành vi gian lận: Không nhìn bài, không trao đổi, không quay cóp. Giữ trật tự, muốn hỏi giám thị phải hỏi công khai.\n- Rời phòng thi: Sinh viên chỉ được phép ra khỏi phòng thi sớm nhất sau 2/3 thời gian làm bài (trừ trường hợp cấp cứu y tế) và phải được sự đồng ý của giám thị coi thi.\n- Tài khoản thi: Nghiêm cấm dùng tài khoản của người khác hoặc để người khác dùng tài khoản của mình đăng nhập vào hệ thống thi."
+    },
+    {
+      "chunk_id": "FPT_KT_02",
+      "category": "Nội quy kỳ thi - Xử lý kỷ luật",
+      "title": "Khung xử lý kỷ luật vi phạm quy chế thi (QĐ 1234/QĐ-ĐHFPT)",
+      "tags": [
+        "kỷ luật thi",
+        "ky luat thi",
+        "gian lận thi",
+        "gian lan thi",
+        "đình chỉ thi",
+        "dinh chi thi",
+        "cảnh cáo thi",
+        "thi hộ",
+        "thi ho",
+        "sao chụp đề thi",
+        "mang tài liệu",
+        "sử dụng ai",
+        "dùng chatgpt",
+        "0 điểm môn"
+      ],
+      "content": "Khung xử lý sinh viên dự thi vi phạm nội quy kỳ thi theo Quyết định số 1234/QĐ-ĐHFPT ngày 07/11/2024:\n1. Các mức xử lý vi phạm TRONG PHÒNG THI:\n- Nhìn bài bạn, trao đổi với bạn khi làm bài: Lần 1: Cảnh cáo; Lần 2: Đình chỉ thi.\n- Trao đổi bài làm dưới mọi hình thức: Đình chỉ thi ngay lần 1.\n- Viết nội dung không liên quan đến bài thi (thi giấy): Lần 1: Cảnh cáo; Lần 2: Đình chỉ thi.\n- Thi trên máy tính sử dụng phần mềm, trang web khác ngoài phần mềm thi quy định: Đình chỉ thi ngay lần 1.\n- Kết nối vào mạng khác mạng thi do Khảo thí quy định: Đình chỉ thi ngay lần 1.\n- Đưa đề thi ra ngoài dưới mọi hình thức (tính theo toàn khóa học): Lần 1: Đình chỉ thi; Lần 2: Đình chỉ học tập 01 học kỳ; Lần 3: Buộc thôi học.\n- Sao chụp nội dung đề thi dưới mọi hình thức (tính theo khóa học): Lần 1: Đình chỉ thi và đình chỉ học tập 01 học kỳ; Lần 2: Buộc thôi học.\n- Đưa lời giải, đáp án vào phòng thi kể cả dùng mạng (tính theo khóa học): Lần 1: Đình chỉ học tập 01 học kỳ (nếu không phải sinh viên giao công an xử lý); Lần 2: Buộc thôi học.\n- Nhận bài làm, đáp án, tài liệu từ ngoài phòng thi: Lần 1: Đình chỉ thi; Lần 2: Buộc thôi học.\n- Nhờ người khác thi hộ, làm bài hộ dưới mọi hình thức (xử lý CẢ 2 sinh viên, tính theo khóa học): Lần 1: Đình chỉ thi và đình chỉ học tập 01 học kỳ (người thi hộ không phải sinh viên giao công an xử lý); Lần 2: Buộc thôi học.\n- Sử dụng tài liệu ngoài quy định trong đề thi, phương tiện kỹ thuật thu, phát, truyền tin, ghi âm, ghi hình: Đình chỉ thi ngay lần 1.\n- Cản trở cán bộ coi thi, cán bộ tổ chức thi: Lần 1: Cảnh cáo; Lần 2: Đình chỉ thi.\n- Mang vũ khí, chất nổ, chất gây cháy, bia rượu, vật dụng nguy hại: Đình chỉ thi ngay lần 1.\n2. Xử lý vi phạm KHI CHẤM THI / CHẤM ĐIỂM (áp dụng cho tất cả đầu điểm):\n- Bài thi có dấu hiệu cố ý đánh dấu (kết luận bởi ít nhất 2 cán bộ chấm thi): Cảnh cáo.\n- Bài thi copy bài của nhau (kết luận bởi ít nhất 2 cán bộ chấm thi): HỦY BỎ KẾT QUẢ BÀI THI.\n- Nộp bài hộ cho người khác dưới mọi hình thức (xử lý cả 2 sinh viên): HỦY BỎ KẾT QUẢ BÀI THI và ĐÌNH CHỈ HỌC TẬP 01 HỌC KỲ.\n- Sử dụng AI (trí tuệ nhân tạo): Trong bài làm, nếu được phép sử dụng AI nhưng phần bài làm do AI tham gia tạo ra mà sinh viên KHÔNG GHI RÕ thì bị HỦY BỎ KẾT QUẢ BÀI THI.\n3. Quy định về các hình thức kỷ luật:\n- Cảnh cáo: Sinh viên bị trừ 50% số điểm của bài thi đó.\n- Đình chỉ thi / Hủy bỏ kết quả bài thi: Sinh viên bị điểm không (0) cho toàn bộ môn thi đó, phải ra khỏi phòng thi ngay, nộp lại bài và đề; đồng thời bị ĐÌNH CHỈ MÔN HỌC (phải học lại môn đó).\n- Vi phạm có tổ chức: Xử lý kỷ luật mức tăng gấp đôi, tương ứng 02 lần vi phạm cá nhân.\n- Quyết định kỷ luật thi cử được lưu trong hồ sơ sinh viên và có thể công bố công khai."
+    },
+    {
+      "chunk_id": "FPT_KT_03",
+      "category": "Nội quy kỳ thi - Phúc khảo",
+      "title": "Quy trình và Thời hạn Phúc khảo điểm thi (QĐ 1234/QĐ-ĐHFPT & Phụ lục 3)",
+      "tags": [
+        "phúc khảo",
+        "phuc khao",
+        "khiếu nại điểm",
+        "khieu nai diem",
+        "thời hạn phúc khảo",
+        "thoi han phuc khao",
+        "lệ phí phúc khảo",
+        "hoàn phí phúc khảo",
+        "điều chỉnh điểm thi",
+        "3 ngày",
+        "5 ngày",
+        "chấm phúc khảo"
+      ],
+      "content": "Quy định chi tiết về phúc khảo và giải quyết khiếu nại điểm thi theo Quyết định 1234/QĐ-ĐHFPT và Phụ lục 3:\n1. Thời hạn và Số lần nộp đơn phúc khảo:\n- Thời hạn nhận đơn: Nhà trường tiếp nhận đơn đề nghị phúc khảo của sinh viên trong thời hạn 03 NGÀY LÀM VIỆC kể từ ngày công bố điểm thi.\n- Thời hạn trả lời kết quả: Trả lời kết quả phúc khảo cho sinh viên chậm nhất là 05 NGÀY LÀM VIỆC kể từ ngày hết hạn nhận đơn.\n- Số lần phúc khảo: Mỗi sinh viên được làm đơn đề nghị phúc khảo TỐI ĐA 02 LẦN cho mỗi bài thi.\n- Lệ phí xử lý đơn: Sinh viên nộp đơn phải nộp tiền xử lý đơn theo quy định. Khoản tiền này sẽ ĐƯỢC HOÀN TRẢ LẠI cho sinh viên nếu kết quả phúc khảo có điều chỉnh thay đổi điểm thi.\n2. Quy trình chấm phúc khảo:\n- Giảng viên chấm phúc khảo BẮT BUỘC phải là người khác với giảng viên đã chấm lần 1.\n- Đối với bài thi trắc nghiệm trên máy tính, cán bộ phòng Khảo thí tự kiểm tra và chấm lại bài.\n- Trường hợp điểm chấm phúc khảo có sự chênh lệch so với điểm chấm lần 1: Phòng Khảo thí trao đổi thống nhất với Trưởng khoa/Chủ nhiệm bộ môn để quyết định điểm số cuối cùng.\n3. Các trường hợp sinh viên được điều chỉnh lại điểm bài thi (lên hoặc xuống):\n- Có sự cộng nhầm điểm hoặc ghi điểm thi không chính xác.\n- Thất lạc bài thi nay đã tìm thấy, hoặc bài thi bị thiếu do lỗi của Hội đồng thi nay đã tổ chức thi bổ sung và chấm xong.\n- Các vấn đề trục trặc về môi trường máy chấm làm ảnh hưởng đến điểm số đối với các bài thi thực hành chấm output tự động."
+    },
+    {
+      "chunk_id": "FPT_SV_01",
+      "category": "Nội quy sinh viên - Điểm danh và Học tập",
+      "title": "Nội quy sinh viên về Chuyên cần, Lớp học và Giảng đường (QĐ 545/QĐ-ĐHFPT)",
+      "tags": [
+        "nội quy sinh viên",
+        "noi quy sinh vien",
+        "điểm danh",
+        "diem danh",
+        "vào lớp muộn 5 phút",
+        "vắng 20%",
+        "cấm thi",
+        "cam thi",
+        "attendance fail",
+        "nội quy lớp học",
+        "trang phục",
+        "hút thuốc lá",
+        "vape"
+      ],
+      "content": "Nội quy sinh viên Trường Đại học FPT theo Quyết định số 545/QĐ-ĐHFPT ngày 14/5/2025:\n1. Quy định về Điểm danh và Chuyên cần:\n- Vào lớp muộn: Sinh viên vào lớp muộn quá 5 phút so với giờ bắt đầu sẽ bị tính là VẮNG MẶT ở slot học đó.\n- Giới hạn nghỉ học (Cấm thi chuyên cần): Sinh viên nghỉ học QUÁ 20% thời lượng quy định của một học phần sẽ KHÔNG ĐƯỢC THI cuối học phần (bị cấm thi/attendance fail) và bắt buộc phải học lại học phần đó, trừ trường hợp đặc biệt do nhà trường quy định.\n- Đến muộn quá 5 phút, làm việc riêng, mất trật tự hoặc không tuân thủ yêu cầu giảng viên trong giờ học: Sẽ không được điểm danh cho giờ học đó.\n2. Nội quy lớp học và giảng đường:\n- Sinh viên phải tuân thủ nghiêm túc giờ học theo thời khóa biểu.\n- Muốn ra khỏi lớp trước khi hết giờ học phải có sự đồng ý của giảng viên.\n- Trong giờ học: Tuân thủ tuyệt đối sự hướng dẫn của giảng viên; giữ gìn trật tự; TẮT CHUÔNG ĐIỆN THOẠI VÀ KHÔNG SỬ DỤNG ĐIỆN THOẠI.\n- Vệ sinh chung: Giữ gìn vệ sinh, không được viết, vẽ bậy lên tường, bàn, ghế và các trang thiết bị trong lớp học, giảng đường.\n- Tuyệt đối KHÔNG ĐƯỢC MANG ĐỒ ĂN, NƯỚC UỐNG vào lớp học, giảng đường.\n- Nghiêm cấm sinh viên đưa người ngoài vào lớp học, thư viện, giảng đường của trường.\n3. Quy tắc ứng xử và bảo vệ môi trường học đường:\n- Trang phục phù hợp với môi trường giáo dục, lịch sự, không phản cảm.\n- Tôn trọng, cư xử có văn hóa với thầy cô, cán bộ nhân viên, khách đến trường và các sinh viên khác.\n- Nghiêm cấm trao đổi, truyền bá thông tin xấu, trái pháp luật hoặc thuần phong mỹ tục dưới mọi hình thức.\n- CẤM HÚT THUỐC (bao gồm cả thuốc lá điếu và THUỐC LÁ ĐIỆN TỬ / vape) trong lớp học, thư viện và những nơi có biển cấm hút thuốc; cấm vứt rác không đúng nơi quy định.\n- Tuyệt đối cấm mang các chất cháy nổ, chất độc hại vào khuôn viên trường."
+    },
+    {
+      "chunk_id": "FPT_SV_02",
+      "category": "Nội quy sinh viên - Kỷ luật và Thẻ sinh viên",
+      "title": "Khung xử lý Kỷ luật sinh viên và Vi phạm Thẻ sinh viên (QĐ 545/QĐ-ĐHFPT)",
+      "tags": [
+        "kỷ luật sinh viên",
+        "ky luat sinh vien",
+        "thẻ sinh viên",
+        "the sinh vien",
+        "quên thẻ",
+        "mất thẻ",
+        "dùng thẻ người khác",
+        "làm giả thẻ",
+        "uống rượu bia",
+        "say xỉn",
+        "học thay",
+        "cho mượn wifi email",
+        "đền bù tài sản"
+      ],
+      "content": "Khung xử lý vi phạm kỷ luật sinh viên ban hành kèm theo Quyết định 545/QĐ-ĐHFPT:\n1. Xử lý vi phạm liên quan đến THẺ SINH VIÊN:\n- Quên thẻ sinh viên / Mất thẻ sinh viên: Phải làm thẻ tạm thời tại quầy Dịch vụ sinh viên, nộp tiền cấp thẻ theo quy định tài chính.\n- Không xuất trình thẻ tại khu vực yêu cầu: Nhà trường ngừng cung cấp dịch vụ.\n- Dùng thẻ sinh viên của người khác (Xử lý kỷ luật CẢ HAI sinh viên): Lần 1: Khiển trách; Lần 2: Cảnh cáo; Lần 3: Đình chỉ có thời hạn; Lần 4: Buộc thôi học.\n- Làm giả thẻ sinh viên (thẻ chính thức hoặc thẻ tạm thời): Lần 1: ĐÌNH CHỈ CÓ THỜI HẠN; Lần 2: BUỘC THÔI HỌC.\n2. Khung xử lý kỷ luật trong HỌC TẬP:\n- Vô lễ với thầy, cô giáo và cán bộ, nhân viên của trường: Tùy mức độ, xử lý từ Khiển trách đến Buộc thôi học.\n- Học thay hoặc nhờ người khác học thay: Tùy mức độ, xử lý từ Khiển trách đến Buộc thôi học.\n- Gian lận trong thi cử, kiểm tra, đồ án: Xử lý theo Nội quy kỳ thi Trường Đại học FPT.\n- Không nộp học phí đúng hạn: Xử lý theo Quy định tài chính.\n3. Khung xử lý kỷ luật trong SINH HOẠT VÀ HOẠT ĐỘNG XÃ HỘI:\n- Làm hư hỏng, thiệt hại tài sản của trường: Tùy mức độ hư hại, xử lý từ Khiển trách đến Buộc thôi học và BẮT BUỘC BỒI THƯỜNG 100% THIỆT HẠI.\n- Uống rượu bia trong lớp học, say rượu bia khi đến lớp: Lần 1: Khiển trách; Lần 2: Cảnh cáo; Lần 3: Đình chỉ có thời hạn; Lần 4: Buộc thôi học.\n- Tàng trữ, buôn bán, sử dụng đồ uống có cồn, thuốc lá, thuốc lào trong khuôn viên trường: Lần 1: Khiển trách; Lần 2: Cảnh cáo; Lần 3: Đình chỉ có thời hạn; Lần 4: Buộc thôi học.\n- Hút thuốc trong lớp, thư viện, nơi cấm; vứt rác sai nơi quy định: Xử lý từ Khiển trách đến Cảnh cáo.\n- Sử dụng đồ ăn, nước uống trong lớp học, thư viện, giảng đường: Xử lý từ Khiển trách đến Cảnh cáo.\n- Cho người ngoài sử dụng tài khoản email, wifi do trường cung cấp: Tùy mức độ, xử lý từ Khiển trách đến Buộc thôi học.\n- Vi phạm pháp luật: Tùy mức độ xử lý kỷ luật từ khiển trách đến buộc thôi học; chuyển cơ quan chức năng xử lý theo pháp luật."
     },
     {
       "chunk_id": "FPT_TV_01",
       "category": "Quản lý thư viện",
-      "title": "Quy định Thư viện và Mượn trả tài liệu",
-      "tags": ["thư viện", "mượn sách", "trả chậm", "thanh lý tài liệu", "bồi thường sách"],
-      "content": "- Tài khoản: Mỗi bạn đọc cấp 01 tài khoản duy nhất tra cứu và sử dụng thư viện.\n- Mượn trả & Trả chậm: Trả chậm tài liệu phạt 5,000 VND/ngày. Quá 30 ngày ngoài tiền trả chậm phải bồi thường bằng giá nhập tài liệu. Mất hoặc làm hư hỏng sách phải đền bằng giá nhập tài liệu.\n- Kiểm kê & Thanh lý: Kiểm kê ít nhất 1 lần/năm. Thanh lý sách cũ hỏng, lỗi thời, sách mất đền tiền, sách quá hạn trên 30 ngày."
+      "title": "Quy chế Thư viện, Mượn trả và Quy định Bồi thường sách (Phụ lục 7 - 07.07PL-QT/ĐH/HDCV/FE)",
+      "tags": [
+        "thư viện",
+        "thu vien",
+        "mượn sách",
+        "muon sach",
+        "trả sách muộn",
+        "tra sach muon",
+        "phạt thư viện",
+        "bồi thường sách",
+        "mất sách",
+        "khoá tài khoản thư viện",
+        "liên thông thư viện",
+        "giá nhập",
+        "quá hạn 30 ngày",
+        "5000"
+      ],
+      "content": "Quy định quản lý thư viện và phục vụ bạn đọc theo Phụ lục 7 (Mã hiệu: 07.07PL-QT/ĐH/HDCV/FE, hiệu lực 05/06/2023):\n1. Tài khoản Thư viện:\n- Mỗi bạn đọc (sinh viên, cán bộ giảng viên) được cấp 01 tài khoản (account) duy nhất để tra cứu và sử dụng thư viện.\n- Thời gian cấp: Cấp tài khoản cho sinh viên trong vòng 01 tuần sau khi nhận được thông tin từ phòng Đào tạo.\n- Các trường hợp bị KHÓA tài khoản thư viện:\n  + Khi sinh viên có tên trong danh sách xét tốt nghiệp / có quyết định tốt nghiệp, hoặc quyết định thôi học.\n  + Vi phạm nội quy: Trả muộn sách, làm hỏng sách, làm mất sách khi trả sách/thông báo và được thủ thư xác nhận.\n  + Cán bộ giảng viên nghỉ việc (sau khi lấy xác nhận của thư viện làm thủ tục nghỉ việc).\n2. Quy định Phạt quá hạn và Bồi thường tài liệu:\n- Trả muộn sách: Phạt 5,000 VND / ngày cho mỗi tài liệu trả quá hạn.\n- Quá hạn trên 30 ngày: Ngoài số tiền phạt quá hạn tích lũy, bạn đọc phải bồi thường số tiền bằng ĐÚNG GIÁ NHẬP của cuốn tài liệu đó.\n- Làm mất sách hoặc làm hư hỏng tài liệu: Độc giả phải bồi thường bằng đúng giá nhập của tài liệu theo hồ sơ mua sắm của nhà trường.\n3. Kiểm kê và Thanh lý sách:\n- Thư viện thực hiện việc kiểm kê sách/tài liệu ít nhất 01 lần / năm.\n- Các trường hợp thanh lý tài liệu: Sách cũ hỏng, lỗi thời không còn sử dụng được; sách sinh viên làm mất đã đền bù tiền; sách mượn quá hạn trên 30 ngày; sách hết hạn bản quyền.\n4. Mượn liên thư viện (Liên thông FPT Edu):\n- Bạn đọc ở tất cả các thư viện thành viên trong Tổ chức Giáo dục FPT có thể mượn liên thông tài liệu với nhau.\n- Hình thức đăng ký: Qua email, điện thoại, Facebook, Zalo...\n- Chi phí: Đơn vị mượn sách chịu phí vận chuyển và tuân thủ chính sách, nội quy phục vụ của thư viện chủ quản. Nếu vi phạm nội quy, phí phạt chuyển về đơn vị chủ quản theo quy định tài chính."
+    },
+    {
+      "chunk_id": "FPT_NCKH_01",
+      "category": "Khen thưởng NCKH - Bài báo khoa học",
+      "title": "Mức thưởng Công bố Bài báo khoa học ISI, Scopus (QĐ 138/QĐ-ĐHFPT)",
+      "tags": [
+        "khen thưởng nckh",
+        "khen thuong nckh",
+        "bài báo khoa học",
+        "bai bao khoa hoc",
+        "isi",
+        "scopus",
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "100 triệu",
+        "80 triệu",
+        "60 triệu",
+        "40 triệu",
+        "20 triệu",
+        "hội đồng giáo sư nhà nước",
+        "scimago",
+        "seminar"
+      ],
+      "content": "Quy định khen thưởng công bố khoa học theo Quyết định số 138/QĐ-ĐHFPT ngày 15/01/2023 của Hiệu trưởng Trường Đại học FPT:\n1. Đối tượng và Điều kiện áp dụng:\n- Đối tượng: Cán bộ, giảng viên (CB-GV) cơ hữu, hợp đồng thỉnh giảng đang giảng dạy; Học viên (nghiên cứu sinh, học viên cao học, sinh viên, học sinh) của FE. Tất cả bắt buộc phải ghi địa chỉ 'Trường Đại học FPT' hoặc 'FPT University' trên công trình nghiên cứu.\n- Điều kiện bắt buộc: Tác giả phải hoàn thành báo cáo, chia sẻ về công bố khoa học bằng hình thức SEMINAR tại đơn vị/bộ môn và nộp giấy xác nhận tổ chức seminar về phòng QLKH trước khi gửi đề nghị xét thưởng.\n- Kinh phí: Trích từ Quỹ hỗ trợ nghiên cứu khoa học của Trường Đại học FPT.\n- Mỗi công bố chỉ được xét thưởng 01 lần, kể cả khi được xuất bản trên nhiều ấn phẩm. Không khen thưởng bài báo đăng trên các tạp chí săn mồi nằm trong danh mục Beall's List.\n2. Biểu mức thưởng cho từng nhóm bài báo khoa học:\na) Bài báo thuộc danh mục ISI và Scopus xếp hạng Q1 - Q4 (yêu cầu tạp chí được xếp hạng 3 năm liền kề trên Scimago):\n- ISI và Scopus Q1: 100,000,000 VND (Một trăm triệu đồng).\n- ISI và Scopus Q2: 80,000,000 VND (Tám mươi triệu đồng).\n- ISI và Scopus Q3: 60,000,000 VND (Sáu mươi triệu đồng).\n- ISI và Scopus Q4: 40,000,000 VND (Bốn mươi triệu đồng).\nb) Bài báo thuộc danh mục Scopus đơn thuần xếp hạng Q1 - Q2 (3 năm liền kề trên Scimago, không thuộc ISI):\n- Scopus Q1: 60,000,000 VND (Sáu mươi triệu đồng).\n- Scopus Q2: 40,000,000 VND (Bốn mươi triệu đồng).\nc) Tạp chí đa ngành: Nếu một tạp chí thuộc nhiều chuyên ngành khác nhau, mức thưởng là mức thưởng TRUNG BÌNH CỘNG các phân loại Q của Scimago Journal Rank.\nd) Công bố thuộc ISI hoặc Scopus khác (Scopus Q3, Scopus Q4 không thuộc nhóm trên): Mức thưởng 20,000,000 VND (Hai mươi triệu đồng).\ne) Bài báo thuộc tạp chí khoa học được Hội đồng Giáo sư Nhà nước (HĐ GSNN) tính điểm (không thuộc ISI/Scopus):\nMức thưởng = (Điểm tối đa của tạp chí theo danh mục HĐ GSNN) x 5,000,000 VND."
+    },
+    {
+      "chunk_id": "FPT_NCKH_02",
+      "category": "Khen thưởng NCKH - Tác giả & Hạn mức",
+      "title": "Quy tắc phân chia tiền thưởng theo Hệ số tác giả và Hạn mức năm (QĐ 138/QĐ-ĐHFPT)",
+      "tags": [
+        "hệ số tác giả",
+        "he so tac gia",
+        "first author",
+        "corresponding author",
+        "tác giả chính",
+        "tác giả liên hệ",
+        "thỉnh giảng",
+        "thinh giang 50%",
+        "hạn mức 500 triệu",
+        "top 500 qs",
+        "chia tiền thưởng"
+      ],
+      "content": "Quy định về hệ số tác giả và cách tính mức thưởng cho tác giả FE theo Quyết định 138/QĐ-ĐHFPT:\n1. Công thức phân chia tiền thưởng:\nMức thưởng của tác giả FE = (Mức thưởng công bố khoa học x Hệ số của tác giả FE) / (Tổng hệ số của tất cả các tác giả trong bài báo).\n2. Bảng hệ số tác giả được quy định như sau:\n- Tác giả FE là người đóng góp nhiều nhất (First author / tác giả đầu): Hệ số 1.2.\n- Tác giả FE là tác giả liên hệ (Corresponding author): Hệ số 1.2.\n- Tác giả FE VỪA là người đóng góp nhiều nhất VỪA là tác giả liên hệ: Hệ số 1.4.\n- Tác giả ngoài FE thuộc các trường đại học Top 500 thế giới theo bảng xếp hạng QS: Hệ số 0.5.\n- Các tác giả khác (trong và ngoài FE): Hệ số 1.0.\n3. Kê khai nhiều đơn vị chủ quản:\n- Nếu tác giả FE kê khai thêm các đơn vị chủ quản khác ngoài Trường Đại học FPT / FPT University thì số tiền thưởng của tác giả FE đó = (Mức thưởng tác giả FE) / (Tổng số đơn vị chủ quản của tác giả FE). Nếu đi đào tạo theo cử đi của FE thì không tính cơ sở đào tạo đó.\n4. Giảng viên thỉnh giảng:\n- Giảng viên ký hợp đồng thỉnh giảng đang trực tiếp giảng dạy tại FE tại thời điểm xét thưởng được tính bằng 50% mức thưởng so với giảng viên cơ hữu.\n5. Hạn mức thưởng tối đa trong năm:\n- Nếu trong một năm, mỗi tác giả FE đã được thưởng bài báo khoa học đạt từ 500,000,000 VND (Năm trăm triệu đồng) trở lên, thì các bài báo khoa học tiếp theo trong năm của tác giả đó CHỈ ĐƯỢC NHẬN 50% mức thưởng thông thường."
+    },
+    {
+      "chunk_id": "FPT_NCKH_03",
+      "category": "Khen thưởng NCKH - Sáng chế & Trích dẫn",
+      "title": "Khen thưởng Bằng độc quyền Sáng chế và Số lượng Trích dẫn (QĐ 138/QĐ-ĐHFPT)",
+      "tags": [
+        "sáng chế",
+        "sang che",
+        "giải pháp hữu ích",
+        "giai phap huu ich",
+        "bằng độc quyền",
+        "uspto",
+        "epo",
+        "jpo",
+        "kipo",
+        "noip",
+        "cục sở hữu trí tuệ",
+        "trích dẫn",
+        "trich dan",
+        "google scholar",
+        "scopus citations",
+        "tháng 12"
+      ],
+      "content": "Quy định khen thưởng sáng chế, giải pháp hữu ích và trích dẫn khoa học theo Quyết định 138/QĐ-ĐHFPT:\n1. Khen thưởng Bằng độc quyền Sáng chế và Giải pháp hữu ích (cấp sau ngày 31/12/2019):\n- Bằng độc quyền sáng chế được cấp tại các quốc gia: Mỹ (USPTO), Châu Âu (EPO), Nhật Bản (JPO), Úc (IP), Hàn Quốc (KIPO): Mức thưởng 100,000,000 VND (Một trăm triệu đồng).\n- Bằng độc quyền sáng chế được cấp tại một trong các quốc gia còn lại: Mức thưởng 40,000,000 VND (Bốn mươi triệu đồng).\n- Bằng độc quyền giải pháp hữu ích được cấp bởi Cục Sở hữu trí tuệ Việt Nam (NOIP): Mức thưởng 10,000,000 VND (Mười triệu đồng).\n- Cách chia thưởng nhiều tác giả: Mức thưởng của mỗi tác giả FE = (Mức thưởng giải pháp công nghệ) / (Tổng số tác giả của giải pháp).\n- Hỗ trợ thủ tục: Đăng ký sáng chế nước ngoài được Ban Công nghệ FPT hỗ trợ; đăng ký tại Cục SHTT VN được Phòng QLKH hỗ trợ toàn bộ thủ tục và kinh phí.\n2. Khen thưởng Số lượng Trích dẫn (Citations) trên Scopus và Google Scholar (GS):\n- Đối tượng áp dụng: CB-GV cơ hữu tại FE, có khai báo cơ quan chủ quản là FPT University trên Scopus và Google Scholar, và đã được FE khen thưởng công bố khoa học ISI/Scopus trong 3 năm gần nhất.\n- Biểu mức thưởng trích dẫn:\n  + Scopus >= 2000 và GS >= 5000: Thưởng 35,000,000 VND\n  + Scopus >= 1000 và GS >= 2000: Thưởng 25,000,000 VND\n  + Scopus >= 500 và GS >= 1000: Thưởng 20,000,000 VND\n  + Scopus >= 200 và GS >= 500: Thưởng 16,000,000 VND\n  + Scopus >= 100 và GS >= 200: Thưởng 12,000,000 VND\n  + Scopus >= 50 và GS >= 100: Thưởng 8,000,000 VND\n  + Scopus >= 20 và GS >= 50: Thưởng 5,000,000 VND\n  + Scopus >= 10 và GS >= 20: Thưởng 2,000,000 VND\n- Thời điểm & Quy trình xét thưởng: Từ ngày 01/12 đến 15/12 hàng năm, CB-GV gửi thông tin trích dẫn cao nhất về Phòng QLKH. Phòng QLKH thẩm định và thực hiện chi thưởng trong tháng 12 hàng năm."
     }
   ]
 }
