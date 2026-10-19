@@ -93,8 +93,21 @@ def build_tools(adv: StudentAdvisor, log: list):
         và đủ điều kiện làm Đồ án/Khóa luận tốt nghiệp (AIP491) hay xét tốt nghiệp chưa."""
         return adv.check_ojt_and_graduation_eligibility()
 
+    def simulate_semester_grades(expected_grades: dict[str, float]) -> dict:
+        """Giả lập GPA dự kiến (What-if GPA Simulation): khi sinh viên nhập điểm dự kiến của 1 hoặc nhiều môn trong kỳ
+        (ví dụ: {'DPL302m': 8.5, 'BDI302c': 7.5, 'DSR301m': 8.0, 'DWP301c': 7.0}),
+        hàm sẽ tính chính xác GPA học kỳ hiện tại, GPA tích lũy mới sau khi gộp các điểm đó, mức tăng/giảm GPA và xếp loại học lực mới."""
+        return adv.simulate_semester_grades(expected_grades)
+
+    def predict_graduation_forecast() -> dict:
+        """Dự báo thời điểm tốt nghiệp (tháng/năm ra trường, học kỳ kết thúc theo lịch 3 kỳ/năm của FPTU),
+        dự đoán xếp loại học lực khi tốt nghiệp dựa trên xu hướng điểm (Linear Regression trend),
+        ngưỡng điểm cần đạt cho bằng Xuất sắc/Giỏi/Khá và rủi ro trễ hạn tốt nghiệp do nợ môn tiên quyết."""
+        return adv.predict_graduation_forecast()
+
     fns = [get_student_profile, get_transcript, calculate_gpa, plan_target_gpa, get_study_progress,
            check_prerequisites, suggest_next_subjects, calculate_retake_fee, check_attendance,
            calculate_library_fine, search_policy, get_student_schedule, get_attendance_details,
-           get_fap_application_procedure, calculate_required_final_score, check_ojt_and_graduation_eligibility]
+           get_fap_application_procedure, calculate_required_final_score, check_ojt_and_graduation_eligibility,
+           simulate_semester_grades, predict_graduation_forecast]
     return [_logged(f, log) for f in fns]

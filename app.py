@@ -321,9 +321,7 @@ else:
     # ------------------------- HEADER BANNER -------------------------
     status_vn = "Đang học" if s.get("status") == "Studying" else s.get("status", "Đang học")
     g, p = adv.gpa(), adv.progress()
-    all_atts = adv.get_all_attendances()
-    worst_att = adv.get_attendance_details()
-    ojt_grad = adv.check_ojt_and_graduation_eligibility()
+    att_info = adv.get_attendance_details()
 
     st.markdown(f"""
     <div class="profile-card">
@@ -344,284 +342,77 @@ else:
     </div>
     """, unsafe_allow_html=True)
 
-    # Cảnh báo chuyên cần nổi bật trên đầu trang nếu có môn bị AF hoặc sát nút AF
-    if worst_att and worst_att.get("is_attendance_fail"):
-        st.markdown(f"""
-        <div class="alert-box alert-danger">
-            🚨 <b>CẢNH BÁO HỌC VỤ NGHIÊM TRỌNG (ATTENDANCE FAIL - AF):</b><br>
-            Bạn đã vắng <b>{worst_att.get('absent_slots')}/{worst_att.get('total_slots')} buổi ({worst_att.get('absent_rate_total')})</b> môn <b>{worst_att.get('subject_code')} ({worst_att.get('subject_name', '')})</b> — vượt quá giới hạn 20%. Bạn <b>bị cấm thi cuối kỳ</b> môn này và cần chuẩn bị đăng ký học lại sớm (ưu đãi 50% học phí).
-        </div>
-        """, unsafe_allow_html=True)
-    elif worst_att and worst_att.get("remaining_allowed_absent") == 1:
-        st.markdown(f"""
-        <div class="alert-box alert-warning">
-            ⚠️ <b>CẢNH BÁO NGUY CƠ CẤM THI:</b> Môn <b>{worst_att.get('subject_code')}</b> bạn đã vắng <b>{worst_att.get('absent_slots')}/{worst_att.get('total_slots')} buổi</b>. Bạn <b>chỉ còn được phép nghỉ tối đa 1 buổi nữa</b> trước khi bị cấm thi (AF)!
-        </div>
-        """, unsafe_allow_html=True)
-
-    # ------------------------- 4 TABS CHỨC NĂNG THỰC DỤNG -------------------------
-    tab_chat, tab_fe, tab_roadmap, tab_schedule = st.tabs([
-        "💬 Trợ lý AI Học vụ",
-        "🧮 Tính điểm Final Exam & GPA",
-        "🗺️ Sơ đồ Cây môn học & Xét OJT/TN",
-        "📅 Điểm danh đa môn & Lịch học"
-    ])
-
-    # =========================================================================
-    # TAB 1: TRỢ LÝ AI HỌC VỤ (CHATBOT)
-    # =========================================================================
-    with tab_chat:
-        # Nút gợi ý câu hỏi thông minh cá nhân hóa theo đúng tình trạng của sinh viên đang đăng nhập
-        quick_prompts = []
-        if worst_att and (worst_att.get("is_attendance_fail") or worst_att.get("remaining_allowed_absent", 9) <= 1):
-            quick_prompts.append(f"Tình hình điểm danh môn {worst_att.get('subject_code')} của mình thế nào?")
-        if p["failed_pending_retake"]:
-            quick_prompts.append("Mình đang nợ môn nào và chi phí học lại hết bao nhiêu?")
-        else:
-            quick_prompts.append("Kỳ tới mình nên đăng ký những môn nào?")
-        if s["current_semester"] <= 5:
-            quick_prompts.append("Mình đã đủ điều kiện đi thực tập OJT kỳ 6 chưa?")
-        else:
-            quick_prompts.append("Kiểm tra điều kiện làm khóa luận tốt nghiệp AIP491 của mình")
-        quick_prompts.append("Môn DPL302m điểm quá trình mình được 6.5 thì thi FE cần mấy điểm để qua môn?")
-
-        q_cols = st.columns(len(quick_prompts))
-        triggered_prompt = None
-        for idx, qp in enumerate(quick_prompts):
-            if q_cols[idx].button(f"💡 {qp}", key=f"qp_{idx}", use_container_width=True):
-                triggered_prompt = qp
-
-        for m in st.session_state.messages:
-            with st.chat_message(m["role"], avatar="🧑‍🎓" if m["role"] == "user" else "🎓"):
-                st.markdown(m["content"])
-                if DEBUG and m.get("tools"):
-                    with st.expander("🔧 Dữ liệu tra cứu hệ thống (Tool Call + Hybrid RAG)"):
-                        for t in m["tools"]:
-                            st.write(f"**{t['tool']}**", t["args"] or "")
-                            st.json(t["result"], expanded=False)
-
-        if not st.session_state.messages:
-            first_name = s['full_name'].split()[-1]
-            st.info(f"""
-            👋 **Chào {first_name}!** Mình là **Mentor FPT** — Cố vấn học vụ nắm rõ bảng điểm, lịch học, chuyên cần của riêng bạn và toàn bộ quy chế FPTU.
-            - Bạn có thể bấm nhanh các gợi ý phía trên hoặc hỏi bất kỳ câu hỏi nào (ví dụ: *"Điểm quá trình BDI302c được 7.2 thì FE cần bao nhiêu để được 8.0?"*, *"Bùng học mấy buổi thì bị cấm thi?"*, *"Làm sao xin giấy hoãn nghĩa vụ quân sự trên FAP?"*).
-            """)
-
-        chat_input_val = st.chat_input(f"Hỏi Mentor FPT về điểm số, FE, lịch học, quy chế, đơn từ FAP...")
-        active_prompt = triggered_prompt or chat_input_val
-
-        if active_prompt:
-            history = list(st.session_state.messages)
-            st.session_state.messages.append({"role": "user", "content": active_prompt})
-            with st.chat_message("user", avatar="🧑‍🎓"):
-                st.markdown(active_prompt)
-            with st.chat_message("assistant", avatar="🎓"):
-                text = ""
-                tools = []
-                try:
-                    if use_llm:
-                        agent = get_agent(API_KEY, MODEL)
-                        with st.spinner("Mentor FPT đang tra cứu dữ liệu học vụ..."):
-                            stream_gen, tools = agent.respond_stream(history, active_prompt, adv)
-                        text = st.write_stream(stream_gen)
-                    else:
-                        text, tools = fallback.answer(active_prompt, adv)
-                        st.markdown(text)
-                except Exception:
-                    log.exception("Lỗi xử lý từ hệ thống AI")
-                    text, tools = fallback.answer(active_prompt, adv)
-                    text = f"⚠️ Hệ thống AI tạm thời bận, Mentor FPT đã chuyển sang chế độ tra cứu trực tiếp:\n\n{text}"
-                    st.markdown(text)
-            st.session_state.messages.append({"role": "assistant", "content": text, "tools": tools})
-            save_student_chat(sid, st.session_state.messages)
-            st.rerun()
-
-    # =========================================================================
-    # TAB 2: CÔNG CỤ TÍNH ĐIỂM THI CUỐI KỲ (FINAL EXAM) & DỰ BÁO GPA
-    # =========================================================================
-    with tab_fe:
-        col_fe_left, col_fe_right = st.columns([1.15, 1])
-
-        with col_fe_left:
-            st.subheader("🎯 Tính điểm Final Exam (FE) cần đạt")
-            st.caption("Kiểm tra đồng thời cả 2 điều kiện qua môn của FPTU: **Điểm tổng kết >= 5.0** và **Điểm sàn FE >= 4.0** (không bị điểm liệt).")
-
-            studying_Codes = [x["subject_code"] for x in p["studying"]]
-            all_Codes = list(data["subjects"].keys())
-            default_idx = all_Codes.index(studying_Codes[0]) if studying_Codes and studying_Codes[0] in all_Codes else 0
-
-            sel_subj = st.selectbox(
-                "Chọn môn học cần tính:",
-                all_Codes,
-                index=default_idx,
-                format_func=lambda c: f"{c} – {data['subjects'][c]['subject_name']} ({ 'Đang học' if c in studying_Codes else f'Kỳ {data['subjects'][c]['semester']}' })"
-            )
-            subj_meta = data["subjects"][sel_subj]
-            default_fe_pct = int(subj_meta.get("fe_weight", 0.4) * 100)
-
-            c_in1, c_in2, c_in3 = st.columns(3)
-            with c_in1:
-                cw_score = st.number_input("Điểm TB quá trình hiện tại:", min_value=0.0, max_value=10.0, value=6.5, step=0.1)
-            with c_in2:
-                fe_pct = st.slider("Trọng số bài thi FE (%):", min_value=0, max_value=60, value=default_fe_pct if default_fe_pct > 0 else 40, step=5)
-            with c_in3:
-                target_grade = st.selectbox("Mục tiêu tổng kết môn:", [5.0, 6.0, 7.0, 8.0, 9.0], format_func=lambda x: f"{x} ({'Qua môn' if x==5.0 else 'Khá' if x==7.0 else 'Giỏi' if x==8.0 else 'Xuất sắc' if x==9.0 else 'TB Khá'})")
-
-            fe_res = adv.calculate_required_final_score(cw_score, sel_subj, fe_pct / 100.0, target_grade)
-            if "required_fe_score" in fe_res:
-                req_fe = fe_res["required_fe_score"]
-                badge_color = "#10b981" if req_fe <= 6.0 else ("#f59e0b" if req_fe <= 8.5 else "#ef4444")
-                st.markdown(f"""
-                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-left:6px solid {badge_color}; padding:1.1rem; border-radius:12px; margin-top:0.5rem;">
-                    <div style="font-size:0.9rem; color:#475569;">Điểm quá trình ({fe_res['coursework_weight_pct']}%) đóng góp: <b>{fe_res['coursework_points_accumulated']} điểm</b></div>
-                    <div style="font-size:1.35rem; font-weight:700; color:#0f172a; margin:0.4rem 0;">
-                        👉 Điểm Final Exam (FE) cần đạt tối thiểu: <span style="color:{badge_color};">{req_fe if req_fe <= 10 else '> 10.0 (Không thể)'} / 10</span>
-                    </div>
-                    <div style="font-size:0.88rem; color:#334155;">💡 <b>Đánh giá:</b> {fe_res['verdict']}</div>
-                    <div style="font-size:0.8rem; color:#64748b; margin-top:0.3rem;">📌 {fe_res['rule']}</div>
-                </div>
-                """, unsafe_allow_html=True)
+    # ------------------------- TỔNG QUAN GỌN GÀNG (THU GỌN MẶC ĐỊNH) -------------------------
+    with st.expander("📊 Xem nhanh Tiến độ học tập & Chuyên cần", expanded=False):
+        col1, col2, col3, col4 = st.columns(4)
+        with col1:
+            st.metric("GPA Tích lũy", f"{g['gpa']:.2f}", g["classification"])
+        with col2:
+            st.metric("Tín chỉ tích lũy", f"{p['credits_passed']}/{p['credits_total']}", f"{p['percent']}%")
+        with col3:
+            st.metric("Môn đang nợ", len(p["failed_pending_retake"]))
+        with col4:
+            if att_info and "absent_slots" in att_info:
+                att_stat = "🚨 Bị cấm thi (AF)" if att_info.get("is_attendance_fail") else ("⚠️ Nguy cơ AF" if att_info.get("remaining_allowed_absent") == 1 else "✅ Đạt")
+                st.metric("Chuyên cần", att_stat, f"Vắng {att_info.get('absent_slots', 0)}/{att_info.get('total_slots', 0)} buổi")
             else:
-                st.info(fe_res.get("message", ""))
+                st.metric("Chuyên cần", "✅ Tốt")
 
-        with col_fe_right:
-            st.subheader("📈 Dự báo GPA Tốt nghiệp & Học phí học lại")
-            c_m1, c_m2 = st.columns(2)
-            c_m1.metric("GPA Tích lũy hiện tại", f"{g['gpa']:.2f}", g["classification"])
-            c_m2.metric("Tín chỉ hoàn thành", f"{p['credits_passed']}/{p['credits_total']} TC", f"{p['percent']}%")
+        st.progress(min(p["percent"] / 100, 1.0))
 
-            target_gpa_val = st.slider("Chọn GPA mục tiêu khi ra trường:", min_value=5.0, max_value=9.5, value=8.0, step=0.1)
-            plan_res = adv.plan_target_gpa(target_gpa_val)
-            if "required_average_on_remaining" in plan_res:
-                st.write(
-                    f"Để đạt **GPA {target_gpa_val}** khi tốt nghiệp, trong **{plan_res['credits_remaining']} tín chỉ còn lại**, "
-                    f"bạn cần đạt điểm trung bình tối thiểu: **`{plan_res['required_average_on_remaining']}`** → *{plan_res['verdict']}*."
-                )
+        if g.get("by_semester"):
+            st.caption("Biểu đồ biến động GPA qua các kỳ học:")
+            st.bar_chart(pd.Series(g["by_semester"], name="GPA"))
 
-            if g.get("by_semester"):
-                st.caption("Biểu đồ GPA qua từng học kỳ:")
-                st.bar_chart(pd.Series(g["by_semester"], name="GPA"), height=190)
+    # ------------------------- GIAO DIỆN CHAT AI CHÍNH -------------------------
+    for m in st.session_state.messages:
+        with st.chat_message(m["role"], avatar="🧑‍🎓" if m["role"] == "user" else "🎓"):
+            st.markdown(m["content"])
+            if DEBUG and m.get("tools"):
+                with st.expander("🔧 Dữ liệu tra cứu hệ thống (Tool Call)"):
+                    for t in m["tools"]:
+                        st.write(f"**{t['tool']}**", t["args"] or "")
+                        st.json(t["result"], expanded=False)
 
-            if p["failed_pending_retake"]:
-                fee_info = adv.retake_fee()
-                st.warning(
-                    f"💸 **Môn đang nợ ({len(p['failed_pending_retake'])} môn):** "
-                    + ", ".join(f"**{x['subject_code']}**" for x in p["failed_pending_retake"])
-                    + f" — Tổng phí học lại dự kiến tại {campus}: **{fee_info['total']:,.0f}đ**".replace(",", ".")
-                )
+    if not st.session_state.messages:
+        first_name = s['full_name'].split()[-1]
+        studying_codes = [x["subject_code"] for x in p["studying"]]
+        sample_sim = ", ".join(f"{c} {8.0 - 0.5*(i%2)}" for i, c in enumerate(studying_codes[:4])) if studying_codes else "DPL302m 8.5, BDI302c 7.5, DSR301m 8.0, DWP301c 7.0"
+        st.info(f"""
+        👋 **Chào bạn {first_name}!** Mình là **Mentor FPT** — Trợ lý AI tư vấn học vụ, dự báo học lực và tra cứu quy chế cá nhân.
 
-    # =========================================================================
-    # TAB 3: SƠ ĐỒ CÂY MÔN HỌC 9 KỲ (CURRICULUM ROADMAP) & XÉT OJT/TỐT NGHIỆP
-    # =========================================================================
-    with tab_roadmap:
-        st.subheader("🏢 Kiểm tra Điều kiện đi OJT (Kỳ 6) & Khóa luận tốt nghiệp (Kỳ 9)")
-        ojt_info = ojt_grad["ojt_eligibility"]
-        cap_info = ojt_grad["capstone_and_graduation"]
+        Bạn có thể hỏi trực tiếp bằng ngôn ngữ tự nhiên các bài toán như:
+        - 🎓 **Dự đoán năm tốt nghiệp & Xếp loại ra trường:** *"Dự đoán xem năm nào mình tốt nghiệp và ra trường đạt bằng loại gì?"*
+        - 🧮 **Giả lập GPA dự kiến khi nhập điểm các môn trong kỳ:** *"Giả sử kỳ này mình đạt {sample_sim} thì GPA kỳ này và GPA tích lũy mới là bao nhiêu, xếp loại gì?"*
+        - 🎯 **Tính điểm thi Final Exam (FE) để qua môn:** *"Môn DPL302m điểm quá trình mình được 6.5 thì thi FE cần tối thiểu bao nhiêu điểm để qua môn?"*
+        - 🏢 **Xét điều kiện đi OJT & Khóa luận tốt nghiệp:** *"Mình đã đủ điều kiện đi thực tập OJT kỳ 6 chưa? Còn thiếu bao nhiêu tín chỉ?"*
+        - 📋 **Thời khóa biểu, Điểm danh & Quy chế FPT:** *"Tình hình điểm danh môn đang học của mình thế nào?"*, *"Bùng học mấy buổi thì bị cấm thi?"*
+        """)
 
-        col_ojt, col_cap = st.columns(2)
-        with col_ojt:
-            ojt_ok = ojt_info["is_eligible_now"]
-            st.markdown(f"""
-            <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:12px; padding:1rem;">
-                <div style="font-weight:700; font-size:1.05rem; margin-bottom:0.4rem;">
-                    1. Thực tập doanh nghiệp (OJT202) — {'✅ ĐỦ ĐIỀU KIỆN' if ojt_ok else ('⏳ DỰ KIẾN ĐỦ CUỐI KỲ' if ojt_info['is_eligible_if_pass_studying'] else '❌ CHƯA ĐỦ')}
-                </div>
-                <div style="font-size:0.88rem; color:#334155;">
-                    • Tín chỉ Kỳ 1–5 đã qua: <b>{ojt_info['pre_ojt_credits_passed']}/{ojt_info['pre_ojt_credits_total']} TC ({ojt_info['current_percentage']}%)</b> (Yêu cầu >= 90%)<br>
-                    • Dự kiến sau khi hoàn thành môn đang học: <b>{ojt_info['projected_percentage_after_this_term']}%</b>
-                </div>
-            </div>
-            """, unsafe_allow_html=True)
-        with col_cap:
-            cap_ok = cap_info["eligible_for_capstone_AIP491"]
-            st.markdown(f"""
-            <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:12px; padding:1rem;">
-                <div style="font-weight:700; font-size:1.05rem; margin-bottom:0.4rem;">
-                    2. Đồ án tốt nghiệp (AIP491) — {'✅ ĐỦ ĐIỀU KIỆN' if cap_ok else '⏳ ĐANG TÍCH LŨY'}
-                </div>
-                <div style="font-size:0.88rem; color:#334155;">
-                    • Tổng tín chỉ tích lũy: <b>{cap_info['total_credits_passed']}/{cap_info['total_credits_required']} TC</b><br>
-                    • Môn đang nợ: <b>{', '.join(cap_info['pending_failed_subjects']) if cap_info['pending_failed_subjects'] else 'Không nợ môn nào 🎉'}</b>
-                </div>
-            </div>
-            """, unsafe_allow_html=True)
+    prompt = st.chat_input(f"Nhập câu hỏi của bạn, {s['full_name'].split()[-1]}...")
 
-        st.markdown("---")
-        st.subheader("🗺️ Bản đồ Lộ trình 9 Học kỳ & Chuỗi môn Tiên quyết")
-        st.caption("Chú thích màu: 🟢 **Đã qua (Passed)** | 🔵 **Đang học (Studying)** | 🔴 **Đang nợ (Failed - Cần học lại)** | 🟡 **Đủ ĐK đăng ký** | ⚪ **Bị khóa (Chưa đủ môn tiên quyết)**")
-
-        roadmap = adv.curriculum_roadmap()
-        # Hiển thị 9 học kỳ theo lưới 3 cột x 3 hàng
-        for row_idx in range(3):
-            cols = st.columns(3)
-            for col_idx in range(3):
-                sem_num = row_idx * 3 + col_idx + 1
-                with cols[col_idx]:
-                    st.markdown(f"##### 📅 Học kỳ {sem_num}" + (" *(Kỳ hiện tại)*" if sem_num == s["current_semester"] else ""))
-                    for item in roadmap.get(sem_num, []):
-                        state = item["state"]
-                        icon = "✅" if state == "Passed" else ("📖" if state == "Studying" else ("🚨" if state == "Failed" else ("🔒" if state == "Locked" else "🟡")))
-                        grade_str = f" · Điểm: <b>{item['grade']}</b>" if item["grade"] is not None else ""
-                        prereq_note = ""
-                        if item["missing_prereqs"]:
-                            prereq_note = f"<br><span style='color:#dc2626; font-size:0.76rem;'>⛔ Thiếu TQ: {', '.join(item['missing_prereqs'])}</span>"
-                        elif item["prerequisites"]:
-                            prereq_note = f"<br><span style='font-size:0.75rem; opacity:0.8;'>🔗 Tiên quyết: {', '.join(item['prerequisites'])}</span>"
-                        unlock_note = f"<br><span style='font-size:0.75rem; opacity:0.8;'>🔓 Mở khóa: {', '.join(item['unlocks'])}</span>" if item["unlocks"] else ""
-
-                        st.markdown(f"""
-                        <div class="subj-card subj-{state}">
-                            <b>{icon} {item['subject_code']}</b> ({item['credits']} TC){grade_str}<br>
-                            <span>{item['name']}</span>
-                            {prereq_note}{unlock_note}
-                        </div>
-                        """, unsafe_allow_html=True)
-
-    # =========================================================================
-    # TAB 4: ĐIỂM DANH ĐA MÔN & THỜI KHÓA BIỂU TRONG TUẦN
-    # =========================================================================
-    with tab_schedule:
-        st.subheader("📋 Theo dõi Điểm danh Chuyên cần tất cả các môn đang học")
-        if all_atts:
-            att_cols = st.columns(min(len(all_atts), 3))
-            for i, att in enumerate(all_atts):
-                with att_cols[i % len(att_cols)]:
-                    is_af = att.get("is_attendance_fail")
-                    rem = att.get("remaining_allowed_absent", 0)
-                    border_col = "#ef4444" if is_af else ("#f59e0b" if rem <= 1 else "#10b981")
-                    badge_txt = "🚨 CẤM THI (AF)" if is_af else ("⚠️ SÁT NÚT AF" if rem <= 1 else "✅ AN TOÀN")
-                    st.markdown(f"""
-                    <div style="background:#ffffff; border:1px solid #e2e8f0; border-top:4px solid {border_col}; border-radius:12px; padding:1rem; margin-bottom:0.8rem;">
-                        <div style="display:flex; justify-content:space-between; align-items:center;">
-                            <b style="font-size:1.05rem;">{att.get('subject_code')}</b>
-                            <span style="font-size:0.78rem; font-weight:700; color:{border_col};">{badge_txt}</span>
-                        </div>
-                        <div style="font-size:0.83rem; color:#64748b; margin-bottom:0.5rem;">{att.get('subject_name', '')} · Lớp {att.get('class_name', '')}</div>
-                        <div style="font-size:0.88rem;">
-                            • Đã vắng: <b>{att.get('absent_slots', 0)}/{att.get('total_slots', 20)} buổi</b> (Tối đa cho phép: {att.get('max_allowed_absent', 4)} buổi)<br>
-                            • Số buổi còn được phép nghỉ: <b>{rem} buổi</b>
-                        </div>
-                    </div>
-                    """, unsafe_allow_html=True)
-                    absent_ratio = min(att.get("absent_slots", 0) / max(att.get("max_allowed_absent", 4), 1), 1.0)
-                    st.progress(absent_ratio)
-
-        st.markdown("---")
-        st.subheader("📅 Thời khóa biểu trong tuần")
-        sched_data = adv.get_schedule()
-        if "schedule" in sched_data and isinstance(sched_data["schedule"], list):
-            st.caption(f"Tuần học: **{sched_data.get('week', '')}**")
-            table_rows = []
-            for slot_item in sched_data["schedule"]:
-                if "days" in slot_item:
-                    row_dict = {"Slot": f"Slot {slot_item['slot']} ({slot_item['time']})"}
-                    for day_name, cell in slot_item["days"].items():
-                        if cell:
-                            row_dict[day_name] = f"{cell['subject_code']} ({cell['room']}) - {cell['status']}"
-                        else:
-                            row_dict[day_name] = "—"
-                    table_rows.append(row_dict)
-            if table_rows:
-                st.dataframe(pd.DataFrame(table_rows), use_container_width=True, hide_index=True)
-        else:
-            st.info(sched_data.get("message", "Chưa có dữ liệu thời khóa biểu."))
+    if prompt:
+        history = list(st.session_state.messages)
+        st.session_state.messages.append({"role": "user", "content": prompt})
+        with st.chat_message("user", avatar="🧑‍🎓"):
+            st.markdown(prompt)
+        with st.chat_message("assistant", avatar="🎓"):
+            text = ""
+            tools = []
+            try:
+                if use_llm:
+                    agent = get_agent(API_KEY, MODEL)
+                    with st.spinner("Mentor FPT đang phân tích dữ liệu học vụ..."):
+                        stream_gen, tools = agent.respond_stream(history, prompt, adv)
+                    text = st.write_stream(stream_gen)
+                else:
+                    text, tools = fallback.answer(prompt, adv)
+                    st.markdown(text)
+            except Exception:
+                log.exception("Lỗi xử lý từ hệ thống AI")
+                text, tools = fallback.answer(prompt, adv)
+                text = f"⚠️ Hệ thống AI tạm thời bận, Mentor FPT đã chuyển sang chế độ phân tích trực tiếp:\n\n{text}"
+                st.markdown(text)
+        st.session_state.messages.append({"role": "assistant", "content": text, "tools": tools})
+        save_student_chat(sid, st.session_state.messages)
+        st.rerun()

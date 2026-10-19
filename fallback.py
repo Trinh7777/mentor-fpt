@@ -22,7 +22,52 @@ def answer(text: str, adv: StudentAdvisor):
     def call(name, res):
         log.append({"tool": name, "args": {}, "result": res}); return res
 
-    # 0a. Câu hỏi tính điểm thi Final Exam (FE) cần đạt
+    # 0a. Giả lập GPA dự kiến khi sinh viên nhập điểm các môn trong kỳ (vd: "DPL302m 8.5, BDI302c 7.5")
+    all_subjects = load_all()["subjects"]
+    grade_pairs = {}
+    for code in all_subjects:
+        pat = re.search(rf"\b{re.escape(code.lower())}\D{{0,12}}?(\d+(?:[.,]\d+)?)", text.lower())
+        if pat:
+            val = float(pat.group(1).replace(",", "."))
+            if 0.0 <= val <= 10.0:
+                grade_pairs[code] = val
+
+    if len(grade_pairs) >= 2 or (len(grade_pairs) == 1 and any(k in n for k in ["du kien", "gia su", "neu duoc", "gpa", "xep loai"])):
+        r = call("simulate_semester_grades", adv.simulate_semester_grades(grade_pairs))
+        sim_lines = [f"- **{x['subject_code']} ({x['subject_name']})**: `{x['simulated_grade']}` điểm ({x['credits']} TC) → *{x['resulting_status']}*"
+                     for x in r["simulated_subjects"]]
+        missing_note = ""
+        if r["unentered_studying_subjects"]:
+            m_codes = ", ".join(x["subject_code"] for x in r["unentered_studying_subjects"])
+            missing_note = f"\n\n💡 *Lưu ý:* Bạn còn các môn đang học kỳ này chưa nhập điểm dự kiến: **{m_codes}**. Hãy nhập thêm nếu muốn tính trọn vẹn cả học kỳ!"
+        delta_sign = f"+{r['gpa_delta']}" if r["gpa_delta"] >= 0 else str(r["gpa_delta"])
+        return (f"🧮 **Kết quả Giả lập GPA & Xếp loại học lực dự kiến:**\n"
+                + "\n".join(sim_lines) + "\n\n"
+                f"- **GPA Học kỳ {adv.student['current_semester']} dự kiến:** **{r['semester_gpa_projected']}** ({r['semester_classification']})\n"
+                f"- **GPA Tích lũy trước đó:** {r['cumulative_gpa_before']} ({r['classification_before']})\n"
+                f"- **GPA Tích lũy MỚI dự kiến:** **{r['cumulative_gpa_after']}** ({delta_sign}) → Xếp loại: **{r['classification_after']}**"
+                + missing_note), log
+
+    # 0b. Dự đoán năm tốt nghiệp & Dự đoán xếp loại học lực khi ra trường
+    if any(k in n for k in ["nam tot nghiep", "bao gio tot nghiep", "khi nao ra truong", "nam nao ra truong", "du doan tot nghiep", "du doan xep loai", "xep loai tot nghiep", "bang tot nghiep", "ra truong dung han"]):
+        r = call("predict_graduation_forecast", adv.predict_graduation_forecast())
+        real_g = r["realistic_graduation_forecast"]
+        acad = r["academic_standing_forecast"]
+        risk = r["risk_factors"]
+        targets = "\n".join(f"  + **Bằng {k}**: cần trung bình `{v['required_avg']}` ở các tín chỉ còn lại (*{v['verdict']}*)"
+                            for k, v in acad["degree_classification_targets"].items())
+        return (f"🎓 **Dự báo Thời điểm Tốt nghiệp & Xếp loại Học lực (AI Academic Forecast):**\n\n"
+                f"**1. Dự đoán Thời gian Tốt nghiệp:**\n"
+                f"- Học kỳ hiện tại: **Kỳ {r['current_semester']}/9** (còn {r['remaining_standard_semesters']} kỳ chuẩn)\n"
+                f"- Học kỳ hoàn thành chương trình dự kiến: **{real_g['finish_semester']} ({real_g['finish_study_month']})**\n"
+                f"- **Năm tốt nghiệp dự kiến:** **{real_g['graduation_year']}** *(Độ trễ dự kiến do nợ môn: {r['estimated_delay_semesters']} kỳ)*\n\n"
+                f"**2. Dự đoán Xếp loại Học lực khi ra trường:**\n"
+                f"- GPA tích lũy hiện tại: **{acad['current_gpa']}** ({acad['current_classification']}) — Xu hướng: *{acad['gpa_trend_description']}*\n"
+                f"- **GPA Tốt nghiệp dự báo (theo hồi quy xu hướng):** **{acad['projected_graduation_gpa']}** → Dự kiến đạt bằng: **{acad['projected_graduation_classification']}**\n"
+                f"- Mốc phấn đấu cho phần còn lại:\n{targets}\n\n"
+                f"**3. Đánh giá rủi ro tiến độ:** {risk['advice']}"), log
+
+    # 0c. Câu hỏi tính điểm thi Final Exam (FE) cần đạt
     fe_match = re.search(r"(?:qua trinh|pt|assignment|dang duoc|trung binh)\D{0,15}(\d+(?:[.,]\d+)?)", n)
     if ("fe" in n or "final" in n or "cuoi ky" in n or "qua mon" in n) and fe_match:
         cw_val = float(fe_match.group(1).replace(",", "."))
@@ -35,7 +80,7 @@ def answer(text: str, adv: StudentAdvisor):
                 f"👉 **Điểm thi FE tối thiểu cần đạt để qua môn (>= {r['target_total_grade']}): `{r['required_fe_score']}` điểm**\n"
                 f"💡 *Đánh giá:* {r['verdict']}."), log
 
-    # 0b. Câu hỏi về điều kiện đi OJT / Thực tập / Làm đồ án tốt nghiệp (KLTN / AIP491)
+    # 0d. Câu hỏi về điều kiện đi OJT / Thực tập / Làm đồ án tốt nghiệp (KLTN / AIP491)
     if any(k in n for k in ["du dieu kien ojt", "di ojt", "di thuc tap", "lam do an", "khoa luan", "aip491", "ojt202", "xet tot nghiep"]):
         r = call("check_ojt_and_graduation_eligibility", adv.check_ojt_and_graduation_eligibility())
         ojt = r["ojt_eligibility"]

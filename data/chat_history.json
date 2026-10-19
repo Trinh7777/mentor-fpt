@@ -1,0 +1,47 @@
+{
+  "SE190456": [
+    {
+      "role": "user",
+      "content": "dự kiến năm tốt nghiệp của tôi "
+    },
+    {
+      "role": "assistant",
+      "content": "Chào A! (SE190456) ✨\n\nHiện tại em đang học kỳ 5 ngành Artificial Intelligence và đã tích lũy được **60 tín chỉ** (còn đang học thêm 12 tín chỉ trong kỳ này). \n\nTheo tiến độ hiện tại, sau khi hoàn thành học kỳ này em sẽ đủ điều kiện đi **Thực tập doanh nghiệp (OJT)**. Sau OJT, em sẽ bước vào giai đoạn làm đồ án/khóa luận tốt nghiệp (AIP491) và các học kỳ cuối. \n\nVới số lượng tín chỉ tổng cộng của chương trình là **133 tín chỉ**, dự kiến thời gian hoàn thành chương trình học và tốt nghiệp của em sẽ rơi vào khoảng **năm 2026** (kỳ Fall 2026 hoặc Spring 2027 tùy thuộc vào tốc độ đăng ký học vượt và hoàn thành đồ án tốt nghiệp nhé) 🎓.\n\nCố gắng giữ vững phong độ học tập, hoàn thành tốt kỳ OJT sắp tới để kịp về đích đúng hạn nha A! Cần anh/chị hỗ trợ tra cứu môn học hay lộ trình gì cứ hú anh/chị nhé! 💪",
+      "tools": [
+        {
+          "tool": "check_ojt_and_graduation_eligibility",
+          "args": [],
+          "result": {
+            "current_semester": 5,
+            "ojt_eligibility": {
+              "ojt_completed": false,
+              "pre_ojt_credits_passed": 60,
+              "pre_ojt_credits_studying": 12,
+              "pre_ojt_credits_total": 72,
+              "current_percentage": 83.3,
+              "projected_percentage_after_this_term": 100.0,
+              "required_percentage": 90.0,
+              "is_eligible_now": false,
+              "is_eligible_if_pass_studying": true,
+              "rule": "Sinh viên phải tích lũy đạt tối thiểu 90% tổng số tín chỉ giai đoạn trước OJT (Kỳ 1–5) theo Phụ lục 4 (07.04PL-QT/ĐH/HDCV/FE)."
+            },
+            "capstone_and_graduation": {
+              "capstone_completed": false,
+              "eligible_for_capstone_AIP491": false,
+              "total_credits_passed": 60,
+              "total_credits_required": 133,
+              "pending_failed_subjects": [],
+              "mandatory_non_gpa_checklist": [
+                "Hoàn thành Giáo dục thể chất (Vovinam / Cờ vua)",
+                "Chứng chỉ Giáo dục Quốc phòng - An ninh (GDQP)",
+                "Chứng chỉ Tiếng Anh chuẩn đầu ra theo quy định",
+                "Không nợ học phí & Không nợ sách/phạt Thư viện"
+              ],
+              "rule": "Để làm KLTN (AIP491) và xét tốt nghiệp, sinh viên phải hoàn thành OJT202, đạt các môn tiên quyết và tích lũy đủ tín chỉ chương trình (Phụ lục 5 & 6)."
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

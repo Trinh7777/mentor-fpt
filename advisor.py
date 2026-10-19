@@ -360,7 +360,216 @@ class StudentAdvisor:
             }
         }
 
-    # ---------- 8. tiện ích ----------
+    # ---------- 8. Dự báo tốt nghiệp, xếp loại học lực & Giả lập GPA (What-if Simulation) ----------
+    def simulate_semester_grades(self, expected_grades: dict):
+        """Giả lập GPA học kỳ và GPA tích lũy mới nếu sinh viên nhập điểm dự kiến của các môn trong kỳ.
+        expected_grades: dict dạng {'DPL302m': 8.5, 'BDI302c': 7.5, ...}"""
+        latest = self._latest()
+        norm_expected = {}
+        invalid_subjects = []
+        for raw_code, score in (expected_grades or {}).items():
+            c = self._norm_code(raw_code)
+            if c:
+                norm_expected[c] = float(score)
+            else:
+                invalid_subjects.append(raw_code)
+
+        # GPA tích lũy hiện tại trước khi giả lập
+        current_gpa_info = self.gpa()
+        old_gpa = current_gpa_info["gpa"] or 0.0
+        old_class = current_gpa_info["classification"]
+
+        # Áp dụng điểm giả lập vào bản sao latest
+        sim_latest = {k: dict(v) for k, v in latest.items()}
+        simulated_details = []
+        cur_sem = self.student["current_semester"]
+
+        for code, score in norm_expected.items():
+            status = "Passed" if score >= PASS_GRADE else "Failed"
+            prev_grade = sim_latest.get(code, {}).get("grade")
+            sim_latest[code] = {
+                "student_id": self.sid,
+                "subject_code": code,
+                "semester_taken": cur_sem,
+                "grade": score,
+                "status": status
+            }
+            simulated_details.append({
+                "subject_code": code,
+                "subject_name": self._name(code),
+                "credits": credits_of(code),
+                "simulated_grade": score,
+                "previous_grade": prev_grade,
+                "resulting_status": status
+            })
+
+        # Các môn đang Studying trong kỳ mà sinh viên CHƯA truyền điểm dự kiến
+        studying_missing = [
+            {"subject_code": c, "subject_name": self._name(c), "credits": credits_of(c)}
+            for c, r in latest.items()
+            if r["status"] == "Studying" and c not in norm_expected
+        ]
+
+        # Tính GPA học kỳ giả lập (trên các môn vừa nhập + các môn đã có điểm trong kỳ hiện tại)
+        sem_graded = [
+            r for c, r in sim_latest.items()
+            if r.get("semester_taken") == cur_sem and r.get("grade") is not None and c not in NON_GPA_SUBJECTS
+        ]
+        sem_cr = sum(credits_of(r["subject_code"]) for r in sem_graded)
+        sem_pts = sum(r["grade"] * credits_of(r["subject_code"]) for r in sem_graded)
+        sim_sem_gpa = round(sem_pts / sem_cr, 2) if sem_cr else None
+
+        # Tính GPA tích lũy mới sau khi gộp điểm giả lập
+        all_graded = [
+            r for c, r in sim_latest.items()
+            if r.get("grade") is not None and r.get("status") in ("Passed", "Failed") and c not in NON_GPA_SUBJECTS
+        ]
+        new_cr = sum(credits_of(r["subject_code"]) for r in all_graded)
+        new_pts = sum(r["grade"] * credits_of(r["subject_code"]) for r in all_graded)
+        new_gpa = round(new_pts / new_cr, 2) if new_cr else 0.0
+        new_class = classify(new_gpa)
+
+        return {
+            "simulated_subjects": simulated_details,
+            "unentered_studying_subjects": studying_missing,
+            "invalid_subject_codes": invalid_subjects,
+            "semester_gpa_projected": sim_sem_gpa,
+            "semester_classification": classify(sim_sem_gpa) if sim_sem_gpa is not None else None,
+            "cumulative_gpa_before": old_gpa,
+            "classification_before": old_class,
+            "cumulative_gpa_after": new_gpa,
+            "classification_after": new_class,
+            "gpa_delta": round(new_gpa - old_gpa, 2),
+            "total_credits_counted_after": new_cr,
+        }
+
+    def predict_graduation_forecast(self, current_date_str: str = "2026-10"):
+        """Dự báo thời điểm tốt nghiệp (tháng/năm, học kỳ), xếp loại học lực dự kiến bằng Hồi quy xu hướng (Linear Trend)
+        & kiểm tra rủi ro trễ hạn ra trường do chuỗi môn tiên quyết."""
+        cur_sem = self.student["current_semester"]
+        prog = self.progress()
+        gpa_info = self.gpa()
+        cur_gpa = gpa_info["gpa"] or 0.0
+        by_sem = gpa_info.get("by_semester", {})
+
+        # 1. Phân tích xu hướng điểm qua các học kỳ (Linear Regression slope)
+        sem_keys = sorted(by_sem.keys())
+        slope = 0.0
+        if len(sem_keys) >= 2:
+            n = len(sem_keys)
+            mean_x = sum(sem_keys) / n
+            mean_y = sum(by_sem[k] for k in sem_keys) / n
+            num = sum((k - mean_x) * (by_sem[k] - mean_y) for k in sem_keys)
+            den = sum((k - mean_x) ** 2 for k in sem_keys)
+            slope = round(num / den, 3) if den > 0 else 0.0
+
+        trend_label = (
+            "Đang tăng trưởng tốt 📈" if slope >= 0.08 else
+            "Đang có xu hướng giảm 📉" if slope <= -0.08 else
+            "Ổn định ➡️"
+        )
+
+        # Dự phóng điểm trung bình các kỳ còn lại theo xu hướng + hồi quy về trung bình
+        projected_future_avg = min(max(round(cur_gpa + slope * 1.5, 2), 5.0), 9.5)
+        total_gpa_cr = sum(credits_of(c) for c in self.d["subjects"] if c not in NON_GPA_SUBJECTS)
+        done_cr = gpa_info["credits_counted"]
+        remain_cr = max(total_gpa_cr - done_cr, 0)
+        projected_final_gpa = round(
+            (cur_gpa * done_cr + projected_future_avg * remain_cr) / total_gpa_cr, 2
+        ) if total_gpa_cr else cur_gpa
+
+        # 2. Tính số học kỳ còn lại & kiểm tra độ trễ do nợ môn / cấm thi AF
+        base_remaining_sems = max(9 - cur_sem, 0)
+        failed_list = prog["failed_pending_retake"]
+        failed_codes = [f["subject_code"] for f in failed_list]
+
+        # Kiểm tra xem có môn nào đang bị cấm thi AF trong kỳ hiện tại không
+        att_info = self.get_attendance_details()
+        af_subject = att_info.get("subject_code") if att_info and att_info.get("is_attendance_fail") else None
+        if af_subject and af_subject not in failed_codes:
+            failed_codes.append(f"{af_subject} (Bị cấm thi AF kỳ này)")
+
+        # Kiểm tra chuỗi tiên quyết: nếu môn đang nợ chặn môn kỳ sau -> nguy cơ trễ kỳ
+        chain_blocked = []
+        for f_item in failed_list:
+            fc = f_item["subject_code"]
+            unlocked = [c for c, ps in self.d["prereqs"].items() if any(p["prerequisite_code"] == fc for p in ps)]
+            if unlocked:
+                chain_blocked.append({"failed_subject": fc, "blocks": unlocked})
+
+        # Mỗi ~4-5 môn nợ hoặc chuỗi tiên quyết bị đứt có thể làm trễ thêm 1 học kỳ
+        extra_sems_delay = 0
+        if len(failed_codes) >= 4 or (len(chain_blocked) >= 2):
+            extra_sems_delay = 1
+        if len(failed_codes) >= 8:
+            extra_sems_delay = 2
+
+        # Tính toán mốc thời gian tốt nghiệp theo lịch 3 kỳ/năm của FPTU (Spring: T1-T4, Summer: T5-T8, Fall: T9-T12)
+        # Mặc định thời điểm hiện tại là Học kỳ Fall 2026 (Tháng 10/2026)
+        fpt_terms = [
+            ("Fall 2026", "Tháng 12/2026", 2026),
+            ("Spring 2027", "Tháng 04/2027", 2027),
+            ("Summer 2027", "Tháng 08/2027", 2027),
+            ("Fall 2027", "Tháng 12/2027", 2027),
+            ("Spring 2028", "Tháng 04/2028", 2028),
+            ("Summer 2028", "Tháng 08/2028", 2028),
+            ("Fall 2028", "Tháng 12/2028", 2028),
+            ("Spring 2029", "Tháng 04/2029", 2029),
+            ("Summer 2029", "Tháng 08/2029", 2029),
+            ("Fall 2029", "Tháng 12/2029", 2029),
+        ]
+        on_time_idx = min(base_remaining_sems, len(fpt_terms) - 1)
+        realistic_idx = min(base_remaining_sems + extra_sems_delay, len(fpt_terms) - 1)
+
+        on_time_term, on_time_month, on_time_year = fpt_terms[on_time_idx]
+        real_term, real_month, real_year = fpt_terms[realistic_idx]
+
+        # Ngưỡng điểm cần đạt ở phần còn lại cho từng mức Bằng Tốt Nghiệp
+        thresholds = {}
+        for label, target in [("Xuất sắc (9.0)", 9.0), ("Giỏi (8.0)", 8.0), ("Khá (7.0)", 7.0)]:
+            plan = self.plan_target_gpa(target)
+            thresholds[label] = {
+                "required_avg": plan.get("required_average_on_remaining"),
+                "verdict": plan.get("verdict")
+            }
+
+        return {
+            "current_semester": cur_sem,
+            "remaining_standard_semesters": base_remaining_sems,
+            "estimated_delay_semesters": extra_sems_delay,
+            "on_time_graduation": {
+                "finish_semester": on_time_term,
+                "finish_study_month": on_time_month,
+                "graduation_year": on_time_year,
+                "note": "Nếu học đúng lộ trình 3 kỳ/năm của FPTU và trả các môn nợ (nếu có) song song trong kỳ chính."
+            },
+            "realistic_graduation_forecast": {
+                "finish_semester": real_term,
+                "finish_study_month": real_month,
+                "graduation_year": real_year,
+                "ceremony_and_diploma_estimate": f"Lễ tốt nghiệp & nhận bằng dự kiến sau ~1–2 tháng ({real_year})"
+            },
+            "academic_standing_forecast": {
+                "current_gpa": cur_gpa,
+                "current_classification": gpa_info["classification"],
+                "gpa_trend_slope_per_semester": slope,
+                "gpa_trend_description": trend_label,
+                "projected_graduation_gpa": projected_final_gpa,
+                "projected_graduation_classification": classify(projected_final_gpa),
+                "degree_classification_targets": thresholds
+            },
+            "risk_factors": {
+                "pending_retake_or_af_subjects": failed_codes,
+                "prerequisite_chains_blocked": chain_blocked,
+                "advice": (
+                    "Bạn hoàn toàn có thể ra trường đúng hạn nếu đăng ký học lại sớm môn nợ ngay kỳ tới."
+                    if failed_codes else
+                    "Tiến độ rất sạch! Bạn không nợ môn nào và dự kiến tốt nghiệp đúng hạn 100%."
+                )
+            }
+        }
+
+    # ---------- 9. tiện ích ----------
     @staticmethod
     def check_attendance(total_slots, absent_slots):
         if total_slots <= 0:
@@ -380,7 +589,7 @@ class StudentAdvisor:
                 "total": fine + (book_price if over else 0),
                 "rule": "5.000đ/ngày; quá 30 ngày phải đền thêm giá nhập tài liệu."}
 
-    # ---------- 9. Thời khóa biểu & Điểm danh FAP (Kết hợp Live Sync + Cases) ----------
+    # ---------- 10. Thời khóa biểu & Điểm danh FAP & Đơn từ ----------
     def get_schedule(self):
         live = self.d.get("live", {})
         if live and live.get("student_id") == self.sid and live.get("schedule"):
@@ -388,8 +597,7 @@ class StudentAdvisor:
                 "student_id": self.sid,
                 "full_name": self.student["full_name"],
                 "semester": self.student["current_semester"],
-                "week": f"Đồng bộ trực tiếp từ FAP ({live.get('synced_at', '')[:10]})",
-                "live_synced": True,
+                "week": f"Đồng bộ từ FAP ({live.get('synced_at', '')[:10]})",
                 "schedule": live["schedule"]
             }
         cases = self.d.get("cases", {})
@@ -398,74 +606,17 @@ class StudentAdvisor:
             return schedules[self.sid]
         return cases.get("student_schedule", {"message": f"Chưa có dữ liệu thời khóa biểu cho sinh viên {self.sid}."})
 
-    def get_all_attendances(self) -> list:
-        """Lấy danh sách điểm danh của TẤT CẢ các môn đang học trong kỳ (hỗ trợ cả Live FAP Sync + dữ liệu mẫu)."""
-        results = []
-        live = self.d.get("live", {})
-        if live and live.get("student_id") == self.sid and live.get("attendance"):
-            live_att = live["attendance"]
-            if isinstance(live_att, list) and live_att and isinstance(live_att[0], dict) and "subject_code" in live_att[0]:
-                results.extend(live_att)
-
+    def get_attendance_details(self, subject_code=None):
         cases = self.d.get("cases", {})
         attendances = cases.get("attendances", {})
-        primary = attendances.get(self.sid)
-        if primary:
-            if isinstance(primary, list):
-                for item in primary:
-                    if not any(r.get("subject_code") == item.get("subject_code") for r in results):
-                        results.append(item)
-            elif isinstance(primary, dict) and primary.get("subject_code"):
-                if not any(r.get("subject_code") == primary.get("subject_code") for r in results):
-                    results.append(primary)
-
-        # Tự động bổ sung các môn đang Studying trong học kỳ hiện tại để sinh viên theo dõi đủ cả kỳ
-        studying_codes = [r["subject_code"] for r in self.records if r["status"] == "Studying"]
-        for code in studying_codes:
-            if not any(r.get("subject_code", "").lower() == code.lower() for r in results):
-                results.append({
-                    "student_id": self.sid,
-                    "subject_code": code,
-                    "subject_name": self._name(code),
-                    "class_name": f"AI{self.student['current_semester']}01",
-                    "lecturer": "Giảng viên bộ môn",
-                    "total_slots": 20,
-                    "current_slot": 12,
-                    "absent_slots": 1,
-                    "attended_slots": 11,
-                    "absent_rate_current": "8.3% (trên 12 buổi đã học)",
-                    "absent_rate_total": "5.0% (trên tổng 20 buổi)",
-                    "max_allowed_absent": 4,
-                    "remaining_allowed_absent": 3,
-                    "is_attendance_fail": False,
-                    "warning_status": f"✅ AN TOÀN: Bạn mới vắng 1/20 buổi (5.0%) môn {code}. Còn được phép nghỉ tối đa 3 buổi nữa.",
-                    "records": []
-                })
-        return results
-
-    def get_attendance_details(self, subject_code=None):
-        all_atts = self.get_all_attendances()
-        if not all_atts:
+        att = attendances.get(self.sid) or cases.get("student_attendance", {})
+        if not att:
             return {"message": f"Chưa có dữ liệu điểm danh chi tiết cho sinh viên {self.sid}."}
         if subject_code:
             code = self._norm_code(subject_code) or subject_code
-            for att in all_atts:
-                if att.get("subject_code", "").lower() == code.lower():
-                    return att
-            return {
-                "message": f"Không tìm thấy dữ liệu điểm danh môn {subject_code}.",
-                "available_subjects": [a.get("subject_code") for a in all_atts],
-                "all_courses_summary": all_atts
-            }
-        # Nếu không truyền mã môn: ưu tiên trả về môn có nguy cơ AF cao nhất để cảnh báo trên đầu trang, kèm danh sách tất cả môn
-        sorted_atts = sorted(
-            all_atts,
-            key=lambda a: (bool(a.get("is_attendance_fail")), a.get("absent_slots", 0)),
-            reverse=True
-        )
-        top = dict(sorted_atts[0])
-        top["all_courses"] = all_atts
-        return top
+            if att.get("subject_code", "").lower() != code.lower():
+                return {"message": f"Hiện tại hệ thống có dữ liệu điểm danh môn {att.get('subject_code')}, chưa có dữ liệu chi tiết từng slot của môn {subject_code}."}
+        return att
 
     def get_application_procedure(self, application_name=None):
         cases = self.d.get("cases", {})
@@ -493,5 +644,6 @@ class StudentAdvisor:
                 "military_service_exemption": app_data.get("military_service_exemption")
             }
         return app_data
+
 
 
