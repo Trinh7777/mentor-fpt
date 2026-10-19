@@ -51,7 +51,6 @@ class FAPSyncHandler(BaseHTTPRequestHandler):
             try:
                 payload = json.loads(body.decode("utf-8"))
                 student_id = (payload.get("student_id") or "UNKNOWN").strip().upper()
-                full_name = (payload.get("full_name") or "").strip()
                 transcript_records = payload.get("transcript") or []
                 raw_attendance = payload.get("attendance") or []
 
@@ -63,7 +62,7 @@ class FAPSyncHandler(BaseHTTPRequestHandler):
                     max_abs = math.floor(max(total_s, 20) * 0.20)
                     rem_abs = max(max_abs - absent_s, 0)
                     is_af = absent_s > max_abs
-                    payload["attendance"] = [{
+                    payload["attendance"] = {
                         "student_id": student_id,
                         "subject_code": payload.get("current_subject") or "FAP-LIVE",
                         "subject_name": "Môn đồng bộ từ FAP",
@@ -80,57 +79,13 @@ class FAPSyncHandler(BaseHTTPRequestHandler):
                         "is_attendance_fail": is_af,
                         "warning_status": "🚨 BỊ CẤM THI (AF)!" if is_af else f"✅ Đã vắng {absent_s}/{max(total_s, 20)} buổi (còn được phép vắng {rem_abs} buổi).",
                         "records": []
-                    }]
+                    }
 
-                # 1. Lưu file student_live_data.json đầy đủ (gồm cả schedule, attendance)
-                live_file = DATA_DIR / "student_live_data.json"
-                with open(live_file, "w", encoding="utf-8") as f:
-                    json.dump(payload, f, ensure_ascii=False, indent=2)
+                # 1. Ghi trực tiếp vào SQL Database (SQLite / PostgreSQL)
+                from database import upsert_fap_sync_to_db
+                db_res = upsert_fap_sync_to_db(payload)
 
-                # 2. Cập nhật hồ sơ sinh viên vào students.json nếu có mã SV
-                if student_id and student_id not in ("CURRENT_STUDENT", "UNKNOWN"):
-                    students_file = DATA_DIR / "students.json"
-                    students = []
-                    if students_file.exists():
-                        with open(students_file, encoding="utf-8") as f:
-                            students = json.load(f)
-
-                    found = False
-                    for s in students:
-                        if s["student_id"].upper() == student_id:
-                            found = True
-                            if full_name:
-                                s["full_name"] = full_name
-                            break
-
-                    if not found:
-                        students.append({
-                            "student_id": student_id,
-                            "full_name": full_name or f"Sinh viên {student_id}",
-                            "email": f"{student_id.lower()}@fpt.edu.vn",
-                            "major": "Artificial Intelligence",
-                            "current_semester": 5,
-                            "status": "Studying"
-                        })
-
-                    with open(students_file, "w", encoding="utf-8") as f:
-                        json.dump(students, f, ensure_ascii=False, indent=2)
-
-                # 3. Hợp nhất bảng điểm mới vào transcript.json
-                if transcript_records and student_id not in ("CURRENT_STUDENT", "UNKNOWN"):
-                    transcript_file = DATA_DIR / "transcript.json"
-                    transcripts = []
-                    if transcript_file.exists():
-                        with open(transcript_file, encoding="utf-8") as f:
-                            transcripts = json.load(f)
-
-                    transcripts = [r for r in transcripts if r.get("student_id", "").upper() != student_id]
-                    transcripts.extend(transcript_records)
-
-                    with open(transcript_file, "w", encoding="utf-8") as f:
-                        json.dump(transcripts, f, ensure_ascii=False, indent=2)
-
-                # 4. Xóa cache của data_loader để chatbot nạp ngay dữ liệu mới
+                # 2. Xóa cache của data_loader để chatbot nạp ngay dữ liệu mới từ Database
                 try:
                     from data_loader import load_all
                     load_all.cache_clear()
@@ -144,12 +99,12 @@ class FAPSyncHandler(BaseHTTPRequestHandler):
 
                 resp = {
                     "status": "success",
-                    "message": f"Đã đồng bộ {len(transcript_records)} môn học của SV {student_id} vào Mentor FPT!",
+                    "message": f"Đã tự động đồng bộ dữ liệu FAP của SV {student_id} vào Database ({len(transcript_records)} môn)!",
                     "student_id": student_id,
-                    "records_count": len(transcript_records)
+                    "db_result": db_res
                 }
                 self.wfile.write(json.dumps(resp, ensure_ascii=False).encode("utf-8"))
-                print(f"[UniFs Server] ✅ Nhận thành công dữ liệu SV {student_id}: {len(transcript_records)} bản ghi.")
+                print(f"[UniFs Server] ✅ Auto-Sync thành công SV {student_id} vào Database.")
 
             except Exception as e:
                 self.send_response(500)

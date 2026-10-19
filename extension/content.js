@@ -189,7 +189,68 @@ async function sendToBackend(payload) {
   return await response.json();
 }
 
-// ── 3. TẠO GIAO DIỆN NÚT BẤM (FLOATING BUTTON) ──
+// ── 3. ĐỒNG BỘ TỰ ĐỘNG NGẦM (SILENT AUTO-SYNC) & NÚT BẤM ──
+
+async function performSync(isSilent = false) {
+  const btn = document.getElementById("unifs-sync-btn");
+  const statusMsg = document.getElementById("unifs-sync-status");
+
+  if (!isSilent && btn) {
+    btn.classList.add("loading");
+    btn.disabled = true;
+    showStatus("Đang đọc dữ liệu từ FAP...", "info");
+  }
+
+  try {
+    const studentInfo = extractStudentInfo();
+    const transcript = extractTranscriptData(studentInfo.student_id);
+    const schedule = extractScheduleData();
+    const attendance = extractAttendanceData();
+
+    // Nếu chạy ngầm mà trang hiện tại không có MSSV hoặc không có bảng dữ liệu nào thì bỏ qua
+    if (isSilent && !studentInfo.student_id && !transcript.length && !schedule.length && !attendance.length) {
+      return;
+    }
+
+    const payload = {
+      student_id: studentInfo.student_id || "CURRENT_STUDENT",
+      full_name: studentInfo.full_name || "",
+      current_url: window.location.href,
+      synced_at: new Date().toISOString(),
+      transcript: transcript,
+      schedule: schedule,
+      attendance: attendance,
+    };
+
+    const res = await sendToBackend(payload);
+    console.log("[UniFs Auto-Sync] Đã đồng bộ ngầm về Database:", res);
+
+    if (btn) {
+      const span = btn.querySelector("span");
+      if (span) span.innerText = "Đã tự động đồng bộ FAP ✓";
+    }
+    if (!isSilent) {
+      showStatus(`✅ ${res.message || "Dữ liệu đã được nạp vào Database!"}`, "success");
+    }
+  } catch (err) {
+    if (!isSilent) {
+      console.error("[UniFs Sync] Lỗi:", err);
+      showStatus(`❌ Lỗi đồng bộ: ${err.message}. Hãy chắc chắn ứng dụng Streamlit đang chạy!`, "error");
+    }
+  } finally {
+    if (btn) {
+      btn.classList.remove("loading");
+      btn.disabled = false;
+    }
+    if (!isSilent && statusMsg) {
+      setTimeout(() => {
+        if (statusMsg.classList.contains("success")) {
+          statusMsg.style.display = "none";
+        }
+      }, 4500);
+    }
+  }
+}
 
 function injectSyncButton() {
   if (document.getElementById("unifs-sync-container")) return;
@@ -209,50 +270,14 @@ function injectSyncButton() {
     <span>Đồng bộ UniFs Chatbot</span>
   `;
 
-  btn.addEventListener("click", async () => {
-    btn.classList.add("loading");
-    btn.disabled = true;
-    showStatus("Đang đọc dữ liệu từ FAP...", "info");
-
-    try {
-      const studentInfo = extractStudentInfo();
-      const transcript = extractTranscriptData(studentInfo.student_id);
-      const schedule = extractScheduleData();
-      const attendance = extractAttendanceData();
-
-      const payload = {
-        student_id: studentInfo.student_id || "CURRENT_STUDENT",
-        full_name: studentInfo.full_name || "",
-        current_url: window.location.href,
-        synced_at: new Date().toISOString(),
-        transcript: transcript,
-        schedule: schedule,
-        attendance: attendance,
-      };
-
-      console.log("[UniFs Sync] Payload chuẩn bị gửi:", payload);
-
-      showStatus("Đang đồng bộ về Chatbot Local...", "info");
-      const res = await sendToBackend(payload);
-
-      showStatus(`✅ Đồng bộ thành công: ${res.message || "Dữ liệu đã được nạp vào Chatbot!"}`, "success");
-    } catch (err) {
-      console.error("[UniFs Sync] Lỗi:", err);
-      showStatus(`❌ Lỗi đồng bộ: ${err.message}. Hãy chắc chắn server local đã bật!`, "error");
-    } finally {
-      btn.classList.remove("loading");
-      btn.disabled = false;
-      setTimeout(() => {
-        if (statusMsg.classList.contains("success")) {
-          statusMsg.style.display = "none";
-        }
-      }, 5000);
-    }
-  });
+  btn.addEventListener("click", () => performSync(false));
 
   container.appendChild(statusMsg);
   container.appendChild(btn);
   document.body.appendChild(container);
+
+  // Tự động đồng bộ ngầm (Silent Auto-Sync) sau 800ms khi trang FAP tải xong
+  setTimeout(() => performSync(true), 800);
 }
 
 function showStatus(text, type) {
@@ -268,3 +293,4 @@ if (document.readyState === "loading") {
 } else {
   injectSyncButton();
 }
+

@@ -6,39 +6,247 @@
     },
     {
       "role": "assistant",
-      "content": "Chào A! (SE190456) ✨\n\nHiện tại em đang học kỳ 5 ngành Artificial Intelligence và đã tích lũy được **60 tín chỉ** (còn đang học thêm 12 tín chỉ trong kỳ này). \n\nTheo tiến độ hiện tại, sau khi hoàn thành học kỳ này em sẽ đủ điều kiện đi **Thực tập doanh nghiệp (OJT)**. Sau OJT, em sẽ bước vào giai đoạn làm đồ án/khóa luận tốt nghiệp (AIP491) và các học kỳ cuối. \n\nVới số lượng tín chỉ tổng cộng của chương trình là **133 tín chỉ**, dự kiến thời gian hoàn thành chương trình học và tốt nghiệp của em sẽ rơi vào khoảng **năm 2026** (kỳ Fall 2026 hoặc Spring 2027 tùy thuộc vào tốc độ đăng ký học vượt và hoàn thành đồ án tốt nghiệp nhé) 🎓.\n\nCố gắng giữ vững phong độ học tập, hoàn thành tốt kỳ OJT sắp tới để kịp về đích đúng hạn nha A! Cần anh/chị hỗ trợ tra cứu môn học hay lộ trình gì cứ hú anh/chị nhé! 💪",
+      "content": "Chào bạn! Mentor đã check tiến độ học tập và hệ thống dự báo ra trường của FPTU cho bạn rồi đây 🎓:\n\n### 🕒 Dự báo thời điểm tốt nghiệp\n- **Học kỳ kết thúc:** Spring 2028 (dự kiến hoàn thành môn học vào **Tháng 04/2028**).\n- **Năm tốt nghiệp chính thức:** **2028** (Lễ nhận bằng sẽ diễn ra sau đó khoảng 1-2 tháng).\n- **Tiến độ hiện tại:** Bạn đang học kỳ 5, không nợ môn nào, chuỗi tiên quyết hoàn toàn thông suốt. Tiến độ cực kỳ sạch sẽ và chuẩn chỉnh! 🚀\n\n---\n\n### 📊 Dự báo xếp loại học lực & Bằng tốt nghiệp\n- **GPA tích lũy hiện tại:** `7.9` (Xếp loại: Khá).\n- **Xu hướng học tập:** Đang tăng trưởng rất tốt qua các kỳ (+0.09 điểm/kỳ) 📈.\n- **Dự báo GPA khi tốt nghiệp:** Khoảng **7.97** (Xếp loại bằng: **Khá**).\n\n💡 **Gợi ý nhỏ cho bạn:** \nGPA hiện tại của bạn là `7.9`, sát nút với ngưỡng bằng **Giỏi (8.0)**. \n- Để chạm tay vào bằng Giỏi, bạn chỉ cần giữ vững phong độ và đẩy nhẹ điểm trung bình các kỳ còn lại lên khoảng **8.1** ở các môn sắp tới. Hoàn toàn trong tầm tay nếu bạn cố gắng thêm một chút ở các kỳ chuyên ngành đấy! 💪\n\nCần mentor tư vấn thêm về chiến lược chọn môn hay giả lập GPA kỳ tới không nào?",
       "tools": [
         {
-          "tool": "check_ojt_and_graduation_eligibility",
+          "tool": "predict_graduation_forecast",
           "args": [],
           "result": {
             "current_semester": 5,
-            "ojt_eligibility": {
-              "ojt_completed": false,
-              "pre_ojt_credits_passed": 60,
-              "pre_ojt_credits_studying": 12,
-              "pre_ojt_credits_total": 72,
-              "current_percentage": 83.3,
-              "projected_percentage_after_this_term": 100.0,
-              "required_percentage": 90.0,
-              "is_eligible_now": false,
-              "is_eligible_if_pass_studying": true,
-              "rule": "Sinh viên phải tích lũy đạt tối thiểu 90% tổng số tín chỉ giai đoạn trước OJT (Kỳ 1–5) theo Phụ lục 4 (07.04PL-QT/ĐH/HDCV/FE)."
+            "remaining_standard_semesters": 4,
+            "estimated_delay_semesters": 0,
+            "on_time_graduation": {
+              "finish_semester": "Spring 2028",
+              "finish_study_month": "Tháng 04/2028",
+              "graduation_year": 2028,
+              "note": "Nếu học đúng lộ trình 3 kỳ/năm của FPTU và trả các môn nợ (nếu có) song song trong kỳ chính."
             },
-            "capstone_and_graduation": {
-              "capstone_completed": false,
-              "eligible_for_capstone_AIP491": false,
-              "total_credits_passed": 60,
-              "total_credits_required": 133,
-              "pending_failed_subjects": [],
-              "mandatory_non_gpa_checklist": [
-                "Hoàn thành Giáo dục thể chất (Vovinam / Cờ vua)",
-                "Chứng chỉ Giáo dục Quốc phòng - An ninh (GDQP)",
-                "Chứng chỉ Tiếng Anh chuẩn đầu ra theo quy định",
-                "Không nợ học phí & Không nợ sách/phạt Thư viện"
-              ],
-              "rule": "Để làm KLTN (AIP491) và xét tốt nghiệp, sinh viên phải hoàn thành OJT202, đạt các môn tiên quyết và tích lũy đủ tín chỉ chương trình (Phụ lục 5 & 6)."
+            "realistic_graduation_forecast": {
+              "finish_semester": "Spring 2028",
+              "finish_study_month": "Tháng 04/2028",
+              "graduation_year": 2028,
+              "ceremony_and_diploma_estimate": "Lễ tốt nghiệp & nhận bằng dự kiến sau ~1–2 tháng (2028)"
+            },
+            "academic_standing_forecast": {
+              "current_gpa": 7.9,
+              "current_classification": "Khá",
+              "gpa_trend_slope_per_semester": 0.092,
+              "gpa_trend_description": "Đang tăng trưởng tốt 📈",
+              "projected_graduation_gpa": 7.97,
+              "projected_graduation_classification": "Khá",
+              "degree_classification_targets": {
+                "Xuất sắc (9.0)": {
+                  "required_avg": 10.05,
+                  "verdict": "Không thể đạt (cần > 10)"
+                },
+                "Giỏi (8.0)": {
+                  "required_avg": 8.1,
+                  "verdict": "Khả thi"
+                },
+                "Khá (7.0)": {
+                  "required_avg": 6.14,
+                  "verdict": "Khả thi"
+                }
+              }
+            },
+            "risk_factors": {
+              "pending_retake_or_af_subjects": [],
+              "prerequisite_chains_blocked": [],
+              "advice": "Tiến độ rất sạch! Bạn không nợ môn nào và dự kiến tốt nghiệp đúng hạn 100%."
             }
+          }
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "content": "báo cáo điểm danh của tôi "
+    },
+    {
+      "role": "assistant",
+      "content": "⚠️ **CẢNH BÁO ĐIỂM DANH - MÔN DEEP LEARNING (DPL302m)** ⚠️\n\nMentor vừa check chi tiết tình hình điểm danh lớp **AI2012-ADS** (giảng viên: Thầy HuynhLD3) của bạn đây. Tình hình đang hơi **báo động đỏ** rồi đấy nhé! 🚨\n\n### 📊 Thống kê nhanh:\n- **Môn học:** DPL302m (Deep Learning)\n- **Tổng số buổi:** 20 buổi\n- **Đã học:** 12 buổi | **Chưa học:** 8 buổi\n- **Đã có mặt:** 9 buổi \n- **Đã vắng mặt:** **3 buổi** ❌ (chiếm 25% số buổi đã học)\n\n### 🚨 Mức độ rủi ro:\n- **Số buổi được phép vắng tối đa:** 4 buổi (20% tổng số buổi)\n- **Số buổi còn lại được phép nghỉ:** **CHỈ CÒN 1 BUỔI DUY NHẤT!** 😱\n\n👉 **Nhắc nhở chân tình từ đàn anh:** Bạn chỉ được phép nghỉ tối đa 1 buổi nữa thôi. Nếu vắng từ buổi thứ 5 trở lên, hệ thống sẽ tự động khép lại cơ hội thi cử và bạn sẽ dính điểm **AF (Cấm thi)** môn này đó nha! \n\nCác buổi học tới nhớ đi học đầy đủ và đúng giờ nhé, đừng để \"mất bò mới lo làm chuồng\" nha bạn tôi ơi! 💪🎓",
+      "tools": [
+        {
+          "tool": "get_attendance_details",
+          "args": [],
+          "result": {
+            "student_id": "SE190456",
+            "subject_code": "DPL302m",
+            "subject_name": "Deep Learning",
+            "class_name": "AI2012-ADS",
+            "lecturer": "HuynhLD3",
+            "total_slots": 20,
+            "current_slot": 12,
+            "absent_slots": 3,
+            "attended_slots": 9,
+            "absent_rate_current": "25.0% (trên 12 buổi đã học)",
+            "absent_rate_total": "15.0% (trên tổng 20 buổi)",
+            "max_allowed_absent": 4,
+            "remaining_allowed_absent": 1,
+            "is_attendance_fail": false,
+            "warning_status": "CẢNH BÁO NGUY CƠ CAO: Bạn đã vắng 3/20 buổi (15%). Bạn chỉ còn ĐƯỢC PHÉP NGHỈ TỐI ĐA 1 BUỔI NỮA. Nếu vắng thêm buổi thứ 5 (quá 20%) bạn sẽ bị CẤM THI (AF) môn DPL302m!",
+            "records": [
+              {
+                "session": 1,
+                "date": "Thứ Hai 07/09/2026",
+                "time": "10:00 - 12:20",
+                "room": "BE-216",
+                "lecturer": "HuynhLD3",
+                "status": "Vắng mặt"
+              },
+              {
+                "session": 2,
+                "date": "Thứ Năm 10/09/2026",
+                "time": "07:30 - 09:50",
+                "room": "BE-204",
+                "lecturer": "HuynhLD3",
+                "status": "Có mặt"
+              },
+              {
+                "session": 3,
+                "date": "Thứ Hai 14/09/2026",
+                "time": "10:00 - 12:20",
+                "room": "DE-425",
+                "lecturer": "HuynhLD3",
+                "status": "Có mặt"
+              },
+              {
+                "session": 4,
+                "date": "Thứ Năm 17/09/2026",
+                "time": "07:30 - 09:50",
+                "room": "DE-425",
+                "lecturer": "HuynhLD3",
+                "status": "Có mặt"
+              },
+              {
+                "session": 5,
+                "date": "Thứ Hai 21/09/2026",
+                "time": "10:00 - 12:20",
+                "room": "DE-425",
+                "lecturer": "HuynhLD3",
+                "status": "Có mặt"
+              },
+              {
+                "session": 6,
+                "date": "Thứ Năm 24/09/2026",
+                "time": "07:30 - 09:50",
+                "room": "DE-425",
+                "lecturer": "HuynhLD3",
+                "status": "Có mặt"
+              },
+              {
+                "session": 7,
+                "date": "Thứ Hai 28/09/2026",
+                "time": "10:00 - 12:20",
+                "room": "DE-425",
+                "lecturer": "HuynhLD3",
+                "status": "Có mặt"
+              },
+              {
+                "session": 8,
+                "date": "Thứ Năm 01/10/2026",
+                "time": "07:30 - 09:50",
+                "room": "DE-425",
+                "lecturer": "HuynhLD3",
+                "status": "Có mặt"
+              },
+              {
+                "session": 9,
+                "date": "Thứ Hai 05/10/2026",
+                "time": "10:00 - 12:20",
+                "room": "DE-425",
+                "lecturer": "HuynhLD3",
+                "status": "Vắng mặt"
+              },
+              {
+                "session": 10,
+                "date": "Thứ Năm 08/10/2026",
+                "time": "07:30 - 09:50",
+                "room": "DE-425",
+                "lecturer": "HuynhLD3",
+                "status": "Có mặt"
+              },
+              {
+                "session": 11,
+                "date": "Thứ Hai 12/10/2026",
+                "time": "10:00 - 12:20",
+                "room": "DE-425",
+                "lecturer": "HuynhLD3",
+                "status": "Vắng mặt"
+              },
+              {
+                "session": 12,
+                "date": "Thứ Năm 15/10/2026",
+                "time": "07:30 - 09:50",
+                "room": "DE-425",
+                "lecturer": "HuynhLD3",
+                "status": "Có mặt"
+              },
+              {
+                "session": 13,
+                "date": "Thứ Hai 19/10/2026",
+                "time": "10:00 - 12:20",
+                "room": "DE-425",
+                "lecturer": "HuynhLD3",
+                "status": "Chưa điểm danh"
+              },
+              {
+                "session": 14,
+                "date": "Thứ Năm 22/10/2026",
+                "time": "07:30 - 09:50",
+                "room": "DE-425",
+                "lecturer": "HuynhLD3",
+                "status": "Chưa điểm danh"
+              },
+              {
+                "session": 15,
+                "date": "Thứ Hai 26/10/2026",
+                "time": "10:00 - 12:20",
+                "room": "DE-425",
+                "lecturer": "HuynhLD3",
+                "status": "Chưa điểm danh"
+              },
+              {
+                "session": 16,
+                "date": "Thứ Năm 29/10/2026",
+                "time": "07:30 - 09:50",
+                "room": "DE-425",
+                "lecturer": "HuynhLD3",
+                "status": "Chưa điểm danh"
+              },
+              {
+                "session": 17,
+                "date": "Thứ Hai 02/11/2026",
+                "time": "10:00 - 12:20",
+                "room": "DE-425",
+                "lecturer": "HuynhLD3",
+                "status": "Chưa điểm danh"
+              },
+              {
+                "session": 18,
+                "date": "Thứ Năm 05/11/2026",
+                "time": "07:30 - 09:50",
+                "room": "DE-425",
+                "lecturer": "HuynhLD3",
+                "status": "Chưa điểm danh"
+              },
+              {
+                "session": 19,
+                "date": "Thứ Hai 09/11/2026",
+                "time": "10:00 - 12:20",
+                "room": "DE-425",
+                "lecturer": "HuynhLD3",
+                "status": "Chưa điểm danh"
+              },
+              {
+                "session": 20,
+                "date": "Thứ Năm 12/11/2026",
+                "time": "07:30 - 09:50",
+                "room": "DE-425",
+                "lecturer": "HuynhLD3",
+                "status": "Chưa điểm danh"
+              }
+            ]
           }
         }
       ]

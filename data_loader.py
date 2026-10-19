@@ -1,7 +1,8 @@
-"""BƯỚC 2 - Nạp 5 file JSON vào bộ nhớ (cache 1 lần)."""
+"""BƯỚC 2 - Nạp dữ liệu trực tiếp từ Cơ sở dữ liệu SQL (`database.py`: SQLite hoặc PostgreSQL/Supabase)."""
 import json
 from functools import lru_cache
 from config import DATA_DIR
+from database import fetch_all_from_db
 
 
 def _read(name):
@@ -11,30 +12,28 @@ def _read(name):
 
 @lru_cache(maxsize=1)
 def load_all():
-    students = {s["student_id"]: s for s in _read("students.json")}
-    subjects = {s["subject_code"]: s for s in _read("subjects.json")}
-    prereqs = {}
-    for p in _read("prerequisites.json"):
-        prereqs.setdefault(p["subject_code"], []).append(p)
-    transcript = _read("transcript.json")
-    policy_chunks = _read("FPT.json")["chunks"]
-    cases_data = _read("fpt_cases.json") if (DATA_DIR / "fpt_cases.json").exists() else {}
-    live_data = {}
-    live_path = DATA_DIR / "student_live_data.json"
-    if live_path.exists():
-        try:
-            live_data = _read("student_live_data.json")
-        except Exception:
-            live_data = {}
-    return {
-        "students": students,
-        "subjects": subjects,
-        "prereqs": prereqs,
-        "transcript": transcript,
-        "policy": policy_chunks,
-        "cases": cases_data,
-        "live": live_data,
-    }
+    """Đọc toàn bộ dữ liệu từ Database (tự động migrate từ JSON trong lần chạy đầu tiên)."""
+    try:
+        return fetch_all_from_db()
+    except Exception:
+        # Dự phòng đọc JSON nếu Database đang bảo trì
+        students = {s["student_id"]: s for s in _read("students.json")}
+        subjects = {s["subject_code"]: s for s in _read("subjects.json")}
+        prereqs = {}
+        for p in _read("prerequisites.json"):
+            prereqs.setdefault(p["subject_code"], []).append(p)
+        transcript = _read("transcript.json")
+        policy_chunks = _read("FPT.json")["chunks"]
+        cases_data = _read("fpt_cases.json") if (DATA_DIR / "fpt_cases.json").exists() else {}
+        return {
+            "students": students,
+            "subjects": subjects,
+            "prereqs": prereqs,
+            "transcript": transcript,
+            "policy": policy_chunks,
+            "cases": cases_data,
+            "live": {},
+        }
 
 
 def find_subject_code(text, subjects):

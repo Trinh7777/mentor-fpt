@@ -1,10 +1,9 @@
-"""BƯỚC 8 - Giao diện Web Streamlit cho Mentor FPT.
-Hệ thống Đăng nhập bảo mật thông tin sinh viên + Giao diện đa năng thực dụng:
-- Tự động chạy FAP Sync API Server ngầm (Port 8000)
-- Lưu lịch sử chat bền vững theo từng MSSV
-- 4 Tab chuyên biệt: Trợ lý AI, Tính điểm qua môn (FE Calculator), Sơ đồ cây môn học 9 kỳ (Roadmap), Điểm danh đa môn & Thời khóa biểu.
+"""BƯỚC 8 - Giao diện Web Streamlit cho Mentor FPT (Mô hình B).
+- Toàn bộ dữ liệu nằm trên SQL Database (`database.py`: SQLite tích hợp sẵn hoặc PostgreSQL/Supabase)
+- Hỗ trợ đăng nhập & Đổi mật khẩu cá nhân (mã hóa SHA-256)
+- Tự động chạy FAP Sync API Server ngầm (Port 8000) nhận dữ liệu Silent Auto-Sync từ Chrome Extension
+- Tự động kích hoạt Telegram Bot ngầm nếu có TELEGRAM_BOT_TOKEN
 """
-import json
 import logging
 import os
 import pandas as pd
@@ -12,9 +11,17 @@ import streamlit as st
 
 import fallback
 from advisor import StudentAdvisor
-from config import DATA_DIR, DEFAULT_MODEL, TUITION_PER_CREDIT
+from config import DEFAULT_MODEL, TUITION_PER_CREDIT
 from data_loader import load_all
+from database import (
+    verify_student_credentials,
+    change_student_password,
+    load_chat_history_db,
+    save_chat_history_db,
+    _is_postgres,
+)
 from server import start_background_server, is_port_in_use
+from telegram_bot import start_telegram_bot_if_configured, get_telegram_token
 
 # Cấu hình logging
 logging.basicConfig(level=logging.INFO)
@@ -23,34 +30,13 @@ log = logging.getLogger("mentor_fpt")
 # Tự động bật FAP Sync Receiver Server ngầm ở cổng 8000 ngay khi chạy Streamlit
 start_background_server()
 
-CHAT_HISTORY_FILE = DATA_DIR / "chat_history.json"
-
 
 def load_student_chat(sid: str) -> list:
-    if not CHAT_HISTORY_FILE.exists():
-        return []
-    try:
-        with open(CHAT_HISTORY_FILE, encoding="utf-8") as f:
-            all_hist = json.load(f)
-        return all_hist.get(sid, [])
-    except Exception:
-        return []
+    return load_chat_history_db(sid)
 
 
 def save_student_chat(sid: str, messages: list):
-    if not sid:
-        return
-    try:
-        all_hist = {}
-        if CHAT_HISTORY_FILE.exists():
-            with open(CHAT_HISTORY_FILE, encoding="utf-8") as f:
-                all_hist = json.load(f)
-        # Chỉ lưu tối đa 40 tin nhắn gần nhất để file nhẹ
-        all_hist[sid] = messages[-40:]
-        with open(CHAT_HISTORY_FILE, "w", encoding="utf-8") as f:
-            json.dump(all_hist, f, ensure_ascii=False, indent=2)
-    except Exception:
-        pass
+    save_chat_history_db(sid, messages)
 
 
 # Cấu hình trang Streamlit
@@ -78,6 +64,9 @@ def get_api_key():
 API_KEY = get_api_key()
 MODEL = os.getenv("GEMINI_MODEL", DEFAULT_MODEL)
 use_llm = bool(API_KEY)
+
+# Tự động bật Telegram Bot nếu đã cấu hình TELEGRAM_BOT_TOKEN
+start_telegram_bot_if_configured(API_KEY)
 
 
 @st.cache_resource
@@ -144,10 +133,6 @@ CUSTOM_CSS = """
     .badge-blue { background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.4); }
     .badge-green { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); }
 
-    .alert-box { padding: 0.85rem 1.2rem; border-radius: 12px; margin-bottom: 0.9rem; font-size: 0.9rem; line-height: 1.45; }
-    .alert-danger { background: #fef2f2; border-left: 5px solid #ef4444; color: #991b1b; }
-    .alert-warning { background: #fffbeb; border-left: 5px solid #f59e0b; color: #92400e; }
-
     .sidebar-user-box {
         padding: 1rem; background: #f8fafc; border-radius: 12px;
         border: 1px solid #e2e8f0; margin-bottom: 1rem; text-align: center;
@@ -157,17 +142,6 @@ CUSTOM_CSS = """
         margin: 0 auto 0.5rem auto; display: flex; align-items: center; justify-content: center;
         font-weight: bold; font-size: 1.15rem;
     }
-
-    /* Roadmap Cards */
-    .subj-card {
-        border-radius: 10px; padding: 0.6rem 0.75rem; margin-bottom: 0.5rem;
-        border: 1px solid #e2e8f0; font-size: 0.82rem; line-height: 1.35;
-    }
-    .subj-Passed { background: #ecfdf5; border-left: 4px solid #10b981; color: #065f46; }
-    .subj-Studying { background: #eff6ff; border-left: 4px solid #3b82f6; color: #1e40af; }
-    .subj-Failed { background: #fef2f2; border-left: 4px solid #ef4444; color: #991b1b; }
-    .subj-Locked { background: #f8fafc; border-left: 4px solid #94a3b8; color: #64748b; opacity: 0.85; }
-    .subj-Available { background: #fffbeb; border-left: 4px solid #f59e0b; color: #92400e; }
 
     .stChatMessage { border-radius: 14px; margin-bottom: 0.75rem; }
 </style>
@@ -182,27 +156,11 @@ if "logged_in" not in st.session_state:
     st.session_state.campus = "Hà Nội"
 
 data = load_all()
-students_dict = data.get("students", {})
 
 
 def authenticate_student(identifier: str, password: str):
-    """Xác thực sinh viên bằng MSSV hoặc Email FPT."""
-    clean_id = identifier.strip().lower()
-    matched_sid = None
-    for sid, s in students_dict.items():
-        if sid.lower() == clean_id or s.get("email", "").lower() == clean_id:
-            matched_sid = sid
-            break
-
-    if not matched_sid:
-        return None, "Không tìm thấy thông tin sinh viên với MSSV/Email này."
-
-    clean_pwd = password.strip().lower()
-    valid_passwords = ["123456", matched_sid.lower(), "fpt@123", "fpt123", ""]
-    if clean_pwd not in valid_passwords and clean_pwd != "123456":
-        return None, "Mật khẩu không chính xác. (Mặc định: 123456 hoặc chính mã MSSV)."
-
-    return matched_sid, None
+    """Xác thực sinh viên bằng MSSV hoặc Email FPT trực tiếp trên SQL Database."""
+    return verify_student_credentials(identifier, password)
 
 
 # =========================================================================
@@ -213,7 +171,7 @@ if not st.session_state.logged_in:
     <div class="login-container">
         <div class="login-logo">🎓</div>
         <div class="login-title">Mentor FPT</div>
-        <div class="login-subtitle">Hệ Thống Cố Vấn Học Vụ, Tính Điểm FE & Đồng Bộ FAP Trực Tuyến</div>
+        <div class="login-subtitle">Trợ Lý AI Cố Vấn Học Vụ & Dự Báo Học Lực Sinh Viên</div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -229,7 +187,7 @@ if not st.session_state.logged_in:
                 password_input = st.text_input(
                     "Mật khẩu:",
                     type="password",
-                    placeholder="Nhập mật khẩu (Mặc định: 123456)"
+                    placeholder="Nhập mật khẩu (Mặc định lần đầu: 123456)"
                 )
                 campus_choice = st.selectbox(
                     "Cơ sở theo học:",
@@ -259,14 +217,14 @@ if not st.session_state.logged_in:
                 - `SE190460` – **Phạm Thanh Thảo** (Kỳ 5, **Nợ môn + Cấm thi AF môn DSR301m**)
                 - `SE190459` – **Trần Anh Tuấn** (Kỳ 3, **Đang nợ môn tiên quyết MAD101, PFP191**)
                 - `SE190463` – **Bùi Quốc Anh** (Kỳ 9, **Đang làm khóa luận AIP491 & chuẩn bị xét tốt nghiệp**)
-                - **Mật khẩu mặc định:** `123456` (hoặc chính mã MSSV)
+                - **Mật khẩu mặc định:** `123456` (Có thể đổi mật khẩu sau khi đăng nhập)
                 """)
 
     st.stop()
 
 else:
     # =========================================================================
-    # MÀN HÌNH 2: DASHBOARD & CHATBOT CHÍNH
+    # MÀN HÌNH 2: GIAO DIỆN CHAT CHÍNH
     # =========================================================================
     sid = st.session_state.student_id
     campus = st.session_state.campus
@@ -274,6 +232,7 @@ else:
     s = adv.student
     initial = s['full_name'].split()[-1][0].upper() if s.get('full_name') else "S"
     sync_online = is_port_in_use(8000)
+    db_type_label = "PostgreSQL Cloud" if _is_postgres() else "SQLite Database (`mentor_fpt.db`)"
 
     # ------------------------- SIDEBAR -------------------------
     with st.sidebar:
@@ -286,10 +245,13 @@ else:
         </div>
         """, unsafe_allow_html=True)
 
+        st.caption(f"🗄️ **Database:** {db_type_label}")
         st.caption(
-            f"🟢 **FAP Sync Server:** Đang chạy (Port 8000)" if sync_online
-            else "⚪ **FAP Sync Server:** Chưa kích hoạt"
+            f"🟢 **FAP Auto-Sync:** Đang bật (Port 8000)" if sync_online
+            else "⚪ **FAP Auto-Sync:** Chưa kích hoạt"
         )
+        if get_telegram_token():
+            st.caption("🤖 **Telegram Bot:** Đang hoạt động")
 
         st.subheader("⚙️ Tùy chọn")
         new_campus = st.selectbox(
@@ -301,9 +263,28 @@ else:
             st.session_state.campus = new_campus
             st.rerun()
 
+        # Tính năng đổi mật khẩu lưu thẳng vào SQL Database
+        with st.expander("🔐 Đổi mật khẩu cá nhân"):
+            with st.form("change_pwd_form", clear_on_submit=True):
+                old_p = st.text_input("Mật khẩu hiện tại:", type="password")
+                new_p = st.text_input("Mật khẩu mới:", type="password")
+                conf_p = st.text_input("Xác nhận mật khẩu mới:", type="password")
+                if st.form_submit_button("Lưu mật khẩu mới", use_container_width=True):
+                    if not old_p or not new_p:
+                        st.error("Vui lòng nhập đầy đủ mật khẩu!")
+                    elif new_p != conf_p:
+                        st.error("Mật khẩu xác nhận không khớp!")
+                    else:
+                        ok, msg = change_student_password(sid, old_p, new_p)
+                        if ok:
+                            load_all.cache_clear()
+                            st.success(f"✅ {msg}")
+                        else:
+                            st.error(f"❌ {msg}")
+
         st.markdown("---")
         col_sb1, col_sb2 = st.columns(2)
-        if col_sb1.button("🔄 Nạp lại data", use_container_width=True):
+        if col_sb1.button("🔄 Nạp lại DB", use_container_width=True):
             load_all.cache_clear()
             st.rerun()
         if col_sb2.button("🧹 Xóa chat", use_container_width=True):
@@ -322,6 +303,9 @@ else:
     status_vn = "Đang học" if s.get("status") == "Studying" else s.get("status", "Đang học")
     g, p = adv.gpa(), adv.progress()
     att_info = adv.get_attendance_details()
+    gpa_val = g.get("gpa")
+    gpa_badge_text = f"GPA: {gpa_val:.2f} ({g.get('classification')})" if gpa_val is not None else "Chưa đồng bộ bảng điểm"
+    gpa_metric_val = f"{gpa_val:.2f}" if gpa_val is not None else "Chưa có"
 
     st.markdown(f"""
     <div class="profile-card">
@@ -335,7 +319,7 @@ else:
                     <span>📅 <b>Học kỳ:</b> {s['current_semester']}</span>
                     <span>📍 <b>Cơ sở:</b> {campus}</span>
                     <span class="badge-pill badge-blue">{status_vn}</span>
-                    <span class="badge-pill badge-green">GPA: {g['gpa']:.2f} ({g['classification']})</span>
+                    <span class="badge-pill badge-green">{gpa_badge_text}</span>
                 </div>
             </div>
         </div>
@@ -346,7 +330,7 @@ else:
     with st.expander("📊 Xem nhanh Tiến độ học tập & Chuyên cần", expanded=False):
         col1, col2, col3, col4 = st.columns(4)
         with col1:
-            st.metric("GPA Tích lũy", f"{g['gpa']:.2f}", g["classification"])
+            st.metric("GPA Tích lũy", gpa_metric_val, g.get("classification") or "Mở Bảng điểm FAP để đồng bộ")
         with col2:
             st.metric("Tín chỉ tích lũy", f"{p['credits_passed']}/{p['credits_total']}", f"{p['percent']}%")
         with col3:
