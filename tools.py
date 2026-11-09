@@ -68,21 +68,27 @@ def build_tools(adv: StudentAdvisor, log: list):
         return adv.get_schedule()
 
     def get_attendance_details(subject_code: Optional[str] = None) -> dict:
-        """Xem tình hình điểm danh chi tiết từng buổi học (đã học bao nhiêu buổi, vắng mấy buổi, ngày giờ, phòng, tình trạng điểm danh, nguy cơ cấm thi AF)."""
+        """Xem tình hình điểm danh chi tiết các môn trong học kỳ (đồng bộ đa môn song song từ FAP: đã học bao nhiêu buổi, vắng mấy buổi, tỷ lệ %, nguy cơ cấm thi AF 20%).
+        Bỏ trống subject_code để xem toàn bộ các môn trong kỳ, hoặc truyền mã môn để xem chi tiết từng buổi của môn đó."""
         return adv.get_attendance_details(subject_code)
+
+    def get_component_grades(subject_code: Optional[str] = None) -> dict:
+        """Xem bảng điểm thành phần các môn đang học kỳ hiện tại kéo trực tiếp từ FAP Mark Report (Progress Test, Lab, Assignment, Quiz, trọng số FE)
+        kèm điểm thi Final Exam (FE) tối thiểu cần đạt để Qua môn (>= 5.0) hoặc đạt Giỏi (>= 8.0)."""
+        return adv.get_component_grades(subject_code)
 
     def get_fap_application_procedure(application_name: Optional[str] = None) -> dict:
         """Tra cứu thủ tục gửi đơn từ trên FAP (xin tạm hoãn nghĩa vụ quân sự NVQS, bảo lưu, chuyển ngành, đổi combo, phúc khảo, chuyển võ sang cờ, học vượt kỳ...)."""
         return adv.get_application_procedure(application_name)
 
     def calculate_required_final_score(
-        coursework_avg: float,
+        coursework_avg: Optional[float] = None,
         subject_code: Optional[str] = None,
         fe_weight: Optional[float] = None,
         target_total: float = 5.0
     ) -> dict:
         """Tính điểm thi Final Exam (FE) tối thiểu cần đạt để qua môn (>= 5.0 tổng và >= 4.0 FE tránh điểm liệt) hoặc đạt điểm mục tiêu.
-        coursework_avg: điểm trung bình quá trình hiện tại (thang 10, vd 6.5);
+        coursework_avg: điểm trung bình quá trình hiện tại (thang 10, vd 6.5; nếu bỏ trống sẽ tự lấy từ bảng điểm thành phần FAP đã đồng bộ);
         subject_code: mã môn (vd 'DPL302m', 'BDI302c');
         fe_weight: trọng số bài thi FE (vd 0.3 hoặc 0.4, bỏ trống sẽ tự lấy theo chuẩn môn học);
         target_total: điểm tổng kết mong muốn (mặc định 5.0 để qua môn, hoặc 8.0 để đạt Giỏi)."""
@@ -108,6 +114,6 @@ def build_tools(adv: StudentAdvisor, log: list):
     fns = [get_student_profile, get_transcript, calculate_gpa, plan_target_gpa, get_study_progress,
            check_prerequisites, suggest_next_subjects, calculate_retake_fee, check_attendance,
            calculate_library_fine, search_policy, get_student_schedule, get_attendance_details,
-           get_fap_application_procedure, calculate_required_final_score, check_ojt_and_graduation_eligibility,
-           simulate_semester_grades, predict_graduation_forecast]
+           get_component_grades, get_fap_application_procedure, calculate_required_final_score,
+           check_ojt_and_graduation_eligibility, simulate_semester_grades, predict_graduation_forecast]
     return [_logged(f, log) for f in fns]

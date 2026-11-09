@@ -67,7 +67,7 @@ def answer(text: str, adv: StudentAdvisor):
                 f"- Mốc phấn đấu cho phần còn lại:\n{targets}\n\n"
                 f"**3. Đánh giá rủi ro tiến độ:** {risk['advice']}"), log
 
-    # 0c. Câu hỏi tính điểm thi Final Exam (FE) cần đạt
+    # 0c. Câu hỏi tính điểm thi Final Exam (FE) cần đạt & Bảng điểm thành phần kéo từ FAP
     fe_match = re.search(r"(?:qua trinh|pt|assignment|dang duoc|trung binh)\D{0,15}(\d+(?:[.,]\d+)?)", n)
     if ("fe" in n or "final" in n or "cuoi ky" in n or "qua mon" in n) and fe_match:
         cw_val = float(fe_match.group(1).replace(",", "."))
@@ -79,6 +79,22 @@ def answer(text: str, adv: StudentAdvisor):
                 f"- Trọng số thi FE: **{r['fe_weight_pct']}%** (điểm sàn không liệt: **>= {r['fpt_min_fe_floor']}**)\n"
                 f"👉 **Điểm thi FE tối thiểu cần đạt để qua môn (>= {r['target_total_grade']}): `{r['required_fe_score']}` điểm**\n"
                 f"💡 *Đánh giá:* {r['verdict']}."), log
+
+    if any(k in n for k in ["diem thanh phan", "diem qua trinh", "mark report", "diem pt", "diem lab", "diem assignment", "can thi fe", "thi fe bao nhieu", "thi cuoi ky may diem"]):
+        cg = call("get_component_grades", adv.get_component_grades(subj))
+        if cg.get("courses"):
+            lines = ["📊 **Phân tích Điểm thành phần FAP & Mục tiêu Final Exam (FE) kỳ này:**\n"]
+            for c in cg["courses"]:
+                items_txt = ", ".join(f"{it['name']}: `{it['value']}` ({it['weight_pct']}%)" for it in c.get("items", []) if it.get("value") is not None)
+                lines.append(
+                    f"- **{c['subject_code']} – {c['subject_name']}**: TB quá trình **`{c.get('coursework_average')}`** "
+                    f"(FE {int(round((c.get('fe_weight') or 0.4) * 100))}%) → Cần thi FE >= **`{c.get('required_fe_to_pass')}`** để Qua môn "
+                    f"(hoặc **`{c.get('required_fe_for_good')}`** để đạt Giỏi 8.0) — *{c.get('fe_verdict')}*"
+                    + (f"\n  + Chi tiết FAP: {items_txt}" if items_txt else "")
+                )
+            return "\n".join(lines), log
+        if cg.get("message"):
+            return f"📌 {cg['message']}", log
 
     # 0d. Câu hỏi về điều kiện đi OJT / Thực tập / Làm đồ án tốt nghiệp (KLTN / AIP491)
     if any(k in n for k in ["du dieu kien ojt", "di ojt", "di thuc tap", "lam do an", "khoa luan", "aip491", "ojt202", "xet tot nghiep"]):
@@ -102,6 +118,8 @@ def answer(text: str, adv: StudentAdvisor):
             return (f"🎯 Để đạt GPA **{r['target_gpa']}**, bạn cần trung bình **{r.get('required_average_on_remaining')}** "
                     f"trên {r.get('credits_remaining')} tín chỉ còn lại → *{r.get('verdict')}*."), log
         r = call("calculate_gpa", adv.gpa(_sem(text)))
+        if r.get("transcript_synced") is False:
+            return f"📡 **Chưa thu thập bảng điểm FAP 2.0:**\n\n{r.get('sync_required_message')}", log
         s = f"📊 **GPA {r['scope']}: {r['gpa']}** ({r['classification']}) – {r['credits_counted']} tín chỉ."
         if r.get("by_semester"):
             s += "\n\n" + "\n".join(f"- Kỳ {k}: {v}" for k, v in r["by_semester"].items())
@@ -169,9 +187,21 @@ def answer(text: str, adv: StudentAdvisor):
                         lines.append(f"  - **{day}**: môn **{info['subject_code']}** ({info['class_name']}), Phòng **{info['room']}**, GV **{info['lecturer']}** [{info['type']}] - *Trạng thái: {info['status']}*")
             return "\n".join(lines), log
 
-    # 3. Câu hỏi về Điểm danh chi tiết
+    # 3. Câu hỏi về Điểm danh chi tiết (hỗ trợ cả đa môn song song từ FAP)
     if ("diem danh" in n or "tinh hinh diem danh" in n or "da vang may buoi" in n or "nguy co af" in n or "cam thi" in n) and not m:
         r = call("get_attendance_details", adv.get_attendance_details(subj))
+        if r.get("courses") and not subj and len(r["courses"]) > 1:
+            lines = [f"📋 **Tổng hợp Điểm danh Đa môn từ FAP ({len(r['courses'])} môn trong kỳ):**\n"]
+            for c in r["courses"]:
+                badge = "🚨 **CẤM THI AF**" if c.get("is_attendance_fail") else (
+                    "⚠️ **Sát nút AF**" if int(c.get("remaining_allowed_absent", 99)) <= 1 else "✅ An toàn"
+                )
+                lines.append(
+                    f"- **{c['subject_code']}** ({c.get('class_name', '')}): Đã vắng **{c['absent_slots']}/{c['total_slots']}** buổi "
+                    f"({c['absent_rate_total']}) · Còn phép vắng **{c['remaining_allowed_absent']}** buổi → {badge}"
+                )
+            lines.append("\n💡 *Gõ kèm mã môn (ví dụ: `điểm danh môn DPL302m`) để xem chi tiết từng ngày vắng!*")
+            return "\n".join(lines), log
         if "records" in r:
             absent_sessions = [f"Buổi {rec['session']} ({rec.get('date', '')})" for rec in r.get("records", []) if rec.get("status") == "Vắng mặt"]
             absent_str = ", ".join(absent_sessions) if absent_sessions else "Không có buổi nào vắng"

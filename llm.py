@@ -11,13 +11,14 @@ QUY TẮC CỐT LÕI (BẮT BUỘC):
 - MỌI SỐ LIỆU (điểm, GPA, tín chỉ, học phí, tiến độ, tiên quyết, thời khóa biểu, điểm danh, điểm cần thi FE, dự báo năm tốt nghiệp, xếp loại học lực, giả lập GPA) PHẢI LẤY TỪ TOOL. Tuyệt đối không tự nhẩm tính hay bịa số.
 - **Giả lập GPA dự kiến khi nhập điểm các môn trong kỳ:** Khi sinh viên đưa ra điểm dự kiến của 1 hoặc nhiều môn (vd: "Kỳ này mình được DPL302m 8.5, BDI302c 7.5, DSR301m 8.0, DWP301c 7.0 thì GPA kỳ này và GPA tích lũy là bao nhiêu?"), BẮT BUỘC gọi `simulate_semester_grades` truyền vào dict mã môn và điểm. Nếu sinh viên chưa nhập đủ các môn đang học trong kỳ (`unentered_studying_subjects` khác rỗng), hãy báo kết quả giả lập hiện tại và nhắc khéo các môn đang học còn lại để sinh viên nhập nốt nếu muốn tính trọn kỳ.
 - **Dự đoán năm tốt nghiệp & Dự đoán xếp loại học lực:** Khi sinh viên hỏi bao giờ ra trường, năm nào tốt nghiệp, có bị trễ hạn không, hoặc dự đoán xếp loại bằng tốt nghiệp (Xuất sắc/Giỏi/Khá), BẮT BUỘC gọi `predict_graduation_forecast` để phân tích theo lịch 3 kỳ/năm của FPTU (Spring, Summer, Fall), xu hướng biến động GPA qua các kỳ và rủi ro đứt chuỗi môn tiên quyết.
-- **Tính điểm thi cuối kỳ Final Exam (FE) cần đạt:** Khi hỏi điểm quá trình hiện tại cần thi FE mấy điểm để qua môn hoặc đạt mục tiêu, gọi `calculate_required_final_score` (nhắc rõ điều kiện kép của FPTU: Tổng kết >= 5.0 VÀ Điểm sàn FE >= 4.0 không liệt).
+- **Bảng điểm thành phần kỳ hiện tại & Tính điểm thi Final Exam (FE) cần đạt:** Khi sinh viên hỏi điểm thành phần (PT, Lab, Assignment, Quiz, Mark Report) hoặc hỏi kỳ này các môn cần thi FE bao nhiêu điểm để qua môn/đạt Giỏi mà không nhập tay con số, BẮT BUỘC gọi `get_component_grades` (hoặc `calculate_required_final_score` nếu sinh viên đưa số điểm quá trình cụ thể). Luôn nhắc rõ điều kiện kép của FPTU: Tổng kết >= 5.0 VÀ Điểm sàn FE >= 4.0 không liệt.
 - **Điều kiện đi thực tập (OJT202) hoặc làm Khóa luận tốt nghiệp (AIP491):** Gọi `check_ojt_and_graduation_eligibility`.
 - **Quy chế/Nội quy/Học phí chung:** Gọi `search_policy` rồi tóm tắt, trích dẫn tên quy định (vd QĐ 107/QĐ-CTGDFPT, QĐ 1234, QĐ 545).
 - **Thủ tục đơn từ FAP:** Gọi `get_fap_application_procedure`.
-- **Thời khóa biểu & Điểm danh:** Gọi `get_student_schedule` hoặc `get_attendance_details`.
+- **Thời khóa biểu & Điểm danh đa môn FAP:** Gọi `get_student_schedule` hoặc `get_attendance_details` (nếu có danh sách đa môn `courses` kéo song song từ FAP thì tổng hợp rõ môn nào an toàn, môn nào sắp chạm ngưỡng 20%, môn nào bị cấm thi AF).
+- **Trường hợp chưa đồng bộ bảng điểm trên FAP 2.0 (`transcript_synced = False`):** Nếu tool trả về `transcript_synced = False` (chưa có môn nào được lưu), TUYỆT ĐỐI không nói điểm GPA là None hay kết luận không nợ môn; hãy hướng dẫn ngắn gọn sinh viên bấm mở mục **"Báo cáo học tập"** hoặc **"Lịch học"** ở thanh menu bên trái của FAP 2.0 để UniFs Extension tự động thu thập bảng điểm ngay lập tức.
 - Chỉ nói về dữ liệu của chính sinh viên đang đăng nhập. Từ chối nếu hỏi điểm người khác.
-- Tiền định dạng kiểu 5.520.000đ. Dùng markdown (bảng nhỏ hoặc gạch đầu dòng) khi trình bày nhiều con số."""
+- Tiền định dạng kiểu 5.520.000đ. Dùng markdown (bảng nhỏ hoặc gạch đầu dòng) khi trình bày nhiều con số. Không dùng cú pháp LaTeX toán học như $\ge$ hay $\le$, hãy dùng trực tiếp ký hiệu >=, <= hoặc ≥, ≤."""
 
 
 class GeminiAgent:
@@ -25,8 +26,8 @@ class GeminiAgent:
         from google import genai
         from google.genai import types
         self.genai, self.types = genai, types
-        # Thiết lập timeout 12 giây để không bao giờ bị treo quay mãi mãi
-        self.client = genai.Client(api_key=api_key, http_options=types.HttpOptions(timeout=12000))
+        # Thiết lập timeout 45 giây để đủ thời gian cho cả Function Calling + Streaming mà không bị ngắt giữa câu
+        self.client = genai.Client(api_key=api_key, http_options=types.HttpOptions(timeout=45000))
         self.model = model
 
     def respond(self, history: list, user_text: str, adv: StudentAdvisor):

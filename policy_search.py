@@ -77,6 +77,12 @@ def _get_semantic_scores(query: str, chunks: list) -> dict:
     api_key = os.getenv("GEMINI_API_KEY", "")
     if not api_key:
         try:
+            from auth_service import get_secret
+            api_key = get_secret("GEMINI_API_KEY", "")
+        except Exception:
+            api_key = ""
+    if not api_key:
+        try:
             import streamlit as st
             api_key = st.secrets.get("GEMINI_API_KEY", "")
         except Exception:

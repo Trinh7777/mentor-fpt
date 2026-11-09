@@ -29,8 +29,10 @@ from telegram_bot import start_telegram_bot_if_configured, get_telegram_token
 logging.basicConfig(level=logging.INFO)
 log = logging.getLogger("unifs_fpt")
 
-# Tự động bật FAP Sync Receiver Server ngầm ở cổng 8000
+# Tự động bật UniFs Pro Full-Stack Server ngầm ở cổng 8000
 start_background_server()
+
+st.info("✨ **UniFs Pro 2.0 (Giao diện Web SPA Full-Stack Siêu Cấp VIP Pro)** đã tự động khởi chạy tại **[http://localhost:8000](http://localhost:8000)** — bấm vào link để trải nghiệm Dashboard 360°, Cây môn học 9 kỳ, Máy tính FE và Reset mật khẩu OTP mượt mà không giật lag!")
 
 ASSETS_DIR = Path(__file__).parent / "assets"
 HERO_MASCOT_PATH = ASSETS_DIR / "mascot_hero.jpg"

@@ -1,296 +1,359 @@
 /**
- * UniFs FAP Extractor & Synchronizer - Content Script
- * Chạy trực tiếp trên ngữ cảnh trang web fap.fpt.edu.vn của người dùng
+ * UniFs Pro — FAP In-Page Content Controller (content.js)
+ * - Tự động kích hoạt Parallel FAP Crawler (5 luồng song song) ngay khi mở fap.fpt.edu.vn
+ * - Hiển thị nút nổi 3D Robot + Ngăn kéo Copilot AI (Slide-Over Drawer) ngay trên FAP
+ * - Cầu nối 2 chiều thời gian thực giữa trang FAP <-> Copilot Iframe <-> Background Worker
  */
 
-const BACKEND_API_URL = "http://localhost:8000/api/v1/update-student-data";
+(function () {
+  if (window.__UNIFS_CONTENT_INITIALIZED__) return;
+  window.__UNIFS_CONTENT_INITIALIZED__ = true;
 
-// ── 1. HÀM BÓC TÁCH DỮ LIỆU DOM ──
-
-function cleanText(text) {
-  return (text || "").replace(/\s+/g, " ").trim();
-}
-
-/**
- * Trích xuất MSSV & Tên từ DOM trang FAP
- */
-function extractStudentInfo() {
-  const info = {
-    student_id: "",
-    full_name: "",
+  let isDrawerOpen = false;
+  let isExpanded = false;
+  let isCrawling = false;
+  let latestSnapshot = null;
+  let latestSyncMeta = null;
+  let workerStates = {
+    profile: { status: "idle", detail: "" },
+    transcript: { status: "idle", detail: "" },
+    coursework: { status: "idle", detail: "" },
+    schedule: { status: "idle", detail: "" },
+    attendance: { status: "idle", detail: "" },
   };
 
-  // 1. Thử tìm theo ID hoặc selector quen thuộc của ASP.NET
-  const nameEl = document.querySelector("#ctl00_lblFullName, #ctl00_lblStudent, #StudentName, span[id*='Student'], span[id*='lblUser']");
-  if (nameEl) {
-    info.full_name = cleanText(nameEl.innerText);
+  let launcherEl = null;
+  let subTextEl = null;
+  let dotEl = null;
+  let afPillEl = null;
+  let drawerEl = null;
+  let backdropEl = null;
+  let iframeEl = null;
+
+  function postToCopilot(type, payload) {
+    if (iframeEl && iframeEl.contentWindow) {
+      iframeEl.contentWindow.postMessage({ source: "UNIFS_CONTENT", type, payload }, "*");
+    }
   }
 
-  // 2. Tìm MSSV dạng mã chuẩn FPT (VD: SE190456, HE181234, IA170123,...)
-  const bodyText = document.body.innerText || "";
-  const match = bodyText.match(/\b([A-Z]{2}\d{6})\b/);
-  if (match) {
-    info.student_id = match[1];
-  }
+  function createInjectedUi() {
+    if (document.getElementById("unifs-copilot-launcher")) return;
 
-  return info;
-}
+    const mascotUrl = chrome.runtime.getURL("icons/mascot.png");
+    const copilotUrl = chrome.runtime.getURL("copilot.html?mode=drawer");
 
-/**
- * Trích xuất toàn bộ bảng điểm (Transcript / Mark Report)
- */
-function extractTranscriptData(studentId) {
-  const records = [];
-  const tables = document.querySelectorAll("table");
-
-  tables.forEach((table) => {
-    const rows = Array.from(table.querySelectorAll("tr"));
-    if (rows.length < 2) return;
-
-    // Tìm dòng header
-    let headerRow = rows[0];
-    let headers = Array.from(headerRow.querySelectorAll("th, td")).map((c) => cleanText(c.innerText).toLowerCase());
-
-    // Nếu dòng đầu không chứa header rõ ràng, thử dòng 2
-    if (!headers.some((h) => h.includes("code") || h.includes("subject") || h.includes("mã môn") || h.includes("grade") || h.includes("điểm"))) {
-      if (rows[1]) {
-        headers = Array.from(rows[1].querySelectorAll("th, td")).map((c) => cleanText(c.innerText).toLowerCase());
-      }
-    }
-
-    const codeIdx = headers.findIndex((h) => h.includes("subject code") || h.includes("code") || h.includes("mã môn"));
-    const gradeIdx = headers.findIndex((h) => h.includes("average") || h.includes("grade") || h.includes("điểm"));
-    const statusIdx = headers.findIndex((h) => h.includes("status") || h.includes("trạng thái"));
-    const termIdx = headers.findIndex((h) => h.includes("term") || h.includes("semester") || h.includes("học kỳ") || h.includes("kỳ"));
-
-    // Nếu bảng có cột mã môn
-    if (codeIdx !== -1) {
-      rows.forEach((row) => {
-        const cells = Array.from(row.querySelectorAll("td"));
-        if (!cells.length || cells.length <= codeIdx) return;
-
-        const rawCode = cleanText(cells[codeIdx].innerText);
-        // Kiểm tra xem mã môn có hợp lệ không (thường 5-8 ký tự viết hoa)
-        if (!rawCode || rawCode.toLowerCase().includes("code") || rawCode.length < 3) return;
-
-        let grade = null;
-        if (gradeIdx !== -1 && cells[gradeIdx]) {
-          const parsed = parseFloat(cleanText(cells[gradeIdx].innerText));
-          if (!isNaN(parsed)) grade = parsed;
-        }
-
-        let status = "Passed";
-        if (statusIdx !== -1 && cells[statusIdx]) {
-          const sText = cleanText(cells[statusIdx].innerText).toLowerCase();
-          if (sText.includes("fail") || sText.includes("không đạt") || sText.includes("học lại")) {
-            status = "Failed";
-          } else if (sText.includes("study") || sText.includes("đang học") || grade === null) {
-            status = "Studying";
-          } else {
-            status = "Passed";
-          }
-        } else if (grade === null) {
-          status = "Studying";
-        } else if (grade < 5.0) {
-          status = "Failed";
-        }
-
-        let semesterTaken = 1;
-        if (termIdx !== -1 && cells[termIdx]) {
-          const tText = cleanText(cells[termIdx].innerText);
-          const tNum = parseInt(tText.replace(/\D/g, ""), 10);
-          if (!isNaN(tNum) && tNum > 0) semesterTaken = tNum;
-        }
-
-        records.push({
-          student_id: studentId || "CURRENT_STUDENT",
-          subject_code: rawCode,
-          semester_taken: semesterTaken,
-          grade: grade,
-          status: status,
-        });
-      });
-    }
-  });
-
-  return records;
-}
-
-/**
- * Trích xuất Thời khóa biểu / Lịch học (Schedule)
- */
-function extractScheduleData() {
-  const schedule = [];
-  const tables = document.querySelectorAll("table");
-
-  tables.forEach((table) => {
-    const rows = Array.from(table.querySelectorAll("tr"));
-    rows.forEach((row) => {
-      const cells = Array.from(row.querySelectorAll("td"));
-      if (cells.length < 3) return;
-
-      const rowText = cells.map((c) => cleanText(c.innerText));
-      // Nếu dòng chứa thông tin môn học, slot, phòng
-      const joined = rowText.join(" ");
-      if (joined.match(/(slot|\d{1,2}:\d{2}|room|phòng|[A-Z]{3}\d{3})/i)) {
-        schedule.push({
-          details: rowText,
-        });
+    // 1. Backdrop (only visible when expanded wide)
+    backdropEl = document.createElement("div");
+    backdropEl.id = "unifs-copilot-backdrop";
+    backdropEl.addEventListener("click", () => {
+      if (isExpanded) {
+        setExpanded(false);
+      } else {
+        setDrawerOpen(false);
       }
     });
-  });
 
-  return schedule;
-}
+    // 2. Floating Launcher Pill
+    launcherEl = document.createElement("div");
+    launcherEl.id = "unifs-copilot-launcher";
+    launcherEl.title = "Mở Trợ lý Học vụ AI UniFs ngay trên FAP (Phím tắt: Alt + U)";
+    launcherEl.innerHTML = `
+      <div class="unifs-launcher-avatar">
+        <img src="${mascotUrl}" alt="UniFs AI" />
+        <span class="unifs-launcher-dot syncing" id="unifs-launcher-dot"></span>
+      </div>
+      <div class="unifs-launcher-meta">
+        <div class="unifs-launcher-title">
+          <span>UniFs AI Copilot</span>
+          <span class="unifs-launcher-kbd">Alt+U</span>
+          <span class="unifs-af-pill" id="unifs-af-pill" style="display:none">AF!</span>
+        </div>
+        <div class="unifs-launcher-sub" id="unifs-launcher-sub">⚡ Đang kéo song song 5 luồng FAP...</div>
+      </div>
+    `;
+    launcherEl.addEventListener("click", () => setDrawerOpen(true));
 
-/**
- * Trích xuất Điểm danh (Attendance)
- */
-function extractAttendanceData() {
-  const attendance = [];
-  const tables = document.querySelectorAll("table");
+    // 3. Slide-Over Copilot Drawer
+    drawerEl = document.createElement("div");
+    drawerEl.id = "unifs-copilot-drawer";
 
-  tables.forEach((table) => {
-    const rows = Array.from(table.querySelectorAll("tr"));
-    rows.forEach((row) => {
-      const cells = Array.from(row.querySelectorAll("td"));
-      if (cells.length < 3) return;
-
-      const texts = cells.map((c) => cleanText(c.innerText));
-      const rowStr = texts.join(" ").toLowerCase();
-
-      if (rowStr.includes("present") || rowStr.includes("absent") || rowStr.includes("vắng") || rowStr.includes("có mặt")) {
-        attendance.push({
-          data: texts,
-        });
-      }
+    iframeEl = document.createElement("iframe");
+    iframeEl.id = "unifs-copilot-iframe";
+    iframeEl.src = copilotUrl;
+    iframeEl.allow = "clipboard-write";
+    iframeEl.addEventListener("load", () => {
+      pushFullStateToCopilot();
     });
-  });
 
-  return attendance;
-}
+    drawerEl.appendChild(iframeEl);
+    document.body.appendChild(backdropEl);
+    document.body.appendChild(launcherEl);
+    document.body.appendChild(drawerEl);
 
-// ── 2. ĐỒNG BỘ VỀ BACKEND API ──
-
-async function sendToBackend(payload) {
-  const response = await fetch(BACKEND_API_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(payload),
-  });
-
-  if (!response.ok) {
-    const errText = await response.text();
-    throw new Error(`API returned ${response.status}: ${errText}`);
+    subTextEl = document.getElementById("unifs-launcher-sub");
+    dotEl = document.getElementById("unifs-launcher-dot");
+    afPillEl = document.getElementById("unifs-af-pill");
   }
 
-  return await response.json();
-}
-
-// ── 3. ĐỒNG BỘ TỰ ĐỘNG NGẦM (SILENT AUTO-SYNC) & NÚT BẤM ──
-
-async function performSync(isSilent = false) {
-  const btn = document.getElementById("unifs-sync-btn");
-  const statusMsg = document.getElementById("unifs-sync-status");
-
-  if (!isSilent && btn) {
-    btn.classList.add("loading");
-    btn.disabled = true;
-    showStatus("Đang đọc dữ liệu từ FAP...", "info");
+  function setDrawerOpen(open) {
+    isDrawerOpen = Boolean(open);
+    if (!drawerEl || !launcherEl) return;
+    if (isDrawerOpen) {
+      drawerEl.classList.add("open");
+      launcherEl.classList.add("unifs-hidden");
+      if (isExpanded && backdropEl) backdropEl.classList.add("visible");
+      pushFullStateToCopilot();
+    } else {
+      drawerEl.classList.remove("open");
+      launcherEl.classList.remove("unifs-hidden");
+      if (backdropEl) backdropEl.classList.remove("visible");
+    }
   }
 
-  try {
-    const studentInfo = extractStudentInfo();
-    const transcript = extractTranscriptData(studentInfo.student_id);
-    const schedule = extractScheduleData();
-    const attendance = extractAttendanceData();
+  function setExpanded(exp) {
+    isExpanded = Boolean(exp);
+    if (!drawerEl || !backdropEl) return;
+    if (isExpanded) {
+      drawerEl.classList.add("expanded");
+      if (isDrawerOpen) backdropEl.classList.add("visible");
+    } else {
+      drawerEl.classList.remove("expanded");
+      backdropEl.classList.remove("visible");
+    }
+    postToCopilot("UNIFS_DRAWER_SIZE", { expanded: isExpanded });
+  }
 
-    // Nếu chạy ngầm mà trang hiện tại không có MSSV hoặc không có bảng dữ liệu nào thì bỏ qua
-    if (isSilent && !studentInfo.student_id && !transcript.length && !schedule.length && !attendance.length) {
+  function pushFullStateToCopilot() {
+    postToCopilot("UNIFS_STATE_INIT", {
+      isCrawling,
+      workerStates,
+      snapshot: latestSnapshot,
+      syncMeta: latestSyncMeta,
+      expanded: isExpanded,
+      currentPage: window.UniFsParallelCrawler
+        ? window.UniFsParallelCrawler.extractCurrentPageSummary()
+        : null,
+    });
+  }
+
+  function updateLauncherStatus() {
+    if (!subTextEl || !dotEl || !afPillEl) return;
+
+    if (isCrawling) {
+      dotEl.className = "unifs-launcher-dot syncing";
+      const doneCount = Object.values(workerStates).filter((w) => w.status === "done").length;
+      subTextEl.textContent = `⚡ Đang kéo song song FAP (${doneCount}/5 luồng)...`;
       return;
     }
 
-    const payload = {
-      student_id: studentInfo.student_id || "CURRENT_STUDENT",
-      full_name: studentInfo.full_name || "",
-      current_url: window.location.href,
-      synced_at: new Date().toISOString(),
-      transcript: transcript,
-      schedule: schedule,
-      attendance: attendance,
-    };
+    if (!latestSnapshot || !latestSnapshot.student_id) {
+      dotEl.className = "unifs-launcher-dot";
+      subTextEl.textContent = "Bấm để mở Trợ lý Học vụ AI";
+      return;
+    }
 
-    const res = await sendToBackend(payload);
-    console.log("[UniFs Auto-Sync] Đã đồng bộ ngầm về Database:", res);
-
-    if (btn) {
-      const span = btn.querySelector("span");
-      if (span) span.innerText = "Đã tự động đồng bộ FAP ✓";
-    }
-    if (!isSilent) {
-      showStatus(`✅ ${res.message || "Dữ liệu đã được nạp vào Database!"}`, "success");
-    }
-  } catch (err) {
-    if (!isSilent) {
-      console.error("[UniFs Sync] Lỗi:", err);
-      showStatus(`❌ Lỗi đồng bộ: ${err.message}. Hãy chắc chắn ứng dụng Streamlit đang chạy!`, "error");
-    }
-  } finally {
-    if (btn) {
-      btn.classList.remove("loading");
-      btn.disabled = false;
-    }
-    if (!isSilent && statusMsg) {
-      setTimeout(() => {
-        if (statusMsg.classList.contains("success")) {
-          statusMsg.style.display = "none";
-        }
-      }, 4500);
+    const afCourses = (latestSnapshot.attendances_multi || []).filter((c) => c.is_attendance_fail);
+    if (afCourses.length > 0) {
+      dotEl.className = "unifs-launcher-dot danger";
+      afPillEl.style.display = "inline-block";
+      afPillEl.textContent = `${afCourses.length} AF`;
+      subTextEl.textContent = `${latestSnapshot.student_id} · Cảnh báo cấm thi ${afCourses[0].subject_code}!`;
+    } else {
+      dotEl.className = "unifs-launcher-dot";
+      afPillEl.style.display = "none";
+      const tCount = (latestSnapshot.transcript || []).length;
+      const cwCount = Object.keys(latestSnapshot.component_grades || {}).length;
+      subTextEl.textContent = `${latestSnapshot.student_id} · Đã kéo ${tCount} môn & ${cwCount} bảng điểm TP`;
     }
   }
-}
 
-function injectSyncButton() {
-  if (document.getElementById("unifs-sync-container")) return;
+  async function triggerParallelSync() {
+    if (isCrawling || !window.UniFsParallelCrawler) return null;
+    isCrawling = true;
+    updateLauncherStatus();
+    postToCopilot("UNIFS_CRAWL_STARTED", { startedAt: Date.now() });
 
-  const container = document.createElement("div");
-  container.id = "unifs-sync-container";
+    try {
+      const snapshot = await window.UniFsParallelCrawler.runParallelFapCrawl((prog) => {
+        workerStates[prog.worker] = { status: prog.status, detail: prog.detail };
+        updateLauncherStatus();
+        postToCopilot("UNIFS_CRAWL_PROGRESS", { workerStates, event: prog });
+      });
 
-  const statusMsg = document.createElement("div");
-  statusMsg.id = "unifs-sync-status";
+      latestSnapshot = snapshot;
+      isCrawling = false;
+      updateLauncherStatus();
 
-  const btn = document.createElement("button");
-  btn.id = "unifs-sync-btn";
-  btn.innerHTML = `
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-      <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
-    </svg>
-    <span>Đồng bộ UniFs Chatbot</span>
-  `;
+      // Gửi sang Service Worker để đồng bộ vào SQLite Backend (không lo Mixed-Content HTTPS -> HTTP)
+      chrome.runtime.sendMessage(
+        { type: "UNIFS_SYNC_SNAPSHOT", payload: snapshot },
+        (syncResp) => {
+          latestSyncMeta = syncResp || null;
+          postToCopilot("UNIFS_CRAWL_COMPLETE", {
+            snapshot: latestSnapshot,
+            syncMeta: latestSyncMeta,
+            workerStates,
+          });
+        }
+      );
 
-  btn.addEventListener("click", () => performSync(false));
+      return snapshot;
+    } catch (err) {
+      isCrawling = false;
+      updateLauncherStatus();
+      postToCopilot("UNIFS_CRAWL_ERROR", { error: err.message || "Không thể quét FAP" });
+      return null;
+    }
+  }
 
-  container.appendChild(statusMsg);
-  container.appendChild(btn);
-  document.body.appendChild(container);
+  // Lắng nghe lệnh từ Copilot Iframe
+  window.addEventListener("message", (event) => {
+    const data = event.data;
+    if (!data || data.source !== "UNIFS_COPILOT") return;
 
-  // Tự động đồng bộ ngầm (Silent Auto-Sync) sau 800ms khi trang FAP tải xong
-  setTimeout(() => performSync(true), 800);
-}
+    if (data.type === "UNIFS_CMD_CLOSE") {
+      setDrawerOpen(false);
+    } else if (data.type === "UNIFS_CMD_TOGGLE_EXPAND") {
+      setExpanded(!isExpanded);
+    } else if (data.type === "UNIFS_CMD_CRAWL") {
+      triggerParallelSync();
+    } else if (data.type === "UNIFS_CMD_GET_STATE") {
+      pushFullStateToCopilot();
+    } else if (data.type === "UNIFS_CMD_OPEN_SIDEPANEL") {
+      chrome.runtime.sendMessage({ type: "UNIFS_OPEN_SIDE_PANEL" });
+    }
+  });
 
-function showStatus(text, type) {
-  const statusMsg = document.getElementById("unifs-sync-status");
-  if (!statusMsg) return;
-  statusMsg.className = type;
-  statusMsg.innerText = text;
-}
+  // Lắng nghe lệnh từ Popup / Background Service Worker
+  chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
+    if (!msg || !msg.type) return false;
+    if (msg.type === "UNIFS_TRIGGER_CRAWL") {
+      triggerParallelSync().then((snap) => sendResponse({ ok: true, snapshot: snap }));
+      return true;
+    }
+    if (msg.type === "UNIFS_OPEN_DRAWER") {
+      setDrawerOpen(true);
+      sendResponse({ ok: true });
+      return false;
+    }
+    return false;
+  });
 
-// Khởi chạy
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", injectSyncButton);
-} else {
-  injectSyncButton();
-}
+  // Phím tắt Alt + U để bật/tắt nhanh Copilot ngay khi đang xem bảng điểm trên FAP
+  window.addEventListener("keydown", (e) => {
+    if (e.altKey && (e.key === "u" || e.key === "U")) {
+      e.preventDefault();
+      setDrawerOpen(!isDrawerOpen);
+    } else if (e.key === "Escape" && isDrawerOpen && isExpanded) {
+      setExpanded(false);
+    }
+  });
 
+  let syncDebounceTimer = null;
+  let lastSyncedSignature = "";
+
+  function computeSnapshotSignature(snap) {
+    if (!snap) return "";
+    return [
+      snap.student_id || "",
+      snap.full_name || "",
+      (snap.transcript || []).length,
+      (snap.subjects_discovered || []).length,
+      Object.keys(snap.component_grades || {}).length,
+      (snap.attendances_multi || []).length,
+      snap.schedule ? (snap.schedule.schedule || []).length : 0,
+    ].join("|");
+  }
+
+  function refreshWorkerPillsFromSnapshot(snap) {
+    if (!snap) return;
+    workerStates = {
+      profile: {
+        status: snap.student_id ? "done" : "idle",
+        detail: snap.student_id || "Chờ nhận diện",
+      },
+      transcript: {
+        status: (snap.transcript || []).length > 0 ? "done" : "idle",
+        detail: (snap.transcript || []).length > 0 ? `${snap.transcript.length} môn` : "Mở Báo cáo HT",
+      },
+      coursework: {
+        status: Object.keys(snap.component_grades || {}).length > 0 ? "done" : "idle",
+        detail:
+          Object.keys(snap.component_grades || {}).length > 0
+            ? `${Object.keys(snap.component_grades).length} lớp`
+            : "Mở Điểm TP",
+      },
+      schedule: {
+        status: snap.schedule ? "done" : "idle",
+        detail: snap.schedule ? `${(snap.schedule.schedule || []).length} ca` : "Mở Lịch học",
+      },
+      attendance: {
+        status: (snap.attendances_multi || []).length > 0 ? "done" : "idle",
+        detail:
+          (snap.attendances_multi || []).length > 0
+            ? `${snap.attendances_multi.length} lớp`
+            : "Mở Điểm danh",
+      },
+    };
+  }
+
+  function scheduleIncrementalSync(updatedSnap) {
+    if (!updatedSnap || !updatedSnap.student_id) return;
+    const sig = computeSnapshotSignature(updatedSnap);
+    if (sig === lastSyncedSignature) return;
+
+    latestSnapshot = updatedSnap;
+    refreshWorkerPillsFromSnapshot(updatedSnap);
+    updateLauncherStatus();
+
+    clearTimeout(syncDebounceTimer);
+    syncDebounceTimer = setTimeout(() => {
+      lastSyncedSignature = sig;
+      chrome.runtime.sendMessage(
+        { type: "UNIFS_SYNC_SNAPSHOT", payload: latestSnapshot },
+        (syncResp) => {
+          latestSyncMeta = syncResp || null;
+          postToCopilot("UNIFS_CRAWL_COMPLETE", {
+            snapshot: latestSnapshot,
+            syncMeta: latestSyncMeta,
+            workerStates,
+          });
+        }
+      );
+    }, 380);
+  }
+
+  function bootstrap() {
+    createInjectedUi();
+
+    // Lắng nghe gói JSON API & biến động bảng DOM theo thời gian thực trên FAP 2.0 SPA!
+    if (window.UniFsParallelCrawler?.onLiveSpaSnapshotUpdate) {
+      window.UniFsParallelCrawler.onLiveSpaSnapshotUpdate((snap) => {
+        scheduleIncrementalSync(snap);
+      });
+    }
+
+    if (window.UniFsParallelCrawler && !window.UniFsParallelCrawler.getPortalContext().isClassicAspx) {
+      let domTimer = null;
+      const obs = new MutationObserver(() => {
+        clearTimeout(domTimer);
+        domTimer = setTimeout(() => {
+          const domSnap = window.UniFsParallelCrawler.scanCurrentDomNow();
+          scheduleIncrementalSync(domSnap);
+        }, 550);
+      });
+      obs.observe(document.body, { childList: true, subtree: true });
+    }
+
+    // Tự động kích hoạt quét ngay khi sinh viên mở trang FAP
+    setTimeout(() => {
+      triggerParallelSync();
+    }, 350);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", bootstrap);
+  } else {
+    bootstrap();
+  }
+})();

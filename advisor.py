@@ -81,6 +81,20 @@ class StudentAdvisor:
 
     # ---------- 3. GPA ----------
     def gpa(self, semester=None):
+        if not self.records:
+            return {
+                "scope": f"Học kỳ {semester}" if semester else "Tích lũy",
+                "transcript_synced": False,
+                "gpa": None,
+                "classification": None,
+                "credits_counted": 0,
+                "subjects_counted": 0,
+                "sync_required_message": (
+                    f"Hệ thống đã nhận diện tài khoản {self.sid} nhưng chưa thu thập được danh sách điểm môn học từ giao diện FAP 2.0 mới. "
+                    "Bạn hãy bấm mở mục 'Báo cáo học tập' (Bảng điểm) hoặc 'Môn học & chương trình' ở menu bên trái trang FAP — "
+                    "UniFs Extension sẽ tự động bắt trọn bảng điểm ngay lập tức!"
+                ),
+            }
         if semester is None:
             recs = list(self._latest().values())
         else:
@@ -91,6 +105,7 @@ class StudentAdvisor:
         pts = sum(r["grade"] * credits_of(r["subject_code"]) for r in graded)
         gpa = round(pts / cr, 2) if cr else None
         res = {"scope": f"Học kỳ {semester}" if semester else "Tích lũy",
+               "transcript_synced": True,
                "gpa": gpa, "classification": classify(gpa) if gpa is not None else None,
                "credits_counted": cr, "subjects_counted": len(graded),
                "note": "GPA = tổng(điểm x tín chỉ)/tổng tín chỉ; môn học lại lấy lần học gần nhất; "
@@ -139,10 +154,18 @@ class StudentAdvisor:
             else: failed.append({**item, "last_grade": r["grade"], "failed_in_semester": r["semester_taken"]})
         total_cr = sum(credits_of(c) for c in self.d["subjects"])
         passed_cr = sum(i["credits"] for i in passed)
-        return {"credits_passed": passed_cr, "credits_total": total_cr,
-                "percent": round(100 * passed_cr / total_cr, 1),
-                "passed_count": len(passed), "passed": passed, "studying": studying,
-                "failed_pending_retake": failed, "not_taken_yet": notyet}
+        out = {"transcript_synced": len(self.records) > 0,
+               "credits_passed": passed_cr, "credits_total": total_cr,
+               "percent": round(100 * passed_cr / total_cr, 1) if total_cr else 0.0,
+               "passed_count": len(passed), "passed": passed, "studying": studying,
+               "failed_pending_retake": failed, "not_taken_yet": notyet}
+        if not self.records:
+            out["sync_required_message"] = (
+                "Chưa có dữ liệu bảng điểm môn học của sinh viên này từ FAP 2.0. "
+                "Tuyệt đối KHÔNG kết luận sinh viên đã học sạch hay không nợ môn khi transcript_synced = False; "
+                "hãy nhắc sinh viên bấm mở mục 'Báo cáo học tập' hoặc 'Khung chương trình' trên thanh menu bên trái của FAP để Extension tự động đồng bộ!"
+            )
+        return out
 
     def curriculum_roadmap(self):
         """Trả về toàn bộ khung chương trình 9 kỳ kèm trạng thái từng môn và chuỗi môn mở khóa."""
@@ -248,13 +271,93 @@ class StudentAdvisor:
                          "Vi phạm quy chế thi: nhân đôi. Hủy lớp trước khai giảng hoàn 50%; trường không mở lớp hoàn 100% "
                          "(QĐ 107/QĐ-CTGDFPT)."}
 
-    # ---------- 7. Tính điểm Final Exam (FE) cần đạt & Điều kiện OJT / Tốt nghiệp ----------
-    def calculate_required_final_score(self, coursework_avg: float, subject_code: str = None,
+    # ---------- 7. Tính điểm Final Exam (FE) cần đạt & Điểm thành phần FAP & Điều kiện OJT / Tốt nghiệp ----------
+    def _find_coursework_entry(self, subject_code: str = None):
+        cw_map = self.d.get("cases", {}).get("coursework", {}).get(self.sid, {})
+        if not cw_map or not subject_code:
+            return None
+        target = str(subject_code).strip().lower()
+        for k, v in cw_map.items():
+            if k.lower() == target or str(v.get("subject_code", "")).lower() == target:
+                return v
+        return None
+
+    def get_component_grades(self, subject_code: str = None):
+        """Lấy bảng điểm thành phần kỳ hiện tại (PT, Lab, Assignment, FE...) kéo song song từ FAP Mark Report,
+        tự động tính luôn điểm thi Final Exam (FE) cần đạt để Qua môn (5.0) và đạt Giỏi (8.0)."""
+        cw_map = self.d.get("cases", {}).get("coursework", {}).get(self.sid, {})
+        if not cw_map:
+            studying = self.progress().get("studying", [])
+            return {
+                "student_id": self.sid,
+                "synced": False,
+                "courses_count": 0,
+                "courses": [],
+                "studying_subjects": studying,
+                "message": (
+                    "Chưa có dữ liệu bảng điểm thành phần chi tiết từ FAP Mark Report. "
+                    "Hãy mở FAP và bấm nút '⚡ Kéo song song FAP' trên UniFs Extension để tự động đồng bộ điểm PT/Lab/Assignment!"
+                ),
+            }
+
+        entries = list(cw_map.values()) if isinstance(cw_map, dict) else list(cw_map)
+        if subject_code:
+            norm = (self._norm_code(subject_code) or subject_code).strip().lower()
+            entries = [e for e in entries if str(e.get("subject_code", "")).lower() == norm]
+            if not entries:
+                return {
+                    "student_id": self.sid,
+                    "synced": True,
+                    "error": f"Không tìm thấy điểm thành phần môn '{subject_code}' trong học kỳ hiện tại.",
+                    "available_subjects": list(cw_map.keys()) if isinstance(cw_map, dict) else [],
+                }
+
+        enriched = []
+        for entry in entries:
+            code = entry.get("subject_code", "")
+            cw_avg = entry.get("coursework_average")
+            fe_w = entry.get("fe_weight")
+            pass_calc = None
+            good_calc = None
+            if cw_avg is not None:
+                pass_calc = self.calculate_required_final_score(float(cw_avg), code, fe_w, 5.0)
+                good_calc = self.calculate_required_final_score(float(cw_avg), code, fe_w, 8.0)
+
+            enriched.append({
+                **entry,
+                "subject_name": entry.get("subject_name") or self._name(code),
+                "required_fe_to_pass": pass_calc.get("required_fe_score") if pass_calc else None,
+                "required_fe_for_good": good_calc.get("required_fe_score") if good_calc else None,
+                "fe_verdict": pass_calc.get("verdict") if pass_calc else "Chưa đủ đầu điểm thành phần",
+            })
+
+        return {
+            "student_id": self.sid,
+            "synced": True,
+            "courses_count": len(enriched),
+            "courses": enriched,
+        }
+
+    def calculate_required_final_score(self, coursework_avg: float = None, subject_code: str = None,
                                        fe_weight: float = None, target_total: float = 5.0):
         """Tính điểm thi Final Exam (FE) tối thiểu cần đạt để qua môn (hoặc đạt điểm mục tiêu target_total).
         Chuẩn quy chế khảo thí FPTU: Tổng kết >= 5.0 VÀ Điểm thi Final Exam (FE) >= 4.0."""
-        code = self._norm_code(subject_code) if subject_code else None
+        code = self._norm_code(subject_code) if subject_code else subject_code
         subj_info = self.d["subjects"].get(code, {}) if code else {}
+
+        cw_entry = self._find_coursework_entry(code or subject_code)
+        if (coursework_avg is None or coursework_avg < 0) and cw_entry and cw_entry.get("coursework_average") is not None:
+            coursework_avg = float(cw_entry["coursework_average"])
+            if fe_weight is None and cw_entry.get("fe_weight") is not None:
+                fe_weight = float(cw_entry["fe_weight"])
+
+        if coursework_avg is None:
+            return {
+                "error": (
+                    f"Chưa có điểm trung bình quá trình của môn {code or subject_code or 'này'}. "
+                    "Bạn hãy nhập điểm quá trình (vd 7.2) hoặc bấm '⚡ Kéo song song FAP' trên Extension để lấy tự động."
+                )
+            }
 
         if fe_weight is None:
             fe_weight = subj_info.get("fe_weight", 0.4)
@@ -483,11 +586,14 @@ class StudentAdvisor:
         failed_list = prog["failed_pending_retake"]
         failed_codes = [f["subject_code"] for f in failed_list]
 
-        # Kiểm tra xem có môn nào đang bị cấm thi AF trong kỳ hiện tại không
+        # Kiểm tra xem có môn nào đang bị cấm thi AF trong kỳ hiện tại không (hỗ trợ đa môn song song từ FAP)
         att_info = self.get_attendance_details()
-        af_subject = att_info.get("subject_code") if att_info and att_info.get("is_attendance_fail") else None
-        if af_subject and af_subject not in failed_codes:
-            failed_codes.append(f"{af_subject} (Bị cấm thi AF kỳ này)")
+        att_courses = att_info.get("courses") if isinstance(att_info, dict) and att_info.get("courses") else ([att_info] if att_info else [])
+        for ac in att_courses:
+            if isinstance(ac, dict) and ac.get("is_attendance_fail"):
+                af_sub = ac.get("subject_code")
+                if af_sub and af_sub not in failed_codes and f"{af_sub} (Bị cấm thi AF kỳ này)" not in failed_codes:
+                    failed_codes.append(f"{af_sub} (Bị cấm thi AF kỳ này)")
 
         # Kiểm tra chuỗi tiên quyết: nếu môn đang nợ chặn môn kỳ sau -> nguy cơ trễ kỳ
         chain_blocked = []
@@ -612,10 +718,31 @@ class StudentAdvisor:
         att = attendances.get(self.sid) or cases.get("student_attendance", {})
         if not att:
             return {"message": f"Chưa có dữ liệu điểm danh chi tiết cho sinh viên {self.sid}."}
+
+        courses_list = att.get("courses") if isinstance(att, dict) else None
         if subject_code:
-            code = self._norm_code(subject_code) or subject_code
+            code = (self._norm_code(subject_code) or subject_code).strip()
+            if courses_list:
+                for c in courses_list:
+                    if str(c.get("subject_code", "")).lower() == code.lower():
+                        return {**c, "total_courses_tracked": len(courses_list)}
+                avail = ", ".join(str(x.get("subject_code", "")) for x in courses_list)
+                return {
+                    "message": f"Hiện hệ thống đã đồng bộ điểm danh các môn [{avail}], chưa thấy môn {subject_code} trong kỳ này.",
+                    "courses": courses_list,
+                }
             if att.get("subject_code", "").lower() != code.lower():
                 return {"message": f"Hiện tại hệ thống có dữ liệu điểm danh môn {att.get('subject_code')}, chưa có dữ liệu chi tiết từng slot của môn {subject_code}."}
+
+        if courses_list:
+            af_cnt = sum(1 for c in courses_list if c.get("is_attendance_fail"))
+            warn_cnt = sum(1 for c in courses_list if not c.get("is_attendance_fail") and int(c.get("remaining_allowed_absent", 99)) <= 1)
+            return {
+                **att,
+                "total_courses_tracked": len(courses_list),
+                "af_courses_count": af_cnt,
+                "danger_courses_count": warn_cnt,
+            }
         return att
 
     def get_application_procedure(self, application_name=None):
